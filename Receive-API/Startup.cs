@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -19,6 +20,7 @@ using Receive_API._Repositorys.Repositories;
 using Receive_API._Services.Interfaces;
 using Receive_API._Services.Services;
 using Receive_API.Data;
+using Receive_API.Helpers.AutoMapper;
 
 namespace Receive_API
 {
@@ -38,6 +40,14 @@ namespace Receive_API
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
             
+
+              //Auto Mapper
+            services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<IMapper>(sp =>
+            {
+                return new Mapper(AutoMapperConfig.RegisterMappings());
+            });
+            services.AddSingleton(AutoMapperConfig.RegisterMappings ());
             services.AddAuthentication (JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer (options => {
                     options.RequireHttpsMetadata = false;
@@ -62,7 +72,7 @@ namespace Receive_API
             // Service
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IReceiveService, ReceiveService>();
-
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

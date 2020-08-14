@@ -56,6 +56,19 @@ export const routes: Routes = [
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
+      {
+        path: "admin",
+        canActivate: [AuthGuard],
+        data : {
+          title: "admin"
+        },
+        children: [
+          {
+            path: "user",
+            loadChildren: () => import("./views/user/user.module").then(m => m.UserModule)
+          }
+        ]
+      }
     ]
   },
   { path: '**', component: P404Component }

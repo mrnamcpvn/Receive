@@ -1,22 +1,24 @@
 import { INavData } from "@coreui/angular";
+import { Injectable } from '@angular/core';
 
-export const navItems: INavData[] = [
-  // {
-  //   name: "Dashboard",
-  //   url: "/dashboard",
-  //   icon: "icon-speedometer",
-  //   badge: {
-  //     variant: "info",
-  //     text: "NEW"
-  //   }
-  // },
-  {
-    title: true,
-    name: "Main"
-  },
-  {
-    name: "Home",
-    url: "/home",
-    icon: "icon-puzzle"
-  },
-];
+@Injectable({
+  providedIn: 'root'  // <- ADD THIS
+})
+export class NavItem {
+  navItems: INavData[] = [];
+  constructor() {}
+  getNav() {
+    this.navItems = [];
+    const user: any = JSON.parse(localStorage.getItem('user'));
+    console.log(user);
+    if(user.roleID === 1) {
+      const navItem = {
+          name: 'Manage User',
+          url: "/admin/user",
+          icon: "icon-people"
+      };
+      this.navItems.push(navItem);
+    }
+    return this.navItems;
+  }
+}
