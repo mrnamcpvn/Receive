@@ -6,6 +6,7 @@ namespace Receive_API._Services.Interfaces
 {
     public interface IReceiveService
     {
-        Task<List<User>> GetListUser();
+        Task<List<Category>> GetAllCategory();
+        Task<List<Product>> GetProductByCatID(int categoryID);
     }
 }

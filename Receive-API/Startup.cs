@@ -87,7 +87,8 @@ namespace Receive_API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

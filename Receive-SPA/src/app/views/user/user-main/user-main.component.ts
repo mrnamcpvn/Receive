@@ -36,7 +36,28 @@ export class UserMainComponent implements OnInit {
       this.alertify.error(error);
     });
   }
-  
+  deleteUser(userId: string) {
+    this.alertify.confirm('Delete User!', 'Are you sure you want to delete this userID "' + userId + '" ?', () => {
+      this.userService.deleteUser(userId).subscribe(() => {
+        this.loadData();
+        this.alertify.success('User has been deleted');
+      }, error => {
+        this.alertify.error('User is already in use, cannot delete User');
+      });
+    });
+  }
+  add() {
+    this.userService.changeFlag('0');
+    this.userService.changeUser({});
+    this.router.navigate(['/admin/user/change']);
+  }
+  edit(user: UserModel) {
+    delete user.roleName;
+    delete user.department_Name;
+    this.userService.changeFlag('1');
+    this.userService.changeUser(user);
+    this.router.navigate(['/admin/user/change']);
+  }
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
     this.loadData();

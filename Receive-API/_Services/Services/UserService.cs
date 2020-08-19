@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -20,20 +21,32 @@ namespace Receive_API._Services.Services
         private readonly MapperConfiguration _configMapper;
         private readonly IUserRepository _repoUser;
         private readonly IRoleRepository _repoRole;
+        private readonly IDepartmentRepository _repoDepartment;
         public UserService( IMapper mapper,
                             MapperConfiguration configMapper,
                             IUserRepository repoUser,
-                            IRoleRepository repoRole) {
+                            IRoleRepository repoRole,
+                            IDepartmentRepository repoDepartment) {
             _mapper = mapper;
             _configMapper = configMapper;
             _repoUser = repoUser;
             _repoRole = repoRole;
+            _repoDepartment = repoDepartment;
         }
         public async Task<bool> Add(User_Dto model)
         {
+            model.Update_Time = DateTime.Now;
             var user = _mapper.Map<User>(model);
             _repoUser.Add(user);
             return await _repoUser.SaveAll();
+        }
+
+        public async Task<bool> CheckExistUser(string userID)
+        {
+            var userFind = await _repoUser.GetAll().FirstOrDefaultAsync(x => x.ID == userID);
+            if(userFind != null)
+                return true;
+            return false;
         }
 
         public async Task<bool> Delete(string UserId)
@@ -48,13 +61,27 @@ namespace Receive_API._Services.Services
             }
         }
 
+        public async Task<List<Department>> GetAllDepartment()
+        {
+            var departments = await _repoDepartment.GetAll().ToListAsync();
+            return departments;
+        }
+
+        public async Task<List<Role>> GetAllRole()
+        {
+            var roles = await _repoRole.GetAll().ToListAsync();
+            return roles;
+        }
+
         public async Task<PagedList<UserViewModel>> GetWithPaginations(PaginationParams param)
         {
             var lists =  _repoUser.GetAll().ProjectTo<User_Dto>(_configMapper)
                 .OrderByDescending(x => x.DepID);
             var roles =  _repoRole.GetAll();
+            var departments = _repoDepartment.GetAll();
             var users = (from a in lists join b in roles
                 on a.RoleID equals b.ID
+                join c in departments on a.DepID equals c.ID
                 select new UserViewModel{
                     ID = a.ID,
                     Password = a.Password,
@@ -62,6 +89,7 @@ namespace Receive_API._Services.Services
                     RoleID = a.RoleID,
                     RoleName = b.Name,
                     DepID = a.DepID,
+                    Department_Name = c.Name,
                     Update_By = a.Update_By,
                     Update_Time = a.Update_Time
                 });
@@ -70,6 +98,7 @@ namespace Receive_API._Services.Services
 
         public async Task<bool> Update(User_Dto model)
         {
+            model.Update_Time = DateTime.Now;
             var user = _mapper.Map<User>(model);
             user.Update_Time = DateTime.Now;
             _repoUser.Update(user);

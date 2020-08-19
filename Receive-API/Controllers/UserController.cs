@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Receive_API._Services.Interfaces;
@@ -25,9 +26,11 @@ namespace Receive_API.Controllers
 
 
         [HttpPost("create")]
-        public async Task<IActionResult> AddUser(User_Dto model) {
+        public async Task<IActionResult> AddUser([FromBody]User_Dto model) {
+            var updateBy = User.FindFirst(ClaimTypes.Name).Value;
+            model.Update_By = updateBy;
             var result = await _serviceUser.Add(model);
-            return Ok(result);
+            return Ok(new {result = result});
         }
 
         [HttpPost("delete/{id}")]
@@ -37,9 +40,29 @@ namespace Receive_API.Controllers
         }
 
         [HttpPost("edit")]
-        public async Task<IActionResult> EditUser(User_Dto model) {
+        public async Task<IActionResult> EditUser([FromBody]User_Dto model) {
+            var updateBy = User.FindFirst(ClaimTypes.Name).Value;
+            model.Update_By = updateBy;
             var result = await _serviceUser.Update(model);
+            return Ok(new {result = result});
+        }
+
+        [HttpGet("getRoles")]
+        public async Task<IActionResult> GetAllRole() {
+            var result = await _serviceUser.GetAllRole();
             return Ok(result);
+        }
+
+        [HttpGet("getDepartments")]
+        public async Task<IActionResult> GetAllDepartment() {
+            var result = await _serviceUser.GetAllDepartment();
+            return Ok(result);
+        }
+
+        [HttpGet("checkExist/{userID}")]
+        public async Task<IActionResult> CheckExistUser(string userID) {
+            var result = await _serviceUser.CheckExistUser(userID);
+            return Ok(new {result = result});
         }
     }
 }

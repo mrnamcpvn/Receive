@@ -10,6 +10,7 @@ namespace Receive_API.Dto
         public int? RoleID { get; set; }
         public string RoleName {get;set;}
         public string DepID { get; set; }
+        public string Department_Name {get;set;}
         public string Update_By { get; set; }
         public DateTime? Update_Time { get; set; }
     }

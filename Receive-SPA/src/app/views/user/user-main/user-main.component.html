@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-header">
             <i class="fa fa-align-justify"></i> List User
-            <button type="button" class="btn btn-sm btn-primary float-right"><i
+            <button type="button" (click) = "add()" class="btn btn-sm btn-primary float-right"><i
               class="fa fa-plus"></i> Add new</button>
         </div>
         <div class="card-body mt-1">
@@ -16,6 +16,7 @@
                   <td>ID</td>
                   <td>Name</td>
                   <td>Role</td>
+                  <td>Department</td>
                   <td>Update_By</td>
                   <td>Update_Time</td>
                 </tr>
@@ -23,16 +24,17 @@
               <tbody>
                 <tr *ngFor="let user of users; let i = index">
                   <td class="font-table align-middle arow" style='white-space: nowrap'>
-                    <button type="button" class="btn btn-primary btn-sm">
+                    <button type="button" (click)="edit(user)" class="btn btn-primary btn-sm">
                       <i class="fa fa-edit"></i>
                     </button>
-                    <button type="button" class="btn btn-danger btn-sm ml-1">
+                    <button type="button" (click) = "deleteUser(user.id)" class="btn btn-danger btn-sm ml-1">
                       <i class="fa fa-trash"></i>
                     </button>
                   </td>
                   <td>{{user.id}}</td>
                   <td>{{user.name}}</td>
                   <td>{{user.roleName}}</td>
+                  <td>{{user.department_Name}}</td>
                   <td>{{user.update_By}}</td>
                   <td>{{user.update_Time | date: "MM/dd/yyyy"}}</td>
                 </tr>
