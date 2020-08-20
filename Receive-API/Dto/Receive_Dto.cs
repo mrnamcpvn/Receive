@@ -1,11 +1,9 @@
 using System;
-using System.ComponentModel.DataAnnotations;
 
-namespace Receive_API.Models
+namespace Receive_API.Dto
 {
-    public class Receive
+    public class Receive_Dto
     {
-        [Key]
         public string ID { get; set; }
         public string UserID { get; set; }
         public string Accept_ID { get; set; }

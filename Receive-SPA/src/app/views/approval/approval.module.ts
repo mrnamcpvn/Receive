@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { ApprovalRoutingModule } from './approval-routing.module';
 import { ApprovalMainComponent } from './approval-main/approval-main.component';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -10,8 +14,12 @@ import { ApprovalMainComponent } from './approval-main/approval-main.component';
     ApprovalMainComponent
   ],
   imports: [
+    HttpClientModule,
     CommonModule,
-    ApprovalRoutingModule
+    FormsModule,
+    ApprovalRoutingModule,
+    ButtonsModule.forRoot(),
+    PaginationModule.forRoot()
   ]
 })
 export class ApprovalModule { }

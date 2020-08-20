@@ -10,10 +10,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { NgxPrintModule } from "ngx-print";
+import { QRCodeModule } from 'angularx-qrcode';
+import { ReceivePrintComponent } from './receive-print/receive-print.component';
 
 @NgModule({
   declarations: [
-    ReceiveMainComponent
+    ReceiveMainComponent,
+    ReceivePrintComponent
   ],
   imports: [
     HttpClientModule,
@@ -22,6 +27,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     NgSelect2Module,
     NgxSpinnerModule,
     ReceiveRoutingModule,
+    NgxQRCodeModule,
+    NgxPrintModule,
+    QRCodeModule,
     ButtonsModule.forRoot(),
     PaginationModule.forRoot()
   ],

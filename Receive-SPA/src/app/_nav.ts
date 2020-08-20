@@ -10,7 +10,6 @@ export class NavItem {
   getNav() {
     this.navItems = [];
     const user: any = JSON.parse(localStorage.getItem('user'));
-    console.log(user);
     if(user.roleID === 1) {
       const navItem1 = {
           name: 'Quản lý người dùng',

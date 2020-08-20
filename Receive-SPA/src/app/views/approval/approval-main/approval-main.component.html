@@ -1,3 +1,61 @@
-<p>
-  approval-main works!
-</p>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card mb-0">
+        <div class="card-header">
+          <strong>Apprual</strong>
+        </div>
+        <form class="form-horizontal">
+          <div class="card-body">
+            <div class="form-group row">
+              <label class="col-md-1 col-form-label" for="category"><strong class="float-right">User ID</strong></label>
+              <div class="col-md-2">
+                <input type="text" [(ngModel)]="userReceive"  name="userReceive" class="form-control">
+              </div>
+              <div class="col-md-2">
+                <button type="button" (click)="search()" class="btn btn-success btn-block"><i class="fa fa-search"></i>
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="card-body mt-1">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>ReceiveID</th>
+                  <th>UserID</th>
+                  <th>ProductID</th>
+                  <th>ProductName</th>
+                  <th>Qty</th>
+                  <th>Register Date</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let receive of receives;let i = index">
+                  <td>{{receive.id}}</td>
+                  <td>{{receive.userID}}</td>
+                  <td>{{receive.productID}}</td>
+                  <td>{{receive.productName}}</td>
+                  <td>{{receive.qty}}</td>
+                  <td>{{receive.register_Date | date: "MM/dd/yyyy"}}</td>
+                  <td>
+                    <button (click)="acceptReceive(receive.id)" class="btn btn-success">Accept</button>
+                    <button (click)="delineReceive(receive.id)" class="btn btn-danger">Decline</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [(ngModel)]="pagination.currentPage"
+          [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+          nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [maxSize]="5">
+        </pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

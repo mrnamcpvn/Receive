@@ -73,6 +73,12 @@ namespace Receive_API._Services.Services
             return roles;
         }
 
+        public async Task<User> GetUserById(string userId)
+        {
+            var user = await _repoUser.GetAll().Where(x => x.ID == userId).FirstOrDefaultAsync();
+            return user;
+        }
+
         public async Task<PagedList<UserViewModel>> GetWithPaginations(PaginationParams param)
         {
             var lists =  _repoUser.GetAll().ProjectTo<User_Dto>(_configMapper)

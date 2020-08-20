@@ -15,5 +15,6 @@ namespace Receive_API._Services.Interfaces
         Task<List<Role>> GetAllRole();
         Task<List<Department>> GetAllDepartment();
         Task<bool> CheckExistUser(string userID);
+        Task<User> GetUserById(string userId);
     }
 }

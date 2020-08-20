@@ -9,6 +9,7 @@ namespace Receive_API.Helpers.AutoMapper
         public DtoToEfMappingProfile()
         {
             CreateMap<User_Dto, User>();
+            CreateMap<Receive_Dto, Receive>();
         }
     }
 }
