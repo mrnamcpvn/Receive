@@ -8,9 +8,57 @@
         <form class="form-horizontal">
           <div class="card-body">
             <div class="form-group row">
+              <label class="col-md-1 col-form-label" for="receive ID"><strong
+                  class="float-right">QrCode</strong></label>
+              <div class="col-md-3">
+                <input type="text" 
+                [(ngModel)]="receiveID" 
+                (ngModelChange)="getReceive($event)"
+                name="receiveID"
+                class="form-control" placeholder="Please enter QrCode">
               </div>
-              </div>
+            </div>
+          </div>
         </form>
+        <div class="card-body mt-1">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>QrCodeID</th>
+                  <th>User Receive</th>
+                  <th>User Accept</th>
+                  <th>ProductID</th>
+                  <th>ProductName</th>
+                  <th>Qty</th>
+                  <th>Register Date</th>
+                  <th>Accept Date</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let receive of receives;let i = index">
+                  <td>{{receive.id}}</td>
+                  <td>{{receive.userID}}</td>
+                  <td>{{receive.accept_ID}}</td>
+                  <td>{{receive.productID}}</td>
+                  <td>{{receive.productName}}</td>
+                  <td>{{receive.qty}}</td>
+                  <td>{{receive.register_Date | date: "MM/dd/yyyy"}}</td>
+                  <td>{{receive.accept_Date | date: "MM/dd/yyyy"}}</td>
+                  <td>
+                    <button (click)="acceptReceive()" class="btn btn-success">Accept</button>
+                    <button (click)="delineReceive()" class="btn btn-danger">Decline</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [(ngModel)]="pagination.currentPage"
+          [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+          nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [maxSize]="5">
+        </pagination>
+        </div>
       </div>
     </div>
   </div>
