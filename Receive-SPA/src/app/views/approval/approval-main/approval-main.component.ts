@@ -49,24 +49,28 @@ export class ApprovalMainComponent implements OnInit {
     }
   }
   acceptReceive(receiveID: string) {
-    this.approvalService.acceptReceive(receiveID).subscribe(res => {
-      if(res.result) {
-        this.alertify.success('Accept Receive Successfully!')
-        this.loadData();
-      } else {
-        this.alertify.error('Error');
-      }
-    })
+    this.alertify.confirm('Accept Receive', 'Are you sure you want to Accept this QrCodeID "' + receiveID + '" ?', () => {
+      this.approvalService.acceptReceive(receiveID).subscribe(res => {
+        if(res.result) {
+          this.alertify.success('Accept Successed!')
+          this.loadData();
+        } else {
+          this.alertify.error('Accept unsuccessed!');
+        }
+      })
+    });
   }
   delineReceive(receiveID: string) {
-    this.approvalService.delineReceive(receiveID).subscribe(res => {
-      if(res.result) {
-        this.alertify.success('Accept Receive Successfully!')
-        this.loadData();
-      } else {
-        this.alertify.error('Error');
-      }
-    })
+    this.alertify.confirm('Decline Receive', 'Are you sure you want to Decline this QrCodeID "' + receiveID + '" ?', () => {
+      this.approvalService.delineReceive(receiveID).subscribe(res => {
+        if(res.result) {
+          this.alertify.success('Decline Successed!')
+          this.loadData();
+        } else {
+          this.alertify.error('Decline unsuccessed!');
+        }
+      })
+    });
   }
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;

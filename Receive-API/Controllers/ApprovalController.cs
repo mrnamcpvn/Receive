@@ -31,17 +31,17 @@ namespace Receive_API.Controllers
             Response.AddPagination(receives.CurrentPage, receives.PageSize, receives.TotalCount, receives.TotalPages);
             return Ok(receives);
         }
-        [HttpGet("acceptReceive/{receiveID}")]
-        public async Task<IActionResult> AcceptReceive(string receiveID) {
+        [HttpGet("acceptReceive/{id}")]
+        public async Task<IActionResult> AcceptReceive(string id) {
             var user = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var result = await _serviceApproval.AcceptReceive(receiveID, user);
+            var result = await _serviceApproval.AcceptReceive(id, user);
             return Ok(new {result = result});
         }
 
-        [HttpGet("declineReceive/{receiveID}")]
-        public async Task<IActionResult> DeclineReceive(string receiveID) {
+        [HttpGet("declineReceive/{id}")]
+        public async Task<IActionResult> DeclineReceive(string id) {
             var user = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var result = await _serviceApproval.DeclineReceive(receiveID, user);
+            var result = await _serviceApproval.DeclineReceive(id, user);
             return Ok(new {result = result});
         }
 

@@ -59,8 +59,28 @@ export class ManagementMainComponent implements OnInit {
       })
     }
   }
-  acceptReceive() {
-
+  acceptReceive(receiveID: string) {
+    this.alertify.confirm('Accept Receive', 'Are you sure you want to Accept this QrCodeID "' + receiveID + '" ?', () => {
+      this.managerService.acceptReceive(receiveID).subscribe(res => {
+        if(res.result) {
+          this.alertify.success('Accept Successed!');
+          this.loadData();
+        } else {
+          this.alertify.error('Accept unsuccessed!')
+        }
+      });
+    });
   }
-  delineReceive(){}
+  delineReceive(receiveID: string){
+    this.alertify.confirm('Decline Receive', 'Are you sure you want to Decline this QrCodeID "' + receiveID + '" ?', () => {
+      this.managerService.declineReceive(receiveID).subscribe(res => {
+        if(res.result) {
+          this.alertify.success('Decline Successed!');
+          this.loadData();
+        } else {
+          this.alertify.error('Decline unsuccessed!')
+        }
+      });
+    });
+  }
 }

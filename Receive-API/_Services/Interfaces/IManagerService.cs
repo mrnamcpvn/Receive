@@ -8,5 +8,7 @@ namespace Receive_API._Services.Interfaces
     {
         Task<PagedList<ReceiveInformationModel>> GetWithPaginations(PaginationParams param);
         Task<ReceiveInformationModel> GetReceive(string receiveID);
+        Task<bool> AcceptReceive(string receiveID);
+        Task<bool> DecliceReceive(string receiveID);
     }
 }

@@ -67,7 +67,8 @@ namespace Receive_API._Services.Services
         public async Task<PagedList<ReceiveInformationModel>> GetWithPaginations(PaginationParams param, string userID)
         {
             var products = await _repoProduct.GetAll().ToListAsync();
-            var receives = await _repoReceive.GetAll().Where(x => x.UserID.Trim() == userID && x.Status != "4" && x.Status != "2").ToListAsync();
+            var receives = await _repoReceive.GetAll().Where(x => x.UserID.Trim() == userID && x.Status != "-1" 
+                                                        && x.Status != "2").ToListAsync();
             var data = (from a in receives join b in products
                 on a.ProductID equals b.ID select new ReceiveInformationModel() {
                     ID = a.ID,

@@ -44,7 +44,7 @@ namespace Receive_API._Services.Services
             if(receive != null) {
                 receive.Accept_Date = DateTime.Now;
                 receive.Accept_ID = userID;
-                receive.Status = "2";
+                receive.Status = "-1";
                 receive.Updated_Time = DateTime.Now;
                 return await _repoReceive.SaveAll();
             } else {

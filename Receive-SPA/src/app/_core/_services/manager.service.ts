@@ -34,4 +34,10 @@ export class ManagerService {
   getReceive(receiveID: string): Observable<ReceiveInfomationModel> {
     return this.http.get<ReceiveInfomationModel>(this.baseUrl + 'manager/getReceive/' + receiveID, {});
   }
+  acceptReceive(receiveID: string): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'manager/accept/' + receiveID, {});
+  }
+  declineReceive(receiveID: string): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'manager/decline/' + receiveID, {});
+  }
 }

@@ -47,8 +47,8 @@
                   <td>{{receive.register_Date | date: "MM/dd/yyyy"}}</td>
                   <td>{{receive.accept_Date | date: "MM/dd/yyyy"}}</td>
                   <td>
-                    <button (click)="acceptReceive()" class="btn btn-success">Accept</button>
-                    <button (click)="delineReceive()" class="btn btn-danger">Decline</button>
+                    <button (click)="acceptReceive(receive.id)" class="btn btn-success">Accept</button>
+                    <button (click)="delineReceive(receive.id)" class="btn btn-danger">Decline</button>
                   </td>
                 </tr>
               </tbody>

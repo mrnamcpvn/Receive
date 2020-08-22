@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,30 @@ namespace Receive_API._Services.Services
             _repoReceive = repoReceive;
             _repoProduct = repoProduct;
         }
+
+        public async Task<bool> AcceptReceive(string receiveID)
+        {
+            var receiveModel = await _repoReceive.GetAll().Where(x => x.ID.Trim() == receiveID.Trim()).FirstOrDefaultAsync();
+            if(receiveModel != null) {
+                receiveModel.Status = "2";
+                receiveModel.Updated_Time = DateTime.Now;
+                return await _repoReceive.SaveAll();
+            } else {
+                return false;
+            }
+        }
+
+        public async Task<bool> DecliceReceive(string receiveID)
+        {
+            var receiveModel = await _repoReceive.GetAll().Where(x => x.ID.Trim() == receiveID.Trim()).FirstOrDefaultAsync();
+            if(receiveModel != null) {
+                _repoReceive.Remove(receiveModel);
+                return await _repoReceive.SaveAll();
+            } else {
+                return false;
+            }
+        }
+
         public async Task<ReceiveInformationModel> GetReceive(string receiveID)
         {
             var receiveModel = await _repoReceive.GetAll()
