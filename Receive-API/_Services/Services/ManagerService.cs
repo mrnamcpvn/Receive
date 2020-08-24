@@ -13,10 +13,13 @@ namespace Receive_API._Services.Services
     {
         private readonly IReceiveRepository _repoReceive;
         private readonly IProductRepository _repoProduct;
+        private readonly IDepartmentRepository _repoDepartment;
         public ManagerService(  IReceiveRepository repoReceive,
-                                IProductRepository repoProduct) {
+                                IProductRepository repoProduct,
+                                IDepartmentRepository repoDepartment) {
             _repoReceive = repoReceive;
             _repoProduct = repoProduct;
+            _repoDepartment = repoDepartment;
         }
 
         public async Task<bool> AcceptReceive(string receiveID)
@@ -50,11 +53,13 @@ namespace Receive_API._Services.Services
                 return null;
             } else {
                 var product = await _repoProduct.GetAll().Where(x => x.ID.Trim() == receiveModel.ProductID.Trim()).FirstOrDefaultAsync();
+                var department = await _repoDepartment.GetAll().Where(x => x.ID.Trim() == receiveModel.DepID.Trim()).FirstOrDefaultAsync();
                 var receiveResult = new ReceiveInformationModel();
                 receiveResult.ID = receiveModel.ID;
                 receiveResult.UserID = receiveModel.UserID;
                 receiveResult.Accept_ID = receiveModel.Accept_ID;
                 receiveResult.DepID = receiveModel.DepID;
+                receiveResult.DepName = department.Name;
                 receiveResult.ProductID = receiveModel.ProductID;
                 receiveResult.ProductName = product.Name;
                 receiveResult.Qty = receiveModel.Qty;
@@ -68,13 +73,16 @@ namespace Receive_API._Services.Services
         {
             var products = await _repoProduct.GetAll().ToListAsync();
             var receives = await _repoReceive.GetAll().Where(x => x.Status == "1").ToListAsync();
+            var departments = await _repoDepartment.GetAll().ToListAsync();
             var data = (from r in receives join p in products
                 on r.ProductID.Trim() equals p.ID.Trim()
+                join d in departments on r.DepID.Trim() equals d.ID.Trim()
                 select new ReceiveInformationModel() {
                     ID = r.ID,
                     UserID = r.UserID,
                     Accept_ID = r.Accept_ID,
                     DepID = r.DepID,
+                    DepName = d.Name,
                     ProductID = r.ProductID,
                     ProductName = p.Name,
                     Qty = r.Qty,

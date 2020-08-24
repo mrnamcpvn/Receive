@@ -15,7 +15,7 @@
                   [cssImport]=true [disabled]="disable"></ng-select2>
               </div>
               <label class="col-md-1 col-form-label" for="product"><strong class="float-right">Product</strong></label>
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <ng-select2  [data]="products" [value]="receive.productID"  
                 [options]="optionsProduct" name="role" (valueChanged)="changeProduct($event)"
                   [cssImport]=true [disabled]="disable"></ng-select2>
@@ -24,7 +24,7 @@
               <div class="col-md-2">
                 <input type="number" [(ngModel)]="receive.qty" min="0" max="100" name="qty" class="form-control">
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <button type="button" *ngIf="isAdd;else elseIsAdd" (click) = "add()" class="btn btn-success"><i
                   class="fa fa-plus"></i> Add New</button>
                   <ng-template #elseIsAdd>

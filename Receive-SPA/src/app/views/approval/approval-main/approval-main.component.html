@@ -10,11 +10,11 @@
             <div class="form-group row">
               <label class="col-md-1 col-form-label"  for="userID"><strong class="float-right">User ID</strong></label>
               <div class="col-md-2">
-                <input type="text" [(ngModel)]="userReceive" placeholder="Please enter userID"  name="userReceive" class="form-control">
+                <input type="text" [(ngModel)]="userReceive" placeholder="Người đăng ký"  name="userReceive" class="form-control">
               </div>
               <div class="col-md-2">
                 <button type="button" (click)="search()" class="btn btn-success btn-block"><i class="fa fa-search"></i>
-                  Search
+                  Tìm kiếm
                 </button>
               </div>
             </div>
@@ -25,26 +25,24 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th>QrCodeID</th>
-                  <th>UserID</th>
-                  <th>ProductID</th>
-                  <th>ProductName</th>
-                  <th>Qty</th>
-                  <th>Register Date</th>
+                  <th>Người đăng ký</th>
+                  <th>Mã sản phẩm</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Số lượng</th>
+                  <th>Ngày đăng ký</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let receive of receives;let i = index">
-                  <td>{{receive.id}}</td>
                   <td>{{receive.userID}}</td>
                   <td>{{receive.productID}}</td>
                   <td>{{receive.productName}}</td>
                   <td>{{receive.qty}}</td>
-                  <td>{{receive.register_Date | date: "MM/dd/yyyy"}}</td>
+                  <td>{{receive.register_Date | date: "MM/dd/yyyy,h:mm:ss a"}}</td>
                   <td>
-                    <button (click)="acceptReceive(receive.id)" class="btn btn-success">Accept</button>
-                    <button (click)="delineReceive(receive.id)" class="btn btn-danger ml-2">Decline</button>
+                    <button (click)="acceptReceive(receive.id)" class="btn btn-success">Duyệt</button>
+                    <button (click)="delineReceive(receive.id)" class="btn btn-danger ml-2">Từ chối</button>
                   </td>
                 </tr>
               </tbody>

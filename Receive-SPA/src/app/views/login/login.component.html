@@ -3,17 +3,20 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 mx-auto">
-          <div class="login-title">
+          <!-- <div class="login-title">
             <img src="../../../assets/img/logo/LogoSYF.png" alt="" width="70"> <span>Receive System</span> 
-          </div>
-          
+          </div> -->
           <div class="card-group">
             <div class="card p-4">
               <div class="card-body">
                 <ngx-spinner bdOpacity=0.2 bdColor="rgba(51,51,51,0.8)" size="medium" color="#20A8D8" type="pacman">
                 </ngx-spinner>
                 <form (ngSubmit)="login()" #form="ngForm">
-                  <p class="text-muted text-center">Sign in to start your session</p>
+                  <div style="text-align: center;margin-bottom: 2rem;" class="login-title">
+                    <img src="../../../assets/img/logo/LogoSYF.png" alt="" width="70"> 
+                    <span style="font-size: 20px;">Receive System</span> 
+                  </div>
+                  <!-- <p class="text-muted text-center">Sign in to start your session</p> -->
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-user"></i></span>

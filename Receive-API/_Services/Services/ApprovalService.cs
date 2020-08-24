@@ -16,7 +16,8 @@ namespace Receive_API._Services.Services
         private readonly IProductRepository _repoProduct;
         public ApprovalService( IReceiveRepository repoReceive,
                                 IUserRepository repoUse,
-                                IProductRepository repoProduct) {
+                                IProductRepository repoProduct
+) {
             _repoReceive = repoReceive;
             _repoUse = repoUse;
             _repoProduct = repoProduct;
@@ -58,7 +59,8 @@ namespace Receive_API._Services.Services
             var products = await _repoProduct.GetAll().ToListAsync();
             var receives = await _repoReceive.GetAll().Where(x => x.DepID.Trim() == user.DepID && x.Status == "0").ToListAsync();
             var data = (from a in receives join b in products
-                on a.ProductID equals b.ID select new ReceiveInformationModel() {
+                on a.ProductID equals b.ID 
+                select new ReceiveInformationModel() {
                     ID = a.ID,
                     UserID = a.UserID,
                     Accept_ID = a.Accept_ID,

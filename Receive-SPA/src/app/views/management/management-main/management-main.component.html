@@ -9,13 +9,16 @@
           <div class="card-body">
             <div class="form-group row">
               <label class="col-md-1 col-form-label" for="receive ID"><strong
-                  class="float-right">QrCode</strong></label>
+                  class="float-right">Mã Code</strong></label>
               <div class="col-md-3">
                 <input type="text" 
                 [(ngModel)]="receiveID" 
                 (ngModelChange)="getReceive($event)"
                 name="receiveID"
-                class="form-control" placeholder="Please enter QrCode">
+                class="form-control" placeholder="Nhập mã Code">
+              </div>
+              <div class="col-md-3">
+                <button (click)="clear()" class="btn btn-danger mr-2"><i class="fa fa-ban"></i> Clear</button>
               </div>
             </div>
           </div>
@@ -25,30 +28,30 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th>QrCodeID</th>
-                  <th>User Receive</th>
-                  <th>User Accept</th>
-                  <th>ProductID</th>
-                  <th>ProductName</th>
-                  <th>Qty</th>
-                  <th>Register Date</th>
-                  <th>Accept Date</th>
+                  <th>Phòng ban</th>
+                  <th>Người đăng ký</th>
+                  <th>Người duyệt</th>
+                  <th>Mã sản phẩm</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Số lượng</th>
+                  <th>Ngày đăng ký</th>
+                  <th>Ngày duyệt</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let receive of receives;let i = index">
-                  <td>{{receive.id}}</td>
+                  <td>{{receive.depName}}</td>
                   <td>{{receive.userID}}</td>
                   <td>{{receive.accept_ID}}</td>
                   <td>{{receive.productID}}</td>
                   <td>{{receive.productName}}</td>
                   <td>{{receive.qty}}</td>
-                  <td>{{receive.register_Date | date: "MM/dd/yyyy"}}</td>
-                  <td>{{receive.accept_Date | date: "MM/dd/yyyy"}}</td>
-                  <td>
-                    <button (click)="acceptReceive(receive.id)" class="btn btn-success">Accept</button>
-                    <button (click)="delineReceive(receive.id)" class="btn btn-danger ml-2">Decline</button>
+                  <td>{{receive.register_Date | date: "MM/dd/yyyy, h:mm:ss a"}}</td>
+                  <td>{{receive.accept_Date | date: "MM/dd/yyyy, h:mm:ss a"}}</td>
+                  <td class="font-table align-middle arow" style='white-space: nowrap'>
+                    <button (click)="acceptReceive(receive.id)" class="btn btn-success">Duyệt</button>
+                    <button (click)="delineReceive(receive.id)" class="btn btn-danger">Xóa</button>
                   </td>
                 </tr>
               </tbody>
@@ -59,9 +62,6 @@
           nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [maxSize]="5">
         </pagination>
         </div>
-        <div class="card-footer">
-          <button (click)="cancle()" class="btn btn-danger mr-2"><i class="fa fa-ban"></i> Cancel</button>
-      </div>
       </div>
     </div>
   </div>

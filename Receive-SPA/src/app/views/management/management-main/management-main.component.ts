@@ -44,7 +44,6 @@ export class ManagementMainComponent implements OnInit {
     } else {
       this.managerService.getReceive(this.receiveID).subscribe(res => {
         if(res !== null) {
-          this.receiveID = '';
           this.receives.length = 0;
           this.receives.push(res);
           this.pagination = {
@@ -83,7 +82,8 @@ export class ManagementMainComponent implements OnInit {
       });
     });
   }
-  cancle() {
+  clear() {
+    this.receiveID = '';
     this.loadData();
   }
 }
