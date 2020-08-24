@@ -39,7 +39,7 @@ export class ManagementMainComponent implements OnInit {
   }
   getReceive(e: any) {
     debugger
-    if(this.receiveID === '' || this.receiveID.indexOf(' ') >= 0) {
+    if(this.receiveID === '' || this.receiveID.indexOf(' ') >= 0 || this.receiveID.length < 10) {
       this.loadData();
     } else {
       this.managerService.getReceive(this.receiveID).subscribe(res => {
@@ -82,5 +82,8 @@ export class ManagementMainComponent implements OnInit {
         }
       });
     });
+  }
+  cancle() {
+    this.loadData();
   }
 }
