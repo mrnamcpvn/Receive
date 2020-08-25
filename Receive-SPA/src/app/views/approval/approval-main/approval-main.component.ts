@@ -49,25 +49,25 @@ export class ApprovalMainComponent implements OnInit {
     }
   }
   acceptReceive(receiveID: string) {
-    this.alertify.confirm('Accept Receive', 'Are you sure you want to Accept this QrCodeID "' + receiveID + '" ?', () => {
+    this.alertify.confirm('Accept Receive', 'Bạn có chắc chắn chấp nhận không?', () => {
       this.approvalService.acceptReceive(receiveID).subscribe(res => {
         if(res.result) {
-          this.alertify.success('Accept Successed!')
+          this.alertify.success('Chấp nhận thành công!')
           this.loadData();
         } else {
-          this.alertify.error('Accept unsuccessed!');
+          this.alertify.error('Chấp nhận bị lỗi!');
         }
       })
     });
   }
   delineReceive(receiveID: string) {
-    this.alertify.confirm('Decline Receive', 'Are you sure you want to Decline this QrCodeID "' + receiveID + '" ?', () => {
+    this.alertify.confirm('Decline Receive', 'Bạn có chắc chắn từ chối không?', () => {
       this.approvalService.delineReceive(receiveID).subscribe(res => {
         if(res.result) {
-          this.alertify.success('Decline Successed!')
+          this.alertify.success('Từ chối thành công!')
           this.loadData();
         } else {
-          this.alertify.error('Decline unsuccessed!');
+          this.alertify.error('Từ chối không thành công!');
         }
       })
     });

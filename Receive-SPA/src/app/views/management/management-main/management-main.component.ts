@@ -53,31 +53,31 @@ export class ManagementMainComponent implements OnInit {
             totalPages: 1,
           };
         } else {
-          this.alertify.error('No Data in QrCode!');
+          this.alertify.error('Không có dữ liệu!');
         }
       })
     }
   }
   acceptReceive(receiveID: string) {
-    this.alertify.confirm('Accept Receive', 'Are you sure you want to Accept this QrCodeID "' + receiveID + '" ?', () => {
+    this.alertify.confirm('Accept Receive', 'Bạn có chắc chắn chấp nhận không?', () => {
       this.managerService.acceptReceive(receiveID).subscribe(res => {
         if(res.result) {
-          this.alertify.success('Accept Successed!');
+          this.alertify.success('Chấp nhận thành công!');
           this.loadData();
         } else {
-          this.alertify.error('Accept unsuccessed!')
+          this.alertify.error('Chấp nhận không thành công')
         }
       });
     });
   }
   delineReceive(receiveID: string){
-    this.alertify.confirm('Decline Receive', 'Are you sure you want to Decline this QrCodeID "' + receiveID + '" ?', () => {
+    this.alertify.confirm('Decline Receive', 'Bạn có chắc chắn muốn xóa không?', () => {
       this.managerService.declineReceive(receiveID).subscribe(res => {
         if(res.result) {
-          this.alertify.success('Decline Successed!');
+          this.alertify.success('Xóa thành công');
           this.loadData();
         } else {
-          this.alertify.error('Decline unsuccessed!')
+          this.alertify.error('Xóa không thành công')
         }
       });
     });
