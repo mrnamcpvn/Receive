@@ -76,6 +76,7 @@ namespace Receive_API
             services.AddScoped<IApprovalService, ApprovalService>();
             services.AddScoped<IManagerService, ManagerService>();
             services.AddScoped<IHistoryService, HistoryService>();
+            services.AddScoped<IProductService, ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
