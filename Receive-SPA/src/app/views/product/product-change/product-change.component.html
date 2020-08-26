@@ -16,8 +16,12 @@
             <div class="form-group row">
               <label class="col-md-1 col-form-label" for="defect-no" >Mã sản phẩm: </label>
               <div class="col-md-3">
-                <input type="text" [(ngModel)]="product.id" name="productID" required class="form-control"
+                <input *ngIf="flag === '0';else elseProductID" type="text" [(ngModel)]="product.id" name="productID" required class="form-control"
                   placeholder="Nhập mã sản phẩm">
+                <ng-template #elseProductID>
+                  <input disabled type="text" [(ngModel)]="product.id" name="productID" required class="form-control"
+                  placeholder="Nhập mã sản phẩm">
+                </ng-template>
               </div>
               <label class="col-md-1 col-form-label" for="productName" >Tên sản phẩm: </label>
               <div class="col-md-4">

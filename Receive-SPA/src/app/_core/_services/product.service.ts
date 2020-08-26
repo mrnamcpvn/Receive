@@ -48,6 +48,9 @@ export class ProductService {
   add(product: Product): Observable<any> {
     return this.http.post<any>(this.baseUrl + 'product/add/', product, {});
   }
+  update(product: Product): Observable<any> {
+    return this.http.post<any>(this.baseUrl + 'product/update/', product, {});
+  }
   changeFlag(flag: string) {
     this.flagSource.next(flag);
   }

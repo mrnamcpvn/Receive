@@ -25,6 +25,7 @@ export class ProductChangeComponent implements OnInit {
 
   ngOnInit() {
     this.productService.currentFlag.subscribe(res => this.flag = res);
+    this.productService.currentProduct.subscribe(res => this.product = JSON.parse(JSON.stringify(res)));
     this.getAllCategory();
   }
   back() {
@@ -42,16 +43,27 @@ export class ProductChangeComponent implements OnInit {
   }
   save() {
     this.product.catID = parseInt(this.product.catID);
-    this.productService.add(this.product).subscribe(res => {
-      if(res.result === 'exist') {
-        this.alertify.error("Mã sản phẩm này đã tồn tại!")
-      } else if(res.result === 'ok') {
-        this.alertify.success('Thêm sản phẩm thành công!');
-        this.router.navigate(['/product/manager/']);
-      } else {
-        this.alertify.error('Có lỗi xảy ra!');
-      }
-    })
+    if(this.flag === '0') {
+      this.productService.add(this.product).subscribe(res => {
+        if(res.result === 'exist') {
+          this.alertify.error("Mã sản phẩm này đã tồn tại!")
+        } else if(res.result === 'ok') {
+          this.alertify.success('Thêm sản phẩm thành công!');
+          this.router.navigate(['/product/manager/']);
+        } else {
+          this.alertify.error('Có lỗi xảy ra!');
+        }
+      })
+    } else {
+      this.productService.update(this.product).subscribe(res => {
+        if(res.result) {
+          this.alertify.success("Đã update thành công!")
+          this.router.navigate(['/product/manager/']);
+        } else{
+          this.alertify.error('Update không thành công!');
+        }
+      })
+    }
   }
   saveAndNext() {
     this.product.catID = parseInt(this.product.catID);
@@ -66,6 +78,10 @@ export class ProductChangeComponent implements OnInit {
     })
   }
   cancel() {
-
+    if(this.flag === '0') {
+      this.product = {};
+    } else {
+      this.productService.currentProduct.subscribe(res => this.product = JSON.parse(JSON.stringify(res)));
+    }
   }
 }

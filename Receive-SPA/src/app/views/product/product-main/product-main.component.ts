@@ -29,6 +29,7 @@ export class ProductMainComponent implements OnInit {
   }
   add(){
     this.productService.changeFlag('0');
+    this.productService.changProduct({});
     this.router.navigate(['/product/manager/change']);
   }
   loadData() {
@@ -44,8 +45,10 @@ export class ProductMainComponent implements OnInit {
     this.pagination.currentPage = event.page;
     this.loadData();
   }
-  edit(){
-    
+  edit(product: any){
+    this.productService.changProduct(product);
+    this.productService.changeFlag('1');
+    this.router.navigate(['/product/manager/change']);
   }
   delete(productID: string) {
     this.alertify.confirm('Xóa sản phẩm!', 'Bạn có chắc chắn muốn xóa không?', () => {
