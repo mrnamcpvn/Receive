@@ -8,7 +8,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     HistoryRoutingModule,
     NgxSpinnerModule,
+    BsDatepickerModule,
     ButtonsModule.forRoot(),
     PaginationModule.forRoot()
   ]

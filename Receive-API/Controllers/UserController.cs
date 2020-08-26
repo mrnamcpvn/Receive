@@ -24,6 +24,11 @@ namespace Receive_API.Controllers
             return Ok(users);
         }
 
+        [HttpGet("getUser/{userID}")]
+        public async Task<IActionResult> GetUserByID(string userID) {
+            var user = await _serviceUser.GetUserById(userID);
+            return Ok(user);
+        }
 
         [HttpPost("create")]
         public async Task<IActionResult> AddUser([FromBody]User_Dto model) {
@@ -57,12 +62,6 @@ namespace Receive_API.Controllers
         public async Task<IActionResult> GetAllDepartment() {
             var result = await _serviceUser.GetAllDepartment();
             return Ok(result);
-        }
-
-        [HttpGet("checkExist/{userID}")]
-        public async Task<IActionResult> CheckExistUser(string userID) {
-            var result = await _serviceUser.CheckExistUser(userID);
-            return Ok(new {result = result});
         }
     }
 }

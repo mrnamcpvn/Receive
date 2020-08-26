@@ -7,5 +7,6 @@ namespace Receive_API._Services.Interfaces
     public interface IHistoryService
     {
         Task<PagedList<ReceiveInformationModel>> GetWithPaginations(PaginationParams param, string user);
+        Task<PagedList<ReceiveInformationModel>> SearchWithPaginations(PaginationParams param, string userLogin, HistoryParam filterParam);
     }
 }

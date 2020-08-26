@@ -31,4 +31,24 @@ export class HistoryService {
         }),
       );
   }
+  search(page?, itemsPerPage?, filterParam?): Observable<PaginatedResult<ReceiveInfomationModel[]>> {
+    const paginatedResult: PaginatedResult<ReceiveInfomationModel[]> = new PaginatedResult<ReceiveInfomationModel[]>();
+    let params = new HttpParams();
+    if (page != null && itemsPerPage != null) {
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemsPerPage);
+    }
+    return this.http.post<any>(this.baseUrl + 'history/search/',filterParam, { observe: 'response', params })
+      .pipe(
+        map(response => {
+          console.log(response);
+          paginatedResult.result = response.body;
+          if (response.headers.get('Pagination') != null) {
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+          }
+          return paginatedResult;
+        }),
+      );
+  }
+  
 }

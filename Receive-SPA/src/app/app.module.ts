@@ -45,6 +45,7 @@ import { ChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -61,6 +62,7 @@ export function tokenGetter() {
     AppSidebarModule,
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
     NgxSpinnerModule,

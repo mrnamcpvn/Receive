@@ -5,6 +5,55 @@
         <div class="card-header">
           <strong>History</strong>
         </div>
+        <form class="form-horizontal">
+          <div class="card-body">
+            <div class="form-group row">
+              <ng-container *ngIf="user.roleID === 1 || user.roleID === 2">
+                <label class="col-md-2 col-form-label" for="receive ID"><strong
+                  class="float-right">Mã người đăng ký</strong></label>
+                <div class="col-md-2">
+                  <input type="text" 
+                  [(ngModel)]="userID" 
+                  name="receiveID"
+                  class="form-control" placeholder="Mã người đăng ký">
+                </div>
+              </ng-container>
+              <label class="col-md-2 col-form-label" for="fromDate"><strong class="float-right">Ngày đăng ký</strong></label>
+              <div class="col-md-2">
+                <div class="input-group">
+                  <input type="text" 
+                    placeholder="Start" 
+                    id="fromDate" class="form-control" 
+                    bsDatepicker
+                    [(ngModel)]="time_start"
+                    name="time_start"
+                    [bsConfig]="bsConfig">
+                  <span class="input-group-append">
+                    <button class="btn btn-primary" type="button" disabled><i class="fa fa-calendar"></i></button>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="input-group">
+                  <input type="text" 
+                    placeholder="End" 
+                    id="fromDate" class="form-control" 
+                    bsDatepicker
+                    [(ngModel)]="time_end"
+                    name="time_end"
+                    [bsConfig]="bsConfig">
+                  <span class="input-group-append">
+                    <button class="btn btn-primary" type="button" disabled><i class="fa fa-calendar"></i></button>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button type="button" class="btn btn-success btn-block" (click)="search()"><i class="fa fa-search"></i>
+                  Search</button>
+              </div>
+            </div>
+          </div>
+        </form>
         <div class="card-body mt-1">
           <div class="table-responsive">
             <table class="table table-bordered">
