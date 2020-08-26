@@ -59,7 +59,7 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th>Người đăng ký</th>
+                  <th *ngIf="user.roleID === 1 || user.roleID === 2">Người đăng ký</th>
                   <th>Phòng ban</th>
                   <th>Mã sản phẩm</th>
                   <th>Tên sản phẩm</th>
@@ -71,7 +71,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let history of historys; let i = index">
-                  <td>{{history.userID}}</td>
+                  <td *ngIf="user.roleID === 1 || user.roleID === 2">{{history.userID}}</td>
                   <td>{{history.depID}}</td>
                   <td>{{history.productID}}</td>
                   <td>{{history.productName}}</td>
