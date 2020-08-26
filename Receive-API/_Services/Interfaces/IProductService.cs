@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Receive_API.Dto;
 using Receive_API.Helpers;
@@ -9,7 +10,8 @@ namespace Receive_API._Services.Interfaces
     {
         Task<PagedList<Product_Dto>> GetWithPaginations(PaginationParams param);
         Task<bool> Delete(string id);
-        Task<bool> Add(Product model);
+        Task<string> Add(Product model);
         Task<bool> Update(Product model);
+        Task<List<Category>> GetAllCategory();
     }
 }

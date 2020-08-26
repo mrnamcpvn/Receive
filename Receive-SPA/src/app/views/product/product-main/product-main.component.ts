@@ -27,7 +27,10 @@ export class ProductMainComponent implements OnInit {
   ngOnInit() {
     this.loadData();
   }
-  add(){}
+  add(){
+    this.productService.changeFlag('0');
+    this.router.navigate(['/product/manager/change']);
+  }
   loadData() {
     this.productService.getListAll(this.pagination.currentPage, this.pagination.itemsPerPage)
     .subscribe((res: PaginatedResult<ProductModel[]>) => {
@@ -41,7 +44,9 @@ export class ProductMainComponent implements OnInit {
     this.pagination.currentPage = event.page;
     this.loadData();
   }
-  edit(){}
+  edit(){
+    
+  }
   delete(productID: string) {
     this.alertify.confirm('Xóa sản phẩm!', 'Bạn có chắc chắn muốn xóa không?', () => {
       this.productService.remove(productID).subscribe(() => {

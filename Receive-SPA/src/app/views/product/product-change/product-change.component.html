@@ -1,3 +1,47 @@
-<p>
-  product-change works!
-</p>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <strong *ngIf="flag === '0'; else elseTitle">Thêm mới sản phẩm</strong>
+          <ng-template #elseTitle>
+            <strong>Sửa sản phẩm</strong>
+          </ng-template>
+          <button type="button" class="btn btn-sm btn-primary float-right" (click)="back()"><i
+              class="fa fa-chevron-left"></i>
+            Back</button>
+        </div>
+        <form class="form-horizontal" #addProductForm="ngForm" (ngSubmit)="addProductForm.valid">
+          <div class="card-body">
+            <div class="form-group row">
+              <label class="col-md-1 col-form-label" for="defect-no" >Mã sản phẩm: </label>
+              <div class="col-md-3">
+                <input type="text" [(ngModel)]="product.id" name="productID" required class="form-control"
+                  placeholder="Nhập mã sản phẩm">
+              </div>
+              <label class="col-md-1 col-form-label" for="productName" >Tên sản phẩm: </label>
+              <div class="col-md-4">
+                <input type="text" [(ngModel)]="product.name" required name="productName" class="form-control"
+                  placeholder="Nhập tên sản phẩm">
+              </div>
+              <label class="col-md-1 col-form-label" for="defect-no" >Loại: </label>
+              <div class="col-md-2">
+                <ng-select2  [data]="categories" [value]="product.catID"  
+                [options]="optionsCategory" name="role" (valueChanged)="changedCategory($event)"
+                  [cssImport]=true [disabled]="disable"></ng-select2>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button type="button" (click)="cancel()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Cancel</button>
+              <button *ngIf="flag === '0'" type="submit" (click)="saveAndNext()"  class="btn btn-sm btn-primary ml-2" 
+              [disabled]="!addProductForm.valid || product.catID === undefined">
+                <i class="fa fa-check"></i> Save & Next</button>
+              <button type="button" (click)="save()" class="btn btn-sm btn-success ml-2" 
+              [disabled]="!addProductForm.valid || product.catID === undefined"><i class="fa fa-check"></i> Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

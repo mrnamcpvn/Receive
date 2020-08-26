@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProductService } from '../../../_core/_services/product.service';
+import { Select2OptionData } from 'ng-select2';
+import { AlertifyService } from '../../../_core/_services/alertify.service';
 
 @Component({
   selector: 'app-product-change',
@@ -6,10 +10,62 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-change.component.scss']
 })
 export class ProductChangeComponent implements OnInit {
-
-  constructor() { }
+  disable = false;
+  flag: string;
+  product: any = {};
+  public categories: Array<Select2OptionData>;
+  optionsCategory = {
+    placeholder: "Chọn loại...",
+    allowClear: true,
+    width: "100%"
+  };
+  constructor(private router: Router,
+              private alertify: AlertifyService,
+              private productService: ProductService) { }
 
   ngOnInit() {
+    this.productService.currentFlag.subscribe(res => this.flag = res);
+    this.getAllCategory();
   }
+  back() {
+    this.router.navigate(['/product/manager/']);
+  }
+  getAllCategory() {
+    this.productService.getAllCategories().subscribe(res => {
+      this.categories = res.map(obj => {
+        return {id: obj.id.toString(), text:obj.name}
+      })
+    })
+  }
+  changedCategory(e: any): void {
+    this.product.catID = e;
+  }
+  save() {
+    this.product.catID = parseInt(this.product.catID);
+    this.productService.add(this.product).subscribe(res => {
+      if(res.result === 'exist') {
+        this.alertify.error("Mã sản phẩm này đã tồn tại!")
+      } else if(res.result === 'ok') {
+        this.alertify.success('Thêm sản phẩm thành công!');
+        this.router.navigate(['/product/manager/']);
+      } else {
+        this.alertify.error('Có lỗi xảy ra!');
+      }
+    })
+  }
+  saveAndNext() {
+    this.product.catID = parseInt(this.product.catID);
+    this.productService.add(this.product).subscribe(res => {
+      if(res.result === 'exist') {
+        this.alertify.error("Mã sản phẩm này đã tồn tại!")
+      } else if(res.result === 'ok') {
+        this.alertify.success('Thêm sản phẩm thành công!');
+      } else {
+        this.alertify.error('Có lỗi xảy ra!');
+      }
+    })
+  }
+  cancel() {
 
+  }
 }

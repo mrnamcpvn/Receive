@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -20,11 +21,21 @@ namespace Receive_API._Services.Services
             _repoCategory = repoCategory;
         }
 
-        public async Task<bool> Add(Product model)
+        public async Task<string> Add(Product model)
         {
-            model.Update_Time = DateTime.Now;
-            _repoProduct.Add(model);
-            return await _repoProduct.SaveAll();
+            var productFind =  await _repoProduct.GetAll().Where(x => x.ID.Trim() == model.ID.Trim()).FirstOrDefaultAsync();
+            if(productFind != null) {
+                return "exist";
+            } else {
+                model.Update_Time = DateTime.Now;
+                model.Status = "1";
+                _repoProduct.Add(model);
+                if(await _repoProduct.SaveAll()) {
+                    return "ok";
+                } else {
+                    return "error";
+                }
+            }
         }
 
         public async Task<bool> Delete(string id)
@@ -36,6 +47,12 @@ namespace Receive_API._Services.Services
             } else {
                 return false;
             }
+        }
+
+        public async Task<List<Category>> GetAllCategory()
+        {
+            var categories = await _repoCategory.GetAll().ToListAsync();
+            return categories;
         }
 
         public async Task<PagedList<Product_Dto>> GetWithPaginations(PaginationParams param)
@@ -50,7 +67,7 @@ namespace Receive_API._Services.Services
                         CatName = b.Name,
                         Update_By = a.Updated_By,
                         Update_Time = a.Update_Time
-                    }).ToList();
+                    }).OrderByDescending(x => x.Update_Time).ToList();
             return PagedList<Product_Dto>.Create(data, param.PageNumber, param.PageSize);
         }
 

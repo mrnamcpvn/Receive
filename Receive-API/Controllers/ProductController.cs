@@ -44,5 +44,11 @@ namespace Receive_API.Controllers
             var result = await _serviceProduct.Update(model);
             return Ok(new {result = result});
         }
+
+        [HttpGet("categorys")]
+        public async Task<IActionResult> GetAllCategory() {
+            var data = await _serviceProduct.GetAllCategory();
+            return Ok(data);
+        } 
     }
 }
