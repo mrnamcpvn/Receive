@@ -5,6 +5,7 @@ import { PaginatedResult } from '../_models/pagination';
 import { ProductModel } from '../_models/product-model';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Product } from '../_models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,11 @@ export class ProductService {
           return paginatedResult;
         }),
       );
+  }
+  remove(id: any): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'product/remove/' + id, {});
+  }
+  add(product: Product): Observable<any> {
+    return this.http.post<any>(this.baseUrl + 'product/add/', product, {});
   }
 }

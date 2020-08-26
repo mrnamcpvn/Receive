@@ -1,3 +1,50 @@
-<p>
-  product-main works!
-</p>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Danh sách sản phẩm
+          <button type="button" (click) = "add()" class="btn btn-sm btn-primary float-right"><i
+            class="fa fa-plus"></i> Add New</button>
+      </div>
+      <div class="card-body mt-1">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Mã sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Loại</th>
+                <th>Update_By</th>
+                <th>Update_Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of products;let i = index">
+                <td class="font-table align-middle arow" style='white-space: nowrap'>
+                  <button type="button" (click)="edit(product)" class="btn btn-primary btn-sm">
+                    <i class="fa fa-edit"></i>
+                  </button>
+                  <button type="button" (click) = "delete(product.id)" class="btn btn-danger btn-sm ml-1">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </td>
+                <td>{{product.id}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.catName}}</td>
+                <td>{{product.update_By}}</td>
+                <td>{{product.update_Time | date: "MM/dd/yyyy"}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [(ngModel)]="pagination.currentPage"
+        [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+        nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [maxSize]="5">
+      </pagination>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

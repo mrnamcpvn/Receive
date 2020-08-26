@@ -4,5 +4,5 @@ export interface ProductModel {
     catID: number;
     catName: string;
     update_By: string;
-    dateTime: Date;
+    update_Time: Date;
 }
