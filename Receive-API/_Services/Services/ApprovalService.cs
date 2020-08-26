@@ -16,8 +16,7 @@ namespace Receive_API._Services.Services
         private readonly IProductRepository _repoProduct;
         public ApprovalService( IReceiveRepository repoReceive,
                                 IUserRepository repoUse,
-                                IProductRepository repoProduct
-) {
+                                IProductRepository repoProduct) {
             _repoReceive = repoReceive;
             _repoUse = repoUse;
             _repoProduct = repoProduct;
