@@ -18,26 +18,50 @@ export class NavItem {
       };
       this.navItems.push(navItem1);
       const navItem2 = {
-        name: 'Quản lý sản phẩm',
+        name: 'Quản lý đơn xin hàng',
         url: "/admin/management",
-        icon: "icon-people"
+        icon: "cui-settings"
       }
       this.navItems.push(navItem2);
+      const navItem3 = {
+        name: 'Lịch sử',
+        url: "/history/main",
+        icon: "icon-hourglass"
+      }
+      this.navItems.push(navItem3);
+      const navItem4 = {
+        name: 'Quản lý sản phẩm',
+        url: "/product/manager",
+        icon: "icon-wallet"
+      }
+      this.navItems.push(navItem4);
     } else if(user.roleID === 2) {
-      const navItem = {
+      const navItem1 = {
         name: 'Approval',
         url: "/approval/manager",
         icon: "icon-people"
       };
-      this.navItems.push(navItem);
+      this.navItems.push(navItem1);
+      const navItem2 = {
+        name: 'History',
+        url: "/history/main",
+        icon: "icon-hourglass"
+      }
+      this.navItems.push(navItem2);
     }
     else if(user.roleID === 3) {
-      const navItem = {
+      const navItem1 = {
         name: 'Receive',
         url: "/receive/manager",
         icon: "icon-people"
       };
-      this.navItems.push(navItem);
+      this.navItems.push(navItem1);
+      const navItem2 = {
+        name: 'History',
+        url: "/history/main",
+        icon: "icon-hourglass"
+      }
+      this.navItems.push(navItem2);
     }
     return this.navItems;
   }

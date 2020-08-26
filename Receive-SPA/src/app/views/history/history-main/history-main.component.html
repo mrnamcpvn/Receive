@@ -1,0 +1,45 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card mb-0">
+        <div class="card-header">
+          <strong>History</strong>
+        </div>
+        <div class="card-body mt-1">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Người đăng ký</th>
+                  <th>Phòng ban</th>
+                  <th>Mã sản phẩm</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Số lượng</th>
+                  <th>Người duyệt</th>
+                  <th>Ngày đăng ký</th>
+                  <th>Ngày duyệt</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let history of historys; let i = index">
+                  <td>{{history.userID}}</td>
+                  <td>{{history.depID}}</td>
+                  <td>{{history.productID}}</td>
+                  <td>{{history.productName}}</td>
+                  <td>{{history.qty}}</td>
+                  <td>{{history.accept_ID}}</td>
+                  <td>{{history.register_Date | date: "MM/dd/yyyy, h:mm:ss a"}}</td>
+                  <td>{{history.accept_Date | date: "MM/dd/yyyy, h:mm:ss a"}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [(ngModel)]="pagination.currentPage"
+          [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+          nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [maxSize]="5">
+        </pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

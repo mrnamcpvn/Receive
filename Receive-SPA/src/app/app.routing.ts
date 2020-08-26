@@ -76,7 +76,32 @@ export const routes: Routes = [
           }
         ]
       },
-
+      {
+        path: "history",
+        canActivate: [AuthGuard],
+        data: {
+          title : "history",
+        },
+        children: [
+          {
+            path: "main",
+            loadChildren: () => import("./views/history/history.module").then(m => m.HistoryModule)
+          }
+        ]
+      },
+      {
+        path: "product",
+        canActivate: [AuthGuard],
+        data: {
+          title : "product",
+        },
+        children: [
+          {
+            path: "manager",
+            loadChildren: () => import("./views/product/product.module").then(m => m.ProductModule)
+          }
+        ]
+      }
     ]
   },
   { path: '**', component: P404Component }

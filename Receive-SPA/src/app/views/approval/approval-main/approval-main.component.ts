@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Pagination, PaginatedResult } from '../../../_core/_models/pagination';
 import { ReceiveInfomationModel } from '../../../_core/_models/receiveInfomation-model';
 import { AlertifyService } from '../../../_core/_services/alertify.service';
-import { Router } from '@angular/router';
 import { ApprovalService } from '../../../_core/_services/approval.service';
 
 @Component({
