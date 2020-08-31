@@ -40,4 +40,7 @@ export class ManagerService {
   declineReceive(receiveID: string): Observable<any> {
     return this.http.get<any>(this.baseUrl + 'manager/decline/' + receiveID, {});
   }
+  importExcel(): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'manager/importExcel/', {});
+  }
 }

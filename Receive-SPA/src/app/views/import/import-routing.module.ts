@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ManagementMainComponent } from './management-main/management-main.component';
+import { ImportDeptComponent } from './import-dept/import-dept.component';
+
 
 const routes: Routes = [
   {
@@ -9,7 +10,7 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        component: ManagementMainComponent,
+        component: ImportDeptComponent,
         data: {title: "Main"},
       },
     ]
@@ -20,4 +21,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ManagementRoutingModule { }
+export class ImportRoutingModule { }

@@ -101,7 +101,20 @@ export const routes: Routes = [
             loadChildren: () => import("./views/product/product.module").then(m => m.ProductModule)
           }
         ]
-      }
+      },
+      {
+        path: "importDept",
+        canActivate: [AuthGuard],
+        data: {
+          title : "product",
+        },
+        children: [
+          {
+            path: "",
+            loadChildren: () => import("./views/import/import.module").then(m => m.ImportModule)
+          }
+        ]
+      },
     ]
   },
   { path: '**', component: P404Component }

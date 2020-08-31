@@ -1,11 +1,14 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 using Receive_API._Repositorys.Interfaces;
 using Receive_API._Services.Interfaces;
 using Receive_API.Dto;
 using Receive_API.Helpers;
+using Receive_API.Models;
 
 namespace Receive_API._Services.Services
 {
@@ -59,7 +62,7 @@ namespace Receive_API._Services.Services
                 receiveResult.UserID = receiveModel.UserID;
                 receiveResult.Accept_ID = receiveModel.Accept_ID;
                 receiveResult.DepID = receiveModel.DepID;
-                receiveResult.DepName = department.Name;
+                receiveResult.DepName = department.Name_LL;
                 receiveResult.ProductID = receiveModel.ProductID;
                 receiveResult.ProductName = product.Name;
                 receiveResult.Qty = receiveModel.Qty;
@@ -82,7 +85,7 @@ namespace Receive_API._Services.Services
                     UserID = r.UserID,
                     Accept_ID = r.Accept_ID,
                     DepID = r.DepID,
-                    DepName = d.Name,
+                    DepName = d.Name_LL,
                     ProductID = r.ProductID,
                     ProductName = p.Name,
                     Qty = r.Qty,
@@ -92,6 +95,44 @@ namespace Receive_API._Services.Services
                     Updated_By = r.Updated_By
                 }).OrderByDescending(x => x.Register_Date).ToList();
             return PagedList<ReceiveInformationModel>.Create(data, param.PageNumber, param.PageSize);
+        }
+
+        public async Task<bool> ImportExcel(string filePath, string user)
+        {
+
+            using(var package = new ExcelPackage(new FileInfo(filePath))) {
+                ExcelWorksheet workSheet = package.Workbook.Worksheets[0];
+                for(int i = workSheet.Dimension.Start.Row + 1; i <= workSheet.Dimension.End.Row; i ++) {
+                    var id = workSheet.Cells[i,1].Value.ToString();
+                    if(!(await this.CheckDept(id))) {
+                        Department department = new Department();
+                        department.Status = "1";
+                        department.Updated_Time = DateTime.Now;
+                        department.Updated_By = user;
+                        department.ID = workSheet.Cells[i,1].Value.ToString();
+                        department.Name_ZW =  workSheet.Cells[i,2].Value == null? "": workSheet.Cells[i,2].Value.ToString();
+                        department.Name_LL =  workSheet.Cells[i,3].Value == null? "": workSheet.Cells[i,3].Value.ToString();
+                        department.Name_EN =  workSheet.Cells[i,4].Value == null? "" : workSheet.Cells[i,4].Value.ToString();
+                        _repoDepartment.Add(department);
+                    }
+                }
+                try {
+                    await _repoDepartment.SaveAll();
+                    return true;
+                }
+                catch(System.Exception) {
+                    return false;
+                    throw;
+                }
+            }
+        }
+        public async Task<bool> CheckDept(string id) {
+            var dept = await _repoDepartment.GetAll().Where(x => x.ID.Trim() == id.Trim()).FirstOrDefaultAsync();
+            if(dept != null) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }

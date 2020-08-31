@@ -95,7 +95,7 @@ namespace Receive_API._Services.Services
                     RoleID = a.RoleID,
                     RoleName = b.Name,
                     DepID = a.DepID,
-                    Department_Name = c.Name,
+                    Department_Name = c.Name_LL,
                     Update_By = a.Update_By,
                     Update_Time = a.Update_Time
                 });

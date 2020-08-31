@@ -50,8 +50,9 @@ export class UserChangeComponent implements OnInit {
   }
   getAllDepartment() {
     this.userService.getListDepartment().subscribe(res => {
+      console.log(res);
       this.departments = res.map(item => {
-        return {id: item.id.toString(), text: item.id.toString() + ' - ' + item.name}
+        return {id: item.id.toString(), text: item.id.toString() + ' - ' + item.name_LL}
       });
     });
   }
