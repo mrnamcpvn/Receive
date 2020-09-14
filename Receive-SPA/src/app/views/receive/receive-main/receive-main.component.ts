@@ -95,7 +95,7 @@ export class ReceiveMainComponent implements OnInit {
     if(this.cateID !== '' && this.cateID !== undefined) {
       this.receiveService.getProductByCatID(this.cateID).subscribe(res => {
         this.products = res.map(obj => {
-          return  {id: obj.id.toString(), text: obj.name}
+          return  {id: obj.id.toString(), text: obj.id + "-" + obj.name}
         });
       });
     }
