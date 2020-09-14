@@ -5,7 +5,6 @@ import { ReceiveInfomationModel } from '../../../_core/_models/receiveInfomation
 import { AlertifyService } from '../../../_core/_services/alertify.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { FunctionUtility } from '../../../_core/_utility/function-utility';
-import { UsersService } from '../../../_core/_services/users.service';
 
 @Component({
   selector: 'app-history-main',
@@ -26,7 +25,6 @@ export class HistoryMainComponent implements OnInit {
     totalPages: 1,
   };
   constructor(private historyService: HistoryService,
-              private userService: UsersService,
               private alertify: AlertifyService,
               private functionUtility: FunctionUtility) { }
 

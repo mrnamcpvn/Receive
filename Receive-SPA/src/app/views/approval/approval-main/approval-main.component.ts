@@ -48,7 +48,7 @@ export class ApprovalMainComponent implements OnInit {
     }
   }
   acceptReceive(receiveID: string) {
-    this.alertify.confirm('Đuyệt đơn', 'Bạn có chắc chắn duyệt đơn không?', () => {
+    this.alertify.confirm('Duyệt đơn', 'Bạn có chắc chắn duyệt đơn không?', () => {
       this.approvalService.acceptReceive(receiveID).subscribe(res => {
         if(res.result) {
           this.alertify.success('Duyệt đơn thành công!')

@@ -54,7 +54,6 @@ export class ReceiveMainComponent implements OnInit {
   loadData() {
     this.receiveService.getListAll(this.pagination.currentPage, this.pagination.itemsPerPage)
     .subscribe((res: PaginatedResult<ReceiveInfomationModel[]>) => {
-      console.log(res);
       this.receives = res.result;
       this.pagination = res.pagination;
     }, (error) => {
@@ -125,7 +124,4 @@ export class ReceiveMainComponent implements OnInit {
       }
     })
   }
-  // printQrCode(e: any) {
-  //   this.qrCode = e.id;
-  // }
 }
