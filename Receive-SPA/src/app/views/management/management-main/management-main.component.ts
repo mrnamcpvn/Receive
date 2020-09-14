@@ -42,8 +42,10 @@ export class ManagementMainComponent implements OnInit {
     if(this.receiveID === '' || this.receiveID.indexOf(' ') >= 0 || this.receiveID.length < 10) {
       this.loadData();
     } else {
+      debugger
       this.managerService.getReceive(this.receiveID).subscribe(res => {
         if(res !== null) {
+          console.log(res);
           this.receives.length = 0;
           this.receives.push(res);
           this.pagination = {
@@ -59,25 +61,25 @@ export class ManagementMainComponent implements OnInit {
     }
   }
   acceptReceive(receiveID: string) {
-    this.alertify.confirm('Accept Receive', 'Bạn có chắc chắn chấp nhận không?', () => {
+    this.alertify.confirm('Duyệt đơn', 'Bạn có chắc chắn duyệt đơn không?', () => {
       this.managerService.acceptReceive(receiveID).subscribe(res => {
         if(res.result) {
-          this.alertify.success('Chấp nhận thành công!');
+          this.alertify.success('Duyệt đơn thành công!');
           this.loadData();
         } else {
-          this.alertify.error('Chấp nhận không thành công')
+          this.alertify.error('Duyệt đơn không thành công')
         }
       });
     });
   }
   delineReceive(receiveID: string){
-    this.alertify.confirm('Decline Receive', 'Bạn có chắc chắn muốn xóa không?', () => {
+    this.alertify.confirm('Hủy đơn', 'Bạn có chắc chắn muốn hủy đơn không?', () => {
       this.managerService.declineReceive(receiveID).subscribe(res => {
         if(res.result) {
-          this.alertify.success('Xóa thành công');
+          this.alertify.success('Hủy đơn thành công');
           this.loadData();
         } else {
-          this.alertify.error('Xóa không thành công')
+          this.alertify.error('Hủy đơn không thành công')
         }
       });
     });

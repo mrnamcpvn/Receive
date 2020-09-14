@@ -21,10 +21,17 @@ export class ReceiveMainComponent implements OnInit {
   receives: ReceiveInfomationModel[];
   receive: any = {};
   isAdd = false;
+  warehouseID: '';
   cateID = '';
   disable = false;
+  public warehouses: Array<Select2OptionData>;
   public products: Array<Select2OptionData>;
   public categories: Array<Select2OptionData>;
+  optionsWarehouse = {
+    placeholder: "Select Warehouse...",
+    allowClear: true,
+    width: "100%"
+  };
   optionsProduct = {
     placeholder: "Select Product...",
     allowClear: true,
@@ -41,7 +48,7 @@ export class ReceiveMainComponent implements OnInit {
 
   ngOnInit() {
     this.loadData();
-    this.getAllCategory();
+    this.getAllWarehouse();
   }
 
   loadData() {
@@ -58,22 +65,35 @@ export class ReceiveMainComponent implements OnInit {
     this.pagination.currentPage = event.page;
     this.loadData();
   }
-  changeProduct(e: any): void {
-    this.receive.productID = e;
+  changeWarehouse(e: any): void {
+    this.warehouseID = e;
+    this.getAllCategory();
   }
   changeCategory(e: any): void {
     this.cateID = e;
     this.getProductByCatID();
   }
+  changeProduct(e: any): void {
+    this.receive.productID = e;
+  }
+  getAllWarehouse(){
+    this.receiveService.getAllWarehouse().subscribe(res => {
+      this.warehouses = res.map(obj => {
+        return {id: obj.id.toString(), text: obj.name}
+      })
+    })
+  }
   getAllCategory() {
-    this.receiveService.getAllCategory().subscribe(res => {
-      this.categories = res.map(obj => {
-        return  {id: obj.id.toString(), text: obj.name}
+    if(this.warehouseID !== '' && this.warehouseID !== undefined) {
+      this.receiveService.getAllCategory(this.warehouseID).subscribe(res => {
+        this.categories = res.map(obj => {
+          return  {id: obj.id.toString(), text: obj.name}
+        });
       });
-    });
+    }
   }
   getProductByCatID() {
-    if(this.cateID !== '') {
+    if(this.cateID !== '' && this.cateID !== undefined) {
       this.receiveService.getProductByCatID(this.cateID).subscribe(res => {
         this.products = res.map(obj => {
           return  {id: obj.id.toString(), text: obj.name}
@@ -84,7 +104,7 @@ export class ReceiveMainComponent implements OnInit {
 
   // Kiểm tra xem disable hay show button Add
   ngAfterContentChecked() {
-    if( this.receive.productID === undefined ||
+    if(this.receive.productID === undefined ||
         this.receive.qty === undefined || 
         this.receive.qty === null ||
         this.receive.qty === 0) {

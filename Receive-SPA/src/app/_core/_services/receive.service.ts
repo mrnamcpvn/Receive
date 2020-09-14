@@ -8,6 +8,7 @@ import { Receive } from '../_models/receive';
 import { map } from 'rxjs/operators';
 import { PaginatedResult } from '../_models/pagination';
 import { ReceiveInfomationModel } from '../_models/receiveInfomation-model';
+import { Warehouse } from '../_models/warehouse';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +19,14 @@ export class ReceiveService {
   currentReceiveID = this.receiveIdSource.asObservable();
   constructor(private http: HttpClient) { }
 
+  // get All Warehouse
+  getAllWarehouse() : Observable<Warehouse[]> {
+    return this.http.get<Warehouse[]>(this.baseUrl + 'receive/getWarehouses', {});
+  }
+
   // get All Category
-  getAllCategory() : Observable<Category[]> {
-    return this.http.get<Category[]>(this.baseUrl + 'receive/getCategorys', {});
+  getAllCategory(warehouseID: any) : Observable<Category[]> {
+    return this.http.get<Category[]>(this.baseUrl + 'receive/getCategorys/' + warehouseID, {});
   }
   // Get Product of CategoryID
   getProductByCatID(catID: any) : Observable<Product[]> {

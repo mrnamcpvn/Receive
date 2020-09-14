@@ -19,9 +19,14 @@ namespace Receive_API.Controllers
             _serverUser = serverUser;
         }
 
-        [HttpGet("getCategorys")]
-        public async Task<IActionResult> GetAllCategory() {
-            var data = await _serviceReceive.GetAllCategory();
+        [HttpGet("getWarehouses")]
+        public async Task<IActionResult> GetAllWarehouse() {
+            var data = await _serviceReceive.GetAllWarehouse();
+            return Ok(data);
+        }
+        [HttpGet("getCategorys/{id}")]
+        public async Task<IActionResult> GetAllCategory(string id) {
+            var data = await _serviceReceive.GetAllCategory(id);
             return Ok(data);
         }
 

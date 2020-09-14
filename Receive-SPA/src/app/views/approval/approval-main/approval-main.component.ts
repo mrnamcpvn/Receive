@@ -48,25 +48,25 @@ export class ApprovalMainComponent implements OnInit {
     }
   }
   acceptReceive(receiveID: string) {
-    this.alertify.confirm('Accept Receive', 'Bạn có chắc chắn chấp nhận không?', () => {
+    this.alertify.confirm('Đuyệt đơn', 'Bạn có chắc chắn duyệt đơn không?', () => {
       this.approvalService.acceptReceive(receiveID).subscribe(res => {
         if(res.result) {
-          this.alertify.success('Chấp nhận thành công!')
+          this.alertify.success('Duyệt đơn thành công!')
           this.loadData();
         } else {
-          this.alertify.error('Chấp nhận bị lỗi!');
+          this.alertify.error('Duyệt đơn bị lỗi!');
         }
       })
     });
   }
   delineReceive(receiveID: string) {
-    this.alertify.confirm('Decline Receive', 'Bạn có chắc chắn từ chối không?', () => {
+    this.alertify.confirm('Hủy đơn', 'Bạn có chắc chắn hủy đơn không?', () => {
       this.approvalService.delineReceive(receiveID).subscribe(res => {
         if(res.result) {
-          this.alertify.success('Từ chối thành công!')
+          this.alertify.success('Hủy đơn thành công!')
           this.loadData();
         } else {
-          this.alertify.error('Từ chối không thành công!');
+          this.alertify.error('Hủy đơn không thành công!');
         }
       })
     });

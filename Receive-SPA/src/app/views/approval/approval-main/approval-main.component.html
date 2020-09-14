@@ -3,18 +3,18 @@
     <div class="col-lg-12">
       <div class="card mb-0">
         <div class="card-header">
-          <strong>Apprual</strong>
+          <strong>Xét duyệt</strong>
         </div>
         <form class="form-horizontal">
           <div class="card-body">
             <div class="form-group row">
-              <label class="col-md-1 col-form-label"  for="userID"><strong class="float-right">User ID</strong></label>
+              <label class="col-md-2 col-form-label"  for="userID"><strong class="float-right">Số thẻ người xin lãnh</strong></label>
               <div class="col-md-2">
-                <input type="text" [(ngModel)]="userReceive" placeholder="Người đăng ký"  name="userReceive" class="form-control">
+                <input type="text" [(ngModel)]="userReceive" placeholder="Nhập số thẻ"  name="userReceive" class="form-control">
               </div>
               <div class="col-md-2">
                 <button type="button" (click)="search()" class="btn btn-success btn-block"><i class="fa fa-search"></i>
-                  Tìm kiếm
+                  Tìm kiếm-查詢
                 </button>
               </div>
             </div>
@@ -25,24 +25,26 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th>Người đăng ký</th>
-                  <th>Mã sản phẩm</th>
-                  <th>Tên sản phẩm</th>
-                  <th>Số lượng</th>
-                  <th>Ngày đăng ký</th>
-                  <th></th>
+                  <th>Số thẻ người xin lãnh</th>
+                  <th>Mã QRCODE-QRCODE 代號</th>
+                  <th>Mã sản phẩm-品名編號</th>
+                  <th>Tên sản phẩm-品名</th>
+                  <th>Số lượng-數量</th>
+                  <th>Ngày xin lãnh 領料日期</th>
+                  <th>審核-Xét duyệt</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let receive of receives;let i = index">
                   <td>{{receive.userID}}</td>
+                  <td>{{receive.id}}</td>
                   <td>{{receive.productID}}</td>
                   <td>{{receive.productName}}</td>
                   <td>{{receive.qty}}</td>
                   <td>{{receive.register_Date | date: "MM/dd/yyyy,h:mm:ss a"}}</td>
-                  <td>
-                    <button (click)="acceptReceive(receive.id)" class="btn btn-success">Duyệt</button>
-                    <button (click)="delineReceive(receive.id)" class="btn btn-danger ml-2">Từ chối</button>
+                  <td class="font-table align-middle arow" style='white-space: nowrap'>
+                    <button (click)="acceptReceive(receive.id)" class="btn btn-success">接受領料單-Duyệt đơn</button>
+                    <button (click)="delineReceive(receive.id)" class="btn btn-danger ml-2">取消領料單 Hủy đơn</button>
                   </td>
                 </tr>
               </tbody>

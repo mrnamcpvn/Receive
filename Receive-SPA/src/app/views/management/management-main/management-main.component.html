@@ -3,7 +3,7 @@
     <div class="col-lg-12">
       <div class="card mb-0">
         <div class="card-header">
-          <strong>Quản lý sản phẩm</strong>
+          <strong>Xét duyệt</strong>
         </div>
         <form class="form-horizontal">
           <div class="card-body">
@@ -28,21 +28,23 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th>Phòng ban</th>
-                  <th>Người đăng ký</th>
-                  <th>Người duyệt</th>
-                  <th>Mã sản phẩm</th>
-                  <th>Tên sản phẩm</th>
-                  <th>Số lượng</th>
-                  <th>Ngày đăng ký</th>
-                  <th>Ngày duyệt</th>
-                  <th></th>
+                  <th>Đơn vị xin lãnh liệu 領料單位</th>
+                  <th>Số thẻ người xin lãnh</th>
+                  <th>Mã QRCODE-QRCODE 代號</th>
+                  <th>Người duyệt-審核人</th>
+                  <th>Mã sản phẩm-品名編號</th>
+                  <th>Tên sản phẩm-品名</th>
+                  <th>Số lượng-數量</th>
+                  <th>Ngày xin lãnh 領料日期</th>
+                  <th>Ngày ký duyệt-審核日期</th>
+                  <th>審核-Xét duyệt</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let receive of receives;let i = index">
                   <td>{{receive.depID}}</td>
                   <td>{{receive.userID}}</td>
+                  <td>{{receive.id}}</td>
                   <td>{{receive.accept_ID}}</td>
                   <td>{{receive.productID}}</td>
                   <td>{{receive.productName}}</td>
@@ -50,8 +52,8 @@
                   <td>{{receive.register_Date | date: "MM/dd/yyyy, h:mm:ss a"}}</td>
                   <td>{{receive.accept_Date | date: "MM/dd/yyyy, h:mm:ss a"}}</td>
                   <td class="font-table align-middle arow" style='white-space: nowrap'>
-                    <button (click)="acceptReceive(receive.id)" class="btn btn-success">Duyệt</button>
-                    <button (click)="delineReceive(receive.id)" class="btn btn-danger">Xóa</button>
+                    <button (click)="acceptReceive(receive.id)" class="btn btn-success">Duyệt đơn</button>
+                    <button (click)="delineReceive(receive.id)" class="btn btn-danger">Hủy đơn</button>
                   </td>
                 </tr>
               </tbody>

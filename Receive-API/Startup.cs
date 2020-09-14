@@ -68,6 +68,7 @@ namespace Receive_API
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IReceiveRepository, ReceiveRepository>();
+            services.AddScoped<IWarehouseRepository, WarehouseRepository>();
 
             // Service
             services.AddScoped<IAuthService, AuthService>();

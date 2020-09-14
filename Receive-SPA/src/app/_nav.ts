@@ -18,13 +18,13 @@ export class NavItem {
       };
       this.navItems.push(navItem1);
       const navItem2 = {
-        name: 'Quản lý đơn xin hàng',
+        name: 'Xét duyệt',
         url: "/admin/management",
         icon: "cui-settings"
       }
       this.navItems.push(navItem2);
       const navItem3 = {
-        name: 'Lịch sử',
+        name: 'Lịch sử-記錄',
         url: "/history/main",
         icon: "icon-hourglass"
       }
@@ -37,13 +37,13 @@ export class NavItem {
       this.navItems.push(navItem4);
     } else if(user.roleID === 2) {
       const navItem1 = {
-        name: 'Approval',
+        name: 'Xét duyệt',
         url: "/approval/manager",
         icon: "icon-people"
       };
       this.navItems.push(navItem1);
       const navItem2 = {
-        name: 'History',
+        name: 'Lịch sử-記錄',
         url: "/history/main",
         icon: "icon-hourglass"
       }
@@ -51,13 +51,13 @@ export class NavItem {
     }
     else if(user.roleID === 3) {
       const navItem1 = {
-        name: 'Receive',
+        name: 'Receive-Lãnh tạp phẩm 領料單',
         url: "/receive/manager",
         icon: "icon-people"
       };
       this.navItems.push(navItem1);
       const navItem2 = {
-        name: 'History',
+        name: 'Lịch sử-記錄',
         url: "/history/main",
         icon: "icon-hourglass"
       }

@@ -17,25 +17,35 @@ namespace Receive_API._Services.Services
         private readonly ICategoryRepository _repoCategory;
         private readonly IProductRepository _repoProduct;
         private readonly IReceiveRepository _repoReceive;
+        private readonly IWarehouseRepository _repoWarehouse;
         private readonly IMapper _mapper;
         private readonly MapperConfiguration _configMapper;
         public ReceiveService(  ICategoryRepository repoCategory,
                                 IProductRepository repoProduct,
                                 IReceiveRepository repoReceive,
+                                IWarehouseRepository repoWarehouse,
                                 IMapper mapper,
                                 MapperConfiguration configMapper) {
             _repoCategory = repoCategory;
             _repoProduct = repoProduct;
             _repoReceive = repoReceive;
+            _repoWarehouse = repoWarehouse;
             _mapper = mapper;
             _configMapper = configMapper;
         }
-        public async Task<List<Category>> GetAllCategory()
+
+        public async Task<List<Warehouse>> GetAllWarehouse() {
+            var warehouses = await _repoWarehouse.GetAll().ToListAsync();
+            return warehouses;
+        }
+        
+        public async Task<List<Category>> GetAllCategory(string id)
         {
-            var categorys = await _repoCategory.GetAll().ToListAsync();
+            var categorys = await _repoCategory.GetAll()
+            .Where(x => x.WarehouseID.ToString() == id.Trim()).ToListAsync();
             return categorys;
         }
-
+        
         public async Task<List<Product>> GetProductByCatID(int categoryID)
         {
             var products = await _repoProduct.GetAll().Where(x => x.CatID == categoryID).ToListAsync();

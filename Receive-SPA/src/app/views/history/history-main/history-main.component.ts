@@ -32,6 +32,7 @@ export class HistoryMainComponent implements OnInit {
 
   ngOnInit() {
     this.loadData();
+    console.log(this.user);
   }
   loadData() {
     this.historyService.getListAll(this.pagination.currentPage, this.pagination.itemsPerPage)

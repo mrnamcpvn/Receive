@@ -8,6 +8,7 @@ namespace Receive_API.Models
         [Key]
         public int ID { get; set; }
         public string Name { get; set; }
+        public int WarehouseID {get;set;}
         public string DepID { get; set; }
         public string Status { get; set; }
         public string Updated_By { get; set; }
