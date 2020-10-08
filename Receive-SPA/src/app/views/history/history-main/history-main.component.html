@@ -59,6 +59,7 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
+                  <th>STT</th>
                   <th>Đơn vị xin lãnh liệu 領料單位</th>
                   <th>Mã QRCODE-QRCODE 代號</th>
                   <th>Mã sản phẩm-品名編號</th>
@@ -72,12 +73,16 @@
               </thead>
               <tbody>
                 <tr *ngFor="let history of historys; let i = index">
-                  <td>{{history.depID}}</td>
+                  <td>{{i+1}}</td>
+                  <td>{{history.depID}} - {{history.depName}}</td>
                   <td>{{history.id}}</td>
                   <td>{{history.productID}}</td>
                   <td>{{history.productName}}</td>
                   <td>{{history.qty}}</td>
-                  <td>{{history.accept_ID}}</td>
+                  <!-- <td>{{history.accept_ID}}</td> -->
+                  <td *ngIf="user.roleID === 3">{{history.userName}}</td>
+                  <td *ngIf="user.roleID === 2">{{history.acceptName}}</td>
+                  <td *ngIf="user.roleID === 1">{{history.userName}}</td>
                   <td>{{history.register_Date | date: "MM/dd/yyyy, h:mm:ss a"}}</td>
                   <td>{{history.accept_Date | date: "MM/dd/yyyy, h:mm:ss a"}}</td>
                   <!-- Của người được duyệt cấp 3 -->
@@ -89,8 +94,8 @@
                   <td *ngIf="user.roleID === 2 && history.status === '1'">Đã lãnh liệu -已領料</td>
                   <!-- Của người xin lãnh -->
                   <td *ngIf="user.roleID === 3 && history.status === '0'">Chờ phát liệu-等發料</td>
-                  <td *ngIf="user.roleID === 3 && history.status === '1'">Đã lãnh liệu -已領料</td>
-                  <td *ngIf="user.roleID === 3 && history.status === '2'">Đã duyệt-已審核</td>
+                  <td *ngIf="user.roleID === 3 && history.status === '1'">Chờ duyệt-待審核</td>
+                  <td *ngIf="user.roleID === 3 && history.status === '2'">Đã phát liệu 已發料</td>
                 </tr>
               </tbody>
             </table>

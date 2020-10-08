@@ -37,7 +37,7 @@
                   <th>Số lượng-數量</th>
                   <th>Ngày xin lãnh 領料日期</th>
                   <th>Ngày ký duyệt-審核日期</th>
-                  <th>審核-Xét duyệt</th>
+                  <th>放行-Thông qua</th>
                 </tr>
               </thead>
               <tbody>
@@ -52,8 +52,8 @@
                   <td>{{receive.register_Date | date: "MM/dd/yyyy, h:mm:ss a"}}</td>
                   <td>{{receive.accept_Date | date: "MM/dd/yyyy, h:mm:ss a"}}</td>
                   <td class="font-table align-middle arow" style='white-space: nowrap'>
-                    <button (click)="acceptReceive(receive.id)" class="btn btn-success ml-1">接受領料單-Duyệt đơn</button>
-                    <button (click)="delineReceive(receive.id)" class="btn btn-danger">取消領料單 Hủy đơn</button>
+                    <button (click)="acceptReceive(receive.id)" class="btn btn-success ml-1">Yes</button>
+                    <button (click)="delineReceive(receive.id)" class="btn btn-danger">No</button>
                   </td>
                 </tr>
               </tbody>

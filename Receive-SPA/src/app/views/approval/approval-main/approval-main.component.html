@@ -43,8 +43,8 @@
                   <td>{{receive.qty}}</td>
                   <td>{{receive.register_Date | date: "MM/dd/yyyy,h:mm:ss a"}}</td>
                   <td class="font-table align-middle arow" style='white-space: nowrap'>
-                    <button (click)="acceptReceive(receive.id)" class="btn btn-success">接受領料單-Duyệt đơn</button>
-                    <button (click)="delineReceive(receive.id)" class="btn btn-danger ml-2">取消領料單 Hủy đơn</button>
+                    <button (click)="acceptReceive(receive.id)" class="btn btn-success">接受-Duyệt đơn</button>
+                    <button (click)="delineReceive(receive.id)" class="btn btn-danger ml-2">拒絕 Hủy đơn</button>
                   </td>
                 </tr>
               </tbody>

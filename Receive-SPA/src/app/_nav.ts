@@ -37,7 +37,7 @@ export class NavItem {
       this.navItems.push(navItem4);
     } else if(user.roleID === 2) {
       const navItem1 = {
-        name: 'Xét duyệt',
+        name: 'Xét duyệt: 審核',
         url: "/approval/manager",
         icon: "icon-people"
       };
@@ -51,7 +51,7 @@ export class NavItem {
     }
     else if(user.roleID === 3) {
       const navItem1 = {
-        name: 'Receive-Lãnh tạp phẩm 領料單',
+        name: 'Lãnh tạp phẩm 領料單',
         url: "/receive/manager",
         icon: "icon-people"
       };

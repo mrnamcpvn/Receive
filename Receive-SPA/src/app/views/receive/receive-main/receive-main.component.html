@@ -34,7 +34,7 @@
               </div>
               <div class="col-md-2">
                 <button type="button" *ngIf="isAdd;else elseIsAdd" (click)="add()" class="btn btn-success"><i
-                    class="fa fa-plus"></i> Add New</button>
+                    class="fa fa-plus"></i> Tạo mới 新增</button>
                 <ng-template #elseIsAdd>
                   <button type="button" disabled class="btn btn-success"><i class="fa fa-plus"></i> Add New</button>
                 </ng-template>
@@ -68,7 +68,7 @@
                   <td>{{receive.accept_Date | date: "MM/dd/yyyy"}}</td>
                   <td *ngIf="receive.status.trim() === '0'"><span style="color: red;">Wait</span></td>
                   <td *ngIf="receive.status.trim() === '1'">
-                    <button (click)="print(receive)" class="btn btn-primary">QrCode</button>
+                    <button (click)="print(receive)" class="btn btn-primary">In QRCode-列印 QRCode</button>
                   </td>
                 </tr>
               </tbody>

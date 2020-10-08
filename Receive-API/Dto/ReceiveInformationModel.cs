@@ -5,8 +5,14 @@ namespace Receive_API.Dto
     public class ReceiveInformationModel
     {
         public string ID { get; set; }
+        // ---UserID và Name người xin ------
         public string UserID { get; set; }
+        public string UserName {get;set;}
+
+        // ---UserID và Name người chủ quản--- 
         public string Accept_ID { get; set; }
+        public string AcceptName {get;set;}
+
         public string DepID {get;set;}
         public string DepName {get;set;}
         public string ProductID { get; set; }

@@ -1,7 +1,9 @@
 export interface ReceiveInfomationModel {
     id: string; 
     userID: string;
-    accept_ID: string; 
+    userName: string;
+    accept_ID: string;
+    acceptName: string;
     depID: number;
     depName: string;
     productID: string;
