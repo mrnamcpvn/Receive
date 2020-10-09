@@ -20,7 +20,7 @@ export class DefaultLayoutComponent implements OnInit {
     private alertify: AlertifyService,
     private router: Router,
     private nav: NavItem,
-    private translate: TranslateService
+    public translate: TranslateService
   ) {
     translate.addLangs(["vi", "zh"]);
     translate.setDefaultLang("vi");

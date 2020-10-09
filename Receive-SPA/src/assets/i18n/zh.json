@@ -1,6 +1,9 @@
 {
     "receive": {
         "Title": "領料單",
+        "TitleWH": "选择仓库",
+        "TitleCate": "选择一个类别",
+        "TitleProduct": "选择产品",
         "Status": "等待",
         "ButtonAdd" : "新增",
         "ButtonPrint": "列印 QRCode",

@@ -1,11 +1,11 @@
-<app-header  [navbarBrandRouterLink]="['/dashboard']" [fixed]="true"
+<app-header [navbarBrandRouterLink]="['/dashboard']" [fixed]="true"
   [navbarBrandFull]="{src: 'assets/img/logo/LogoSYF.png', width: 60, height: 40, alt: 'Logo'}" WH
   [navbarBrandMinimized]="{src: 'assets/img/logo/LogoSYF.png', width: 30, height: 30, alt: 'Logo'}"
   [sidebarToggler]="'lg'" [asideMenuToggler]="''">
   <ul class="nav navbar-nav d-md-down-none">
     <li class="nav-item px-3">
       <a class="nav-link" href="#">
-        <h5>Receive System</h5> 
+        <h5>Receive System</h5>
       </a>
     </li>
   </ul>
@@ -14,11 +14,10 @@
       <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
     </li> -->
     <li>
-      <!-- <button class="btn btn-primary" (click)="switchLang('vi')"> -->
-        <img data-toggle="tooltip" data-placement="top" title="VietNam" class="imgLang" (click)="switchLang('vi')"  height="35px" width="35px" src="assets/img/logo/vietnam.png" alt="">
-      <!-- </button> -->
-      <img data-toggle="tooltip" data-placement="top" title="Taiwan" class="imgLang" (click)="switchLang('zh')" height="30px" width="30px" src="assets/img/logo/taiwan.png" alt="">
-      <!-- <button class="btn btn-primary" (click)="switchLang('zh')">Chinese</button> -->
+      <img data-toggle="tooltip" data-placement="top" title="VietNam" class="imgLang zoom" (click)="switchLang('vi')"
+        height="35px" width="35px" src="assets/img/logo/vietnam.png" alt="">
+      <img data-toggle="tooltip" data-placement="top" title="Taiwan" class="imgLang zoom" (click)="switchLang('zh')"
+        height="30px" width="30px" src="assets/img/logo/taiwan.png" alt="">
     </li>
     <li class="nav-item dropdown mr-30" dropdown placement="bottom right">
       <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"

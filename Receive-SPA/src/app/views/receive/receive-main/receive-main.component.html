@@ -5,38 +5,35 @@
         <div class="card-header">
           <strong>{{ 'receive.Title' | translate }}</strong>
         </div>
-        <!-- <button type="button" *ngIf="isAdd;else elseIsAdd" (click)="add()" class="btn btn-success"><i
-              class="fa fa-plus"></i> Add New</button>
-          <ng-template #elseIsAdd>
-            <button type="button" disabled class="btn btn-success"><i class="fa fa-plus"></i> Add New</button>
-          </ng-template> -->
         <form class="form-horizontal">
           <div class="card-body">
             <div class="form-group row">
               <div class="col-md-3">
+                <label class="badge badge-warning">{{ 'receive.TitleWH' | translate }}</label>
                 <ng-select2 [data]="warehouses" [value]="warehouseID" [options]="optionsWarehouse" name="role"
                   (valueChanged)="changeWarehouse($event)" [cssImport]=true [disabled]="disable"></ng-select2>
               </div>
-              <!-- <label class="col-md-1 col-form-label" for="category"><strong
-                  class="float-right">Category</strong></label> -->
               <div class="col-md-2">
+                <label class="badge badge-warning">{{ 'receive.TitleCate' | translate }}</label>
                 <ng-select2 [data]="categories" [value]="cateID" [options]="optionsCategory" name="role"
                   (valueChanged)="changeCategory($event)" [cssImport]=true [disabled]="disable"></ng-select2>
               </div>
-              <!-- <label class="col-md-1 col-form-label" for="product"><strong class="float-right">Product</strong></label> -->
               <div class="col-md-3">
+                <label class="badge badge-warning">{{ 'receive.TitleProduct' | translate }}</label>
                 <ng-select2 [data]="products" [value]="receive.productID" [options]="optionsProduct" name="role"
                   (valueChanged)="changeProduct($event)" [cssImport]=true [disabled]="disable"></ng-select2>
               </div>
               <div class="col-md-2">
-                <input type="number" placeholder="{{'receive.Qty' | translate}}" [(ngModel)]="receive.qty" min="0" max="100" name="qty"
-                  class="form-control">
+                <label class="badge badge-warning">{{ 'receive.Qty' | translate }}</label>
+                <input type="number" placeholder="{{'receive.Qty' | translate}}" [(ngModel)]="receive.qty" min="0"
+                  max="100" name="qty" class="form-control">
               </div>
               <div class="col-md-2">
-                <button type="button" *ngIf="isAdd;else elseIsAdd" (click)="add()" class="btn btn-success"><i
+                <button type="button" *ngIf="isAdd;else elseIsAdd" (click)="add()" class="btn btn-success mt-4"><i
                     class="fa fa-plus"></i> {{ 'receive.ButtonAdd' | translate }}</button>
                 <ng-template #elseIsAdd>
-                  <button type="button" disabled class="btn btn-success"><i class="fa fa-plus"></i> {{ 'receive.ButtonAdd' | translate }}</button>
+                  <button type="button" disabled class="btn btn-success mt-4"><i class="fa fa-plus"></i>
+                    {{ 'receive.ButtonAdd' | translate }}</button>
                 </ng-template>
               </div>
             </div>
@@ -66,7 +63,8 @@
                   <td>{{receive.accept_ID}}</td>
                   <td>{{receive.register_Date | date: "MM/dd/yyyy"}}</td>
                   <td>{{receive.accept_Date | date: "MM/dd/yyyy"}}</td>
-                  <td *ngIf="receive.status.trim() === '0'"><span style="color: red;">{{ 'receive.Status' | translate }}</span></td>
+                  <td *ngIf="receive.status.trim() === '0'"><span
+                      style="color: red;">{{ 'receive.Status' | translate }}</span></td>
                   <td *ngIf="receive.status.trim() === '1'">
                     <button (click)="print(receive)" class="btn btn-primary">In QRCode-列印 QRCode</button>
                   </td>

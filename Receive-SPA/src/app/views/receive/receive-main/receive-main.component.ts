@@ -29,28 +29,31 @@ export class ReceiveMainComponent implements OnInit {
   public products: Array<Select2OptionData>;
   public categories: Array<Select2OptionData>;
   optionsWarehouse = {
-    placeholder: "Select Warehouse...",
     allowClear: true,
     width: "100%"
   };
   optionsProduct = {
-    placeholder: "Select Product...",
     allowClear: true,
     width: "100%"
   };
   optionsCategory = {
-    placeholder: "Select Category...",
     allowClear: true,
     width: "100%"
   }
   constructor(private alertify: AlertifyService,
               private receiveService: ReceiveService,
+              public translate: TranslateService,
               private router: Router) { 
+                translate.addLangs(["vi", "zh"]);
+                translate.setDefaultLang("vi");
               }
 
   ngOnInit() {
     this.loadData();
     this.getAllWarehouse();
+  }
+  switchLang(lang: string) {
+    debugger
   }
   loadData() {
     this.receiveService.getListAll(this.pagination.currentPage, this.pagination.itemsPerPage)
@@ -124,5 +127,12 @@ export class ReceiveMainComponent implements OnInit {
         this.loadData();
       }
     })
+  }
+  ngAfterViewChecked() {
+    debugger
+    if(this.translate.currentLang === 'vi') {
+    } else if(this.translate.currentLang === 'zh') {
+
+    }
   }
 }

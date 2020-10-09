@@ -1,6 +1,9 @@
 {
     "receive": {
         "Title": "Lãnh tạp phẩm",
+        "TitleWH": "Chọn kho",
+        "TitleCate": "Chọn loại",
+        "TitleProduct": "Chọn sản phẩm",
         "Status": "Chờ duyệt",
         "ButtonAdd" : "Tạo mới",
         "ButtonPrint": "In QRCode",
