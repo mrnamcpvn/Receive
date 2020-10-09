@@ -3,22 +3,22 @@
     <div class="col-lg-12">
       <div class="card mb-0">
         <div class="card-header">
-          <strong>Lịch sử-記錄</strong>
+          <strong>{{ 'history.Title' | translate }}</strong>
         </div>
         <form class="form-horizontal">
           <div class="card-body">
             <div class="form-group row">
               <ng-container *ngIf="user.roleID === 1 || user.roleID === 2">
                 <label class="col-md-2 col-form-label" for="receive ID"><strong
-                  class="float-right">Số thẻ người xin lãnh</strong></label>
+                  class="float-right">{{ 'history.CardNumber' | translate }}</strong></label>
                 <div class="col-md-2">
                   <input type="text" 
                   [(ngModel)]="userID" 
                   name="receiveID"
-                  class="form-control" placeholder="Nhập số thẻ">
+                  class="form-control" placeholder="{{ 'history.InputCardNumber' | translate }}">
                 </div>
               </ng-container>
-              <label class="col-md-2 col-form-label" for="fromDate"><strong class="float-right">Ngày xin lãnh 領料日期</strong></label>
+              <label class="col-md-2 col-form-label" for="fromDate"><strong class="float-right">{{ 'history.Date' | translate }}</strong></label>
               <div class="col-md-2">
                 <div class="input-group">
                   <input type="text" 
@@ -49,7 +49,7 @@
               </div>
               <div class="col-md-2">
                 <button type="button" class="btn btn-success btn-block" (click)="search()"><i class="fa fa-search"></i>
-                  Tìm kiếm-查詢</button>
+                  {{ 'history.ButtonSearch' | translate }}</button>
               </div>
             </div>
           </div>
@@ -59,16 +59,16 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th>STT</th>
-                  <th>Đơn vị xin lãnh liệu 領料單位</th>
-                  <th>Mã QRCODE-QRCODE 代號</th>
-                  <th>Mã sản phẩm-品名編號</th>
-                  <th>Tên sản phẩm-品名</th>
-                  <th>Số lượng-數量</th>
-                  <th>Người duyệt-審核人</th>
-                  <th>Ngày xin lãnh 領料日期</th>
-                  <th>Ngày xét duyệt-審核日期</th>
-                  <th>Trạng thái狀態</th>
+                  <th>{{ 'history.Table-column1' | translate }}</th>
+                  <th>{{ 'history.Table-column2' | translate }}</th>
+                  <th>{{ 'history.Table-column3' | translate }}</th>
+                  <th>{{ 'history.Table-column4' | translate }}</th>
+                  <th>{{ 'history.Table-column5' | translate }}</th>
+                  <th>{{ 'history.Table-column6' | translate }}</th>
+                  <th>{{ 'history.Table-column7' | translate }}</th>
+                  <th>{{ 'history.Table-column8' | translate }}</th>
+                  <th>{{ 'history.Table-column9' | translate }}</th>
+                  <th>{{ 'history.Table-column10' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -86,16 +86,16 @@
                   <td>{{history.register_Date | date: "MM/dd/yyyy, h:mm:ss a"}}</td>
                   <td>{{history.accept_Date | date: "MM/dd/yyyy, h:mm:ss a"}}</td>
                   <!-- Của người được duyệt cấp 3 -->
-                  <td *ngIf="user.roleID === 1 && history.status === '0'">Chờ phát liệu-等發料</td>
-                  <td *ngIf="user.roleID === 1 && history.status === '1'">Đã lãnh liệu -已領料</td>
-                  <td *ngIf="user.roleID === 1 && history.status === '2'">Đã duyệt-已審核</td>
+                  <td *ngIf="user.roleID === 1 && history.status === '0'">{{ 'history.Status0' | translate }}</td>
+                  <td *ngIf="user.roleID === 1 && history.status === '1'">{{ 'history.Status1' | translate }}</td>
+                  <td *ngIf="user.roleID === 1 && history.status === '2'">{{ 'history.Status2' | translate }}</td>
                   <!-- Của người được duyệt cấp 2 -->
-                  <td *ngIf="user.roleID === 2 && history.status === '0'">Chờ duyệt-待審核</td>
-                  <td *ngIf="user.roleID === 2 && history.status === '1'">Đã lãnh liệu -已領料</td>
+                  <td *ngIf="user.roleID === 2 && history.status === '0'">{{ 'history.Status0' | translate }}</td>
+                  <td *ngIf="user.roleID === 2 && history.status === '1'">{{ 'history.Status1' | translate }}</td>
                   <!-- Của người xin lãnh -->
-                  <td *ngIf="user.roleID === 3 && history.status === '0'">Chờ phát liệu-等發料</td>
-                  <td *ngIf="user.roleID === 3 && history.status === '1'">Chờ duyệt-待審核</td>
-                  <td *ngIf="user.roleID === 3 && history.status === '2'">Đã phát liệu 已發料</td>
+                  <td *ngIf="user.roleID === 3 && history.status === '0'">{{ 'history.Status0' | translate }}</td>
+                  <td *ngIf="user.roleID === 3 && history.status === '1'">{{ 'history.Status1' | translate }}</td>
+                  <td *ngIf="user.roleID === 3 && history.status === '2'">{{ 'history.Status2' | translate }}</td>
                 </tr>
               </tbody>
             </table>

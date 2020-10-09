@@ -24,7 +24,7 @@ export class NavItem {
       }
       this.navItems.push(navItem2);
       const navItem3 = {
-        name: 'Lịch sử-記錄',
+        name: 'Lịch sử',
         url: "/history/main",
         icon: "icon-hourglass"
       }
@@ -37,13 +37,13 @@ export class NavItem {
       this.navItems.push(navItem4);
     } else if(user.roleID === 2) {
       const navItem1 = {
-        name: 'Xét duyệt: 審核',
+        name: 'Xét duyệt',
         url: "/approval/manager",
         icon: "icon-people"
       };
       this.navItems.push(navItem1);
       const navItem2 = {
-        name: 'Lịch sử-記錄',
+        name: 'Lịch sử',
         url: "/history/main",
         icon: "icon-hourglass"
       }
@@ -51,13 +51,13 @@ export class NavItem {
     }
     else if(user.roleID === 3) {
       const navItem1 = {
-        name: 'Lãnh tạp phẩm 領料單',
+        name: 'Lãnh tạp phẩm',
         url: "/receive/manager",
         icon: "icon-people"
       };
       this.navItems.push(navItem1);
       const navItem2 = {
-        name: 'Lịch sử-記錄',
+        name: 'Lịch sử',
         url: "/history/main",
         icon: "icon-hourglass"
       }

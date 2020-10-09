@@ -34,3 +34,11 @@ thead {
     margin-top: 10px;
     margin-bottom: 10px;
   }
+
+.imgLang {
+    cursor: pointer;
+    margin-right: 15px;
+}
+.imgLang :hover {
+    background: rebeccapurple;
+}

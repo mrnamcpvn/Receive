@@ -43,9 +43,13 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -79,6 +83,13 @@ export function tokenGetter() {
         whitelistedDomains: ["localhost:5000"],
         blacklistedRoutes: ["localhost:5000/api/auth"]
       }
+    }),
+     TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
     })
   ],
   declarations: [
@@ -96,3 +107,6 @@ export function tokenGetter() {
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

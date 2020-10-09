@@ -69,10 +69,13 @@ namespace Receive_API._Services.Services
                         }).OrderByDescending(x => x.Register_Date).ToList();
             foreach (var item in data)
             {
-                var userAccept = users.Where(x => x.ID.Trim() == item.Accept_ID.Trim()).FirstOrDefault();
-                if (userAccept != null)
+                if (item.Accept_ID != null)
                 {
-                    item.AcceptName = userAccept.Name;
+                    var userAccept = users.Where(x => x.ID.Trim() == item.Accept_ID.Trim()).FirstOrDefault();
+                    if (userAccept != null)
+                    {
+                        item.AcceptName = userAccept.Name;
+                    }
                 }
             }
             return PagedList<ReceiveInformationModel>.Create(data, param.PageNumber, param.PageSize);
@@ -132,10 +135,13 @@ namespace Receive_API._Services.Services
                         }).OrderByDescending(x => x.Register_Date).ToList();
             foreach (var item in data)
             {
-                var userAccept = users.Where(x => x.ID.Trim() == item.Accept_ID.Trim()).FirstOrDefault();
-                if (userAccept != null)
+                if (item.Accept_ID != null)
                 {
-                    item.AcceptName = userAccept.Name;
+                    var userAccept = users.Where(x => x.ID.Trim() == item.Accept_ID.Trim()).FirstOrDefault();
+                    if (userAccept != null)
+                    {
+                        item.AcceptName = userAccept.Name;
+                    }
                 }
             }
             return PagedList<ReceiveInformationModel>.Create(data, param.PageNumber, param.PageSize);

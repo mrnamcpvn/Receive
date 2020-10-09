@@ -3,19 +3,19 @@
     <div class="col-lg-12">
       <div class="card mb-0">
         <div class="card-header">
-          <strong>Xét duyệt</strong>
+          <strong>{{ 'manager.Title' | translate }}</strong>
         </div>
         <form class="form-horizontal">
           <div class="card-body">
             <div class="form-group row">
               <label class="col-md-1 col-form-label" for="receive ID"><strong
-                  class="float-right">Mã Code</strong></label>
+                  class="float-right">{{ 'manager.QrCode' | translate }}</strong></label>
               <div class="col-md-3">
                 <input type="text" 
                 [(ngModel)]="receiveID" 
                 (ngModelChange)="getReceive($event)"
                 name="receiveID"
-                class="form-control" placeholder="Nhập mã Code">
+                class="form-control" placeholder="{{ 'manager.InputQrCode' | translate }}">
               </div>
               <div class="col-md-3">
                 <button (click)="clear()" class="btn btn-danger mr-2"><i class="fa fa-ban"></i> Clear</button>
@@ -28,20 +28,22 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th>Đơn vị xin lãnh liệu 領料單位</th>
-                  <th>Số thẻ người xin lãnh</th>
-                  <th>Mã QRCODE-QRCODE 代號</th>
-                  <th>Người duyệt-審核人</th>
-                  <th>Mã sản phẩm-品名編號</th>
-                  <th>Tên sản phẩm-品名</th>
-                  <th>Số lượng-數量</th>
-                  <th>Ngày xin lãnh 領料日期</th>
-                  <th>Ngày ký duyệt-審核日期</th>
-                  <th>放行-Thông qua</th>
+                  <th>{{ 'manager.Table-column1' | translate }}</th>
+                  <th>{{ 'manager.Table-column2' | translate }}</th>
+                  <th>{{ 'manager.Table-column3' | translate }}</th>
+                  <th>{{ 'manager.Table-column4' | translate }}</th>
+                  <th>{{ 'manager.Table-column5' | translate }}</th>
+                  <th>{{ 'manager.Table-column6' | translate }}</th>
+                  <th>{{ 'manager.Table-column7' | translate }}</th>
+                  <th>{{ 'manager.Table-column8' | translate }}</th>
+                  <th>{{ 'manager.Table-column9' | translate }}</th>
+                  <th>{{ 'manager.Table-column10' | translate }}</th>
+                  <th>{{ 'manager.Table-column11' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let receive of receives;let i = index">
+                  <td>{{ i + 1}}</td>
                   <td>{{receive.depID}}</td>
                   <td>{{receive.userID}}</td>
                   <td>{{receive.id}}</td>

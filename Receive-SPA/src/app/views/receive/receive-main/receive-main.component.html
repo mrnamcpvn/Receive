@@ -3,7 +3,7 @@
     <div class="col-lg-12">
       <div class="card mb-0">
         <div class="card-header">
-          <strong>Receive-Lãnh tạp phẩm 領料單</strong>
+          <strong>{{ 'receive.Title' | translate }}</strong>
         </div>
         <!-- <button type="button" *ngIf="isAdd;else elseIsAdd" (click)="add()" class="btn btn-success"><i
               class="fa fa-plus"></i> Add New</button>
@@ -29,14 +29,14 @@
                   (valueChanged)="changeProduct($event)" [cssImport]=true [disabled]="disable"></ng-select2>
               </div>
               <div class="col-md-2">
-                <input type="number" placeholder="Số lượng-數量" [(ngModel)]="receive.qty" min="0" max="100" name="qty"
+                <input type="number" placeholder="{{'receive.Qty' | translate}}" [(ngModel)]="receive.qty" min="0" max="100" name="qty"
                   class="form-control">
               </div>
               <div class="col-md-2">
                 <button type="button" *ngIf="isAdd;else elseIsAdd" (click)="add()" class="btn btn-success"><i
-                    class="fa fa-plus"></i> Tạo mới 新增</button>
+                    class="fa fa-plus"></i> {{ 'receive.ButtonAdd' | translate }}</button>
                 <ng-template #elseIsAdd>
-                  <button type="button" disabled class="btn btn-success"><i class="fa fa-plus"></i> Add New</button>
+                  <button type="button" disabled class="btn btn-success"><i class="fa fa-plus"></i> {{ 'receive.ButtonAdd' | translate }}</button>
                 </ng-template>
               </div>
             </div>
@@ -47,14 +47,14 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th>Mã QRCODE-QRCODE 代號</th>
-                  <th>Mã sản phẩm-品名編號</th>
-                  <th>Tên sản phẩm-品名</th>
-                  <th>Số lượng-數量</th>
-                  <th>Người duyệt-審核人</th>
-                  <th>Ngày xin lãnh 領料日期</th>
-                  <th>Ngày ký duyệt-審核日期</th>
-                  <th>Trạng thái-狀態</th>
+                  <th>{{ 'receive.Table-column1' | translate }}</th>
+                  <th>{{ 'receive.Table-column2' | translate }}</th>
+                  <th>{{ 'receive.Table-column3' | translate }}</th>
+                  <th>{{ 'receive.Table-column4' | translate }}</th>
+                  <th>{{ 'receive.Table-column5' | translate }}</th>
+                  <th>{{ 'receive.Table-column6' | translate }}</th>
+                  <th>{{ 'receive.Table-column7' | translate }}</th>
+                  <th>{{ 'receive.Table-column8' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -66,7 +66,7 @@
                   <td>{{receive.accept_ID}}</td>
                   <td>{{receive.register_Date | date: "MM/dd/yyyy"}}</td>
                   <td>{{receive.accept_Date | date: "MM/dd/yyyy"}}</td>
-                  <td *ngIf="receive.status.trim() === '0'"><span style="color: red;">Wait</span></td>
+                  <td *ngIf="receive.status.trim() === '0'"><span style="color: red;">{{ 'receive.Status' | translate }}</span></td>
                   <td *ngIf="receive.status.trim() === '1'">
                     <button (click)="print(receive)" class="btn btn-primary">In QRCode-列印 QRCode</button>
                   </td>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Pagination, PaginatedResult } from '../../../_core/_models/pagination';
 import { ReceiveInfomationModel } from '../../../_core/_models/receiveInfomation-model';
 import { AlertifyService } from '../../../_core/_services/alertify.service';
@@ -19,10 +20,17 @@ export class ApprovalMainComponent implements OnInit {
   };
   receives: ReceiveInfomationModel[];
   constructor(private alertify: AlertifyService,
-              private approvalService: ApprovalService) { }
+              private approvalService: ApprovalService,
+              private translate: TranslateService) { 
+                translate.addLangs(['vi', 'zh']);
+                translate.setDefaultLang('vi');
+              }
 
   ngOnInit() {
     this.loadData();
+  }
+  switchLang(lang: string) {
+    this.translate.use(lang);
   }
   loadData() {
     this.approvalService.getListAll(this.pagination.currentPage, this.pagination.itemsPerPage)

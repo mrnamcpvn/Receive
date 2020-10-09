@@ -9,6 +9,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { NgxPrintModule } from "ngx-print";
@@ -31,7 +32,8 @@ import { ReceivePrintComponent } from './receive-print/receive-print.component';
     NgxPrintModule,
     QRCodeModule,
     ButtonsModule.forRoot(),
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    TranslateModule
   ],
   schemas: [
     NO_ERRORS_SCHEMA

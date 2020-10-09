@@ -9,7 +9,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [
     HistoryMainComponent
@@ -22,7 +22,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     NgxSpinnerModule,
     BsDatepickerModule,
     ButtonsModule.forRoot(),
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    TranslateModule
   ]
 })
 export class HistoryModule { }

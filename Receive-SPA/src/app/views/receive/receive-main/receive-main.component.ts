@@ -5,6 +5,7 @@ import { Select2OptionData } from 'ng-select2';
 import { Pagination, PaginatedResult } from '../../../_core/_models/pagination';
 import { ReceiveInfomationModel } from '../../../_core/_models/receiveInfomation-model';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-receive-main',
@@ -44,13 +45,13 @@ export class ReceiveMainComponent implements OnInit {
   }
   constructor(private alertify: AlertifyService,
               private receiveService: ReceiveService,
-              private router: Router) { }
+              private router: Router) { 
+              }
 
   ngOnInit() {
     this.loadData();
     this.getAllWarehouse();
   }
-
   loadData() {
     this.receiveService.getListAll(this.pagination.currentPage, this.pagination.itemsPerPage)
     .subscribe((res: PaginatedResult<ReceiveInfomationModel[]>) => {

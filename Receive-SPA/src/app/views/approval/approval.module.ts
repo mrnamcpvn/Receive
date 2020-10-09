@@ -7,7 +7,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ApprovalRoutingModule,
     ButtonsModule.forRoot(),
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    TranslateModule,
   ]
 })
 export class ApprovalModule { }
+
