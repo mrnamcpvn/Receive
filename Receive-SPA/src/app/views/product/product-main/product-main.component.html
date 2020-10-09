@@ -3,9 +3,9 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-header">
-          <i class="fa fa-align-justify"></i> Danh sách sản phẩm
+          <i class="fa fa-align-justify"></i> {{ 'productMain.Title' | translate}}
           <button type="button" (click) = "add()" class="btn btn-sm btn-primary float-right"><i
-            class="fa fa-plus"></i> Add New</button>
+            class="fa fa-plus"></i> {{ 'productMain.ButtonAdd' | translate}}</button>
       </div>
       <div class="card-body mt-1">
         <div class="table-responsive">
@@ -13,11 +13,11 @@
             <thead>
               <tr>
                 <th></th>
-                <th>Mã sản phẩm-品名編號</th>
-                <th>Tên sản phẩm-品名</th>
-                <th>Loại</th>
-                <th>Update_By</th>
-                <th>Update_Time</th>
+                <th>{{ 'productMain.Table-column2' | translate}}</th>
+                <th>{{ 'productMain.Table-column3' | translate}}</th>
+                <th>{{ 'productMain.Table-column4' | translate}}</th>
+                <th>{{ 'productMain.Table-column5' | translate}}</th>
+                <th>{{ 'productMain.Table-column6' | translate}}</th>
               </tr>
             </thead>
             <tbody>

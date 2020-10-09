@@ -14,8 +14,7 @@ export class ProductChangeComponent implements OnInit {
   flag: string;
   product: any = {};
   public categories: Array<Select2OptionData>;
-  optionsCategory = {
-    placeholder: "Chọn loại...",
+  optionsCategory = { 
     allowClear: true,
     width: "100%"
   };

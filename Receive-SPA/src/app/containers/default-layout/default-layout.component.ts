@@ -143,6 +143,92 @@ export class DefaultLayoutComponent implements OnInit {
         this.navItems.push(navItem4);
       }
     }
+    // Người có full quyền(Xin lãnh + Duyệt 2 bậc)
+    else if (this.currentUser.roleID === 0) {
+      if (lang === "vi") {
+        const navItem1 = {
+          name: "Quản lý người dùng",
+          url: "/admin/user",
+          icon: "icon-people",
+        };
+        this.navItems.push(navItem1);
+
+        const navItem2 = {
+          name: "Quản lý sản phẩm",
+          url: "/product/manager",
+          icon: "icon-wallet",
+        };
+        this.navItems.push(navItem2);
+
+        const navItem3 = {
+          name: "Lãnh tạp phẩm",
+          url: "/receive/manager",
+          icon: "icon-people",
+        };
+        this.navItems.push(navItem3);
+
+        const navItem4 = {
+          name: "Xét duyệt lãnh",
+          url: "/approval/manager",
+          icon: "icon-people",
+        };
+        this.navItems.push(navItem4);
+
+        const navItem5 = {
+          name: "Xét duyệt đơn",
+          url: "/admin/management",
+          icon: "cui-settings",
+        };
+        this.navItems.push(navItem5);
+        const navItem6 = {
+          name: "Lịch sử",
+          url: "/history/main",
+          icon: "icon-hourglass",
+        };
+        this.navItems.push(navItem6);
+      } else {
+        const navItem1 = {
+          name: "用户管理",
+          url: "/admin/user",
+          icon: "icon-people",
+        };
+        this.navItems.push(navItem1);
+
+        const navItem2 = {
+          name: "产品管理",
+          url: "/product/manager",
+          icon: "icon-wallet",
+        };
+        this.navItems.push(navItem2);
+
+        const navItem3 = {
+          name: "領料單",
+          url: "/receive/manager",
+          icon: "icon-people",
+        };
+        this.navItems.push(navItem3);
+
+        const navItem4 = {
+          name: "審核收據",
+          url: "/approval/manager",
+          icon: "icon-people",
+        };
+        this.navItems.push(navItem4);
+
+        const navItem5 = {
+          name: "審核單",
+          url: "/admin/management",
+          icon: "cui-settings",
+        };
+        this.navItems.push(navItem5);
+        const navItem6 = {
+          name: "記錄",
+          url: "/history/main",
+          icon: "icon-hourglass",
+        };
+        this.navItems.push(navItem6);
+      }
+    }
   }
   toggleMinimize(e) {
     this.sidebarMinimized = e;

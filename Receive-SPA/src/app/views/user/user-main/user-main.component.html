@@ -3,9 +3,9 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-header">
-            <i class="fa fa-align-justify"></i> Danh sách người dùng
+            <i class="fa fa-align-justify"></i> {{ 'userMain.Title' | translate }}
             <button type="button" (click) = "add()" class="btn btn-sm btn-primary float-right"><i
-              class="fa fa-plus"></i> Add New</button>
+              class="fa fa-plus"></i> {{ 'userMain.ButtonAdd' | translate }}</button>
         </div>
         <div class="card-body mt-1">
           <div class="table-responsive">
@@ -13,12 +13,12 @@
               <thead>
                 <tr>
                   <th></th>
-                  <th>Mã người dùng</th>
-                  <th>Tên người dùng</th>
-                  <th>Quyền</th>
-                  <th>Phòng ban</th>
-                  <th>Update_By</th>
-                  <th>Update_Time</th>
+                  <th>{{ 'userMain.Table-column2' | translate }}</th>
+                  <th>{{ 'userMain.Table-column3' | translate }}</th>
+                  <th>{{ 'userMain.Table-column4' | translate }}</th>
+                  <th>{{ 'userMain.Table-column5' | translate }}</th>
+                  <th>{{ 'userMain.Table-column6' | translate }}</th>
+                  <th>{{ 'userMain.Table-column7' | translate }}</th>
                 </tr>
               </thead>
               <tbody>

@@ -33,7 +33,7 @@ namespace Receive_API._Services.Services
             var users = await _repoUser.GetAll().ToListAsync();
             var departments = await _repoDepartment.GetAll().ToListAsync();
             var userLogin = users.Where(x => x.ID.Trim() == user.Trim()).FirstOrDefault();
-            if (userLogin.RoleID == 1)
+            if (userLogin.RoleID == 0 || userLogin.RoleID == 1)
             {
 
             }
@@ -88,7 +88,7 @@ namespace Receive_API._Services.Services
             var users = await _repoUser.GetAll().ToListAsync();
             var departments = await _repoDepartment.GetAll().ToListAsync();
             var userCurrent = users.Where(x => x.ID.Trim() == userLogin.Trim()).FirstOrDefault();
-            if (userCurrent.RoleID == 1)
+            if (userCurrent.RoleID == 0 || userCurrent.RoleID == 1)
             {
 
             }

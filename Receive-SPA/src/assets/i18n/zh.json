@@ -68,5 +68,52 @@
         "Status0": "待審核",
         "Status1": "等發料",
         "Status2": "已發料"
+    },
+    "userMain": {
+        "Title": "User 清單",
+        "ButtonAdd": "新增",
+        "Table-column2": "User 賬號",
+        "Table-column3": "名稱",
+        "Table-column4": "權限",
+        "Table-column5": "部門",
+        "Table-column6": "更新者",
+        "Table-column7": "更新時間"
+    },
+    "userChange": {
+        "TitleAdd": "新加用戶",
+        "TitleEdit": "用戶修改",
+        "ID": "ID",
+        "InputID": "用戶ID",
+        "Password": "密碼",
+        "InputPass": "輸入密碼",
+        "Repassword": "再次輸入密碼",
+        "InputRePass": "再次輸入密碼",
+        "Name": "名字",
+        "Role": "權限",
+        "Department": "部門",
+        "ButtonCancel": "取消",
+        "ButtonSaveNext": "保存&下一個",
+        "ButtonSave": "保存"
+    },
+    "productMain": {
+        "Title": "產品名單",
+        "ButtonAdd": "新加用戶",
+        "Table-column2": "品名編號",
+        "Table-column3": "品名",
+        "Table-column4": "類",
+        "Table-column5": "更新者",
+        "Table-column6": "更新時間"
+    },
+    "productChange": {
+        "TitleAdd": "新加產品",
+        "TitleEdit": "產品修改",
+        "ProductID": "品名編號",
+        "InputProductID": "輸入產品號碼",
+        "NameProduct": "品名",
+        "InputNameProduct": "輸入產品名字",
+        "Category": "類",
+        "ButtonCancel": "取消",
+        "ButtonSaveNext": "保存&下一個",
+        "ButtonSave": "保存"
     }
 }

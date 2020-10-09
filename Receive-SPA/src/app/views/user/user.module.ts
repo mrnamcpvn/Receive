@@ -10,7 +10,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { UserChangeComponent } from './user-change/user-change.component';
 import { UserMainComponent } from './user-main/user-main.component';
 import { NgSelect2Module } from 'ng-select2';
-
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [
     UserMainComponent,
@@ -23,6 +23,7 @@ import { NgSelect2Module } from 'ng-select2';
     UserRoutingModule,
     NgSelect2Module,
     NgxSpinnerModule,
+    TranslateModule,
     ButtonsModule.forRoot(),
     PaginationModule.forRoot()
 

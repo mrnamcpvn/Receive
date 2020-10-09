@@ -82,9 +82,15 @@
                   <!-- <td>{{history.accept_ID}}</td> -->
                   <td *ngIf="user.roleID === 3">{{history.userName}}</td>
                   <td *ngIf="user.roleID === 2">{{history.acceptName}}</td>
-                  <td *ngIf="user.roleID === 1">{{history.userName}}</td>
+                  <td *ngIf="user.roleID === 1 || user.roleID === 0">{{history.userName}}</td>
                   <td>{{history.register_Date | date: "MM/dd/yyyy, h:mm:ss a"}}</td>
                   <td>{{history.accept_Date | date: "MM/dd/yyyy, h:mm:ss a"}}</td>
+                  
+                   <!-- Của người được duyệt cấp 3 -->
+                   <td *ngIf="user.roleID === 0 && history.status === '0'">{{ 'history.Status0' | translate }}</td>
+                   <td *ngIf="user.roleID === 0 && history.status === '1'">{{ 'history.Status1' | translate }}</td>
+                   <td *ngIf="user.roleID === 0 && history.status === '2'">{{ 'history.Status2' | translate }}</td>
+
                   <!-- Của người được duyệt cấp 3 -->
                   <td *ngIf="user.roleID === 1 && history.status === '0'">{{ 'history.Status0' | translate }}</td>
                   <td *ngIf="user.roleID === 1 && history.status === '1'">{{ 'history.Status1' | translate }}</td>

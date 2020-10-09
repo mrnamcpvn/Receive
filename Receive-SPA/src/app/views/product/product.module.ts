@@ -9,7 +9,7 @@ import { NgSelect2Module } from 'ng-select2';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     FormsModule,
     NgSelect2Module,
     NgxSpinnerModule,
+    TranslateModule,
     ButtonsModule.forRoot(),
     PaginationModule.forRoot()
   ],

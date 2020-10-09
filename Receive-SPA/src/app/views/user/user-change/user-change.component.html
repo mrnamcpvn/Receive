@@ -3,9 +3,9 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <strong *ngIf="flag === '0'; else elseTitle">Thêm mới người dùng</strong>
+          <strong *ngIf="flag === '0'; else elseTitle">{{ 'userChange.TitleAdd' | translate}}</strong>
           <ng-template #elseTitle>
-            <strong>Chỉnh sửa người dùng</strong>
+            <strong>{{ 'userChange.TitleEdit' | translate}}</strong>
           </ng-template>
           <button type="button" class="btn btn-sm btn-primary float-right" (click)="back()" ><i class="fa fa-chevron-left"></i>
             Back</button>
@@ -17,17 +17,17 @@
               <div class="col-md-3">
                 <input type="text" *ngIf="flag === '0';else elseUserid" name="id" [(ngModel)]="user.id" 
                 (focusout)="checkExistUser()"
-                class="form-control"  placeholder="Enter user ID.." required>
+                class="form-control"  placeholder="{{ 'userChange.InputID' | translate}}.." required>
                 <ng-template #elseUserid>
                   <input type="text" disabled name="id" [(ngModel)]="user.id" 
                   class="form-control">
                 </ng-template>
               </div>
-              <label class="col-md-1 col-form-label" for="passwprd-no" >Password: </label>
+              <label class="col-md-1 col-form-label" for="passwprd-no" >{{ 'userChange.Password' | translate}}: </label>
               <div class="col-md-3">
                 <input *ngIf="flag === '0';else elsePass" type="password"  
                 name="user-password" [(ngModel)]="user.password" 
-                class="form-control"  placeholder="Enter password.." required>
+                class="form-control"  placeholder="{{ 'userChange.InputPass' | translate}}.." required>
                 <ng-template #elsePass>
                   <input type="password"  disabled 
                 name="password" [(ngModel)]="user.password" 
@@ -35,24 +35,25 @@
                 </ng-template>
               </div>
               <ng-container *ngIf="flag === '0'">
-                <label class="col-md-1 col-form-label" for="defect-no" >RePassword: </label>
+                <label class="col-md-1 col-form-label" for="defect-no" >{{ 'userChange.Repassword' | translate}}: </label>
                 <div class="col-md-3">
-                  <input type="password" (keyup)="checkRePass()"  name="Repassword" [(ngModel)]="rePassword" class="form-control"  placeholder="Enter Repassword.." required>
+                  <input type="password" (keyup)="checkRePass()"  name="Repassword" [(ngModel)]="rePassword" class="form-control"  
+                  placeholder="{{ 'userChange.InputRePass' | translate}}.." required>
                 </div>
               </ng-container>
             </div>
             <div class="form-group row">
-              <label class="col-md-1 col-form-label" for="defect-no" >Name: </label>
+              <label class="col-md-1 col-form-label" for="defect-no" >{{ 'userChange.Name' | translate}}: </label>
               <div class="col-md-3">
-                  <input type="text"  name="user_Name" [(ngModel)]="user.name" class="form-control"  placeholder="Enter name.." required>
+                  <input type="text"  name="user_Name" [(ngModel)]="user.name" class="form-control"  placeholder="{{ 'userChange.Name' | translate}}.." required>
               </div>
-              <label class="col-md-1 col-form-label" for="defect-no" >Role: </label>
+              <label class="col-md-1 col-form-label" for="defect-no" >{{ 'userChange.Role' | translate}}: </label>
               <div class="col-md-3">
                 <ng-select2  [data]="roles" [value]="user.roleID"  
                 [options]="optionsRole" name="role" (valueChanged)="changedRole($event)"
                   [cssImport]=true [disabled]="disable"></ng-select2>
               </div>
-              <label class="col-md-1 col-form-label" for="defect-no" >Department: </label>
+              <label class="col-md-1 col-form-label" for="defect-no" >{{ 'userChange.Department' | translate}}: </label>
               <div class="col-md-3">
                 <ng-select2 [data]="departments" [value]="user.depID"  
                 [options]="optionsDepartment" name="department" (valueChanged)="changedDepartment($event)"
@@ -61,12 +62,12 @@
             </div>
           </div>
           <div class="card-footer">
-            <button type="button" (click)="cancel()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Cancel</button>
+            <button type="button" (click)="cancel()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> {{ 'userChange.ButtonCancel' | translate}}</button>
             <button *ngIf="flag === '0'" type="submit" (click)="saveAndNext()"  class="btn btn-sm btn-primary ml-2" 
             [disabled]="!addUserForm.valid || user.roleID === undefined || user.depID ===  undefined || isCheckPass === false">
-              <i class="fa fa-check"></i> Save & Next</button>
+              <i class="fa fa-check"></i> {{ 'userChange.ButtonSaveNext' | translate}}</button>
             <button type="button" (click)="save()" class="btn btn-sm btn-success ml-2" 
-            [disabled]="!addUserForm.valid || user.roleID === undefined || user.depID ===  undefined || isCheckPass === false" ><i class="fa fa-check"></i> Save</button>
+            [disabled]="!addUserForm.valid || user.roleID === undefined || user.depID ===  undefined || isCheckPass === false" ><i class="fa fa-check"></i> {{ 'userChange.ButtonSave' | translate}}</button>
           </div>
         </form>
       </div>

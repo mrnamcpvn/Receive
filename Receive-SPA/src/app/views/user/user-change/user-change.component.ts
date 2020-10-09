@@ -19,12 +19,10 @@ export class UserChangeComponent implements OnInit {
   public roles: Array<Select2OptionData>;
   public departments: Array<Select2OptionData>;
   optionsRole = {
-    placeholder: "Select Role...",
     allowClear: true,
     width: "100%"
   };
   optionsDepartment = {
-    placeholder: "Select Department...",
     allowClear: true,
     width: "100%"
   }

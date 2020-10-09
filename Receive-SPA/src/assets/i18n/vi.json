@@ -68,5 +68,52 @@
         "Status0": "Chờ duyệt",
         "Status1": "Chờ phát liệu",
         "Status2": "Đã phát liệu"
+    },
+    "userMain": {
+        "Title": "Danh sách người dùng",
+        "ButtonAdd": "Thêm mới",
+        "Table-column2": "Mã người dùng",
+        "Table-column3": "Tên người dùng",
+        "Table-column4": "Quyền",
+        "Table-column5": "Phòng ban",
+        "Table-column6": "Người cập nhập",
+        "Table-column7": "Thời gian cập nhập"
+    },
+    "userAdd": {
+        "TitleAdd": "Thêm mới người dùng",
+        "TitleEdit": "Chỉnh sửa người dùng",
+        "ID": "ID",
+        "InputID": "Nhập mã người dùng",
+        "Password": "Password",
+        "InputPass": "Nhập mật khẩu",
+        "Repassword": "RePassword",
+        "InputRePass": "Nhập lại mật khẩu",
+        "Name": "Tên",
+        "Role": "Quyền",
+        "Department": "Phòng ban",
+        "ButtonCancel": "Cancel",
+        "ButtonSaveNext": "Save & Next",
+        "ButtonSave": "Save"
+    },
+    "productMain": {
+        "Title": "Danh sách sản phẩm",
+        "ButtonAdd": "Thêm mới",
+        "Table-column2": "Mã sản phẩm",
+        "Table-column3": "Tên sản phẩm",
+        "Table-column4": "Loại",
+        "Table-column5": "Người cập nhập",
+        "Table-column6": "Thời gian cập nhập"
+    },
+    "productChange": {
+        "TitleAdd": "Thêm mới sản phẩm",
+        "TitleEdit": "Chỉnh sửa sản phẩm",
+        "ProductID": "Mã sản phẩm",
+        "InputProductID": "Nhập mã sản phẩm",
+        "NameProduct": "Tên sản phẩm",
+        "InputNameProduct": "Nhập tên sản phẩm",
+        "Category": "Loại",
+        "ButtonCancel": "Cancel",
+        "ButtonSaveNext": "Save & Next",
+        "ButtonSave": "Save"
     }
 }

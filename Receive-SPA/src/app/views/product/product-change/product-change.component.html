@@ -3,9 +3,9 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <strong *ngIf="flag === '0'; else elseTitle">Thêm mới sản phẩm</strong>
+          <strong *ngIf="flag === '0'; else elseTitle">{{ 'productChange.TitleAdd' | translate}}</strong>
           <ng-template #elseTitle>
-            <strong>Sửa sản phẩm</strong>
+            <strong>{{ 'productChange.TitleEdit' | translate}}</strong>
           </ng-template>
           <button type="button" class="btn btn-sm btn-primary float-right" (click)="back()"><i
               class="fa fa-chevron-left"></i>
@@ -14,21 +14,21 @@
         <form class="form-horizontal" #addProductForm="ngForm" (ngSubmit)="addProductForm.valid">
           <div class="card-body">
             <div class="form-group row">
-              <label class="col-md-1 col-form-label" for="defect-no" >Mã sản phẩm: </label>
+              <label class="col-md-1 col-form-label" for="defect-no" >{{ 'productChange.ProductID' | translate}}: </label>
               <div class="col-md-3">
                 <input *ngIf="flag === '0';else elseProductID" type="text" [(ngModel)]="product.id" name="productID" required class="form-control"
-                  placeholder="Nhập mã sản phẩm">
+                  placeholder="{{ 'productChange.InputProductID' | translate}}">
                 <ng-template #elseProductID>
                   <input disabled type="text" [(ngModel)]="product.id" name="productID" required class="form-control"
                   placeholder="Nhập mã sản phẩm">
                 </ng-template>
               </div>
-              <label class="col-md-1 col-form-label" for="productName" >Tên sản phẩm: </label>
+              <label class="col-md-1 col-form-label" for="productName" >{{ 'productChange.NameProduct' | translate}}: </label>
               <div class="col-md-4">
                 <input type="text" [(ngModel)]="product.name" required name="productName" class="form-control"
-                  placeholder="Nhập tên sản phẩm">
+                  placeholder="{{ 'productChange.InputNameProduct' | translate}}">
               </div>
-              <label class="col-md-1 col-form-label" for="defect-no" >Loại: </label>
+              <label class="col-md-1 col-form-label" for="defect-no" >{{ 'productChange.Category' | translate}}: </label>
               <div class="col-md-2">
                 <ng-select2  [data]="categories" [value]="product.catID"  
                 [options]="optionsCategory" name="role" (valueChanged)="changedCategory($event)"
@@ -36,12 +36,12 @@
               </div>
             </div>
             <div class="card-footer">
-              <button type="button" (click)="cancel()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Cancel</button>
+              <button type="button" (click)="cancel()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> {{ 'productChange.ButtonCancel' | translate}}</button>
               <button *ngIf="flag === '0'" type="submit" (click)="saveAndNext()"  class="btn btn-sm btn-primary ml-2" 
               [disabled]="!addProductForm.valid || product.catID === undefined">
-                <i class="fa fa-check"></i> Save & Next</button>
+                <i class="fa fa-check"></i> {{ 'productChange.ButtonSaveNext' | translate}}</button>
               <button type="button" (click)="save()" class="btn btn-sm btn-success ml-2" 
-              [disabled]="!addProductForm.valid || product.catID === undefined"><i class="fa fa-check"></i> Save</button>
+              [disabled]="!addProductForm.valid || product.catID === undefined"><i class="fa fa-check"></i> {{ 'productChange.ButtonSave' | translate}}</button>
             </div>
           </div>
         </form>
