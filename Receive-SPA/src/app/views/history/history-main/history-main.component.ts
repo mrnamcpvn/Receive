@@ -37,10 +37,17 @@ export class HistoryMainComponent implements OnInit {
     this.historyService.getListAll(this.pagination.currentPage, this.pagination.itemsPerPage)
     .subscribe((res: PaginatedResult<ReceiveInfomationModel[]>) => {
       this.historys = res.result;
-      this.historys = this.historys.map(obj => {
-        obj.depNameShow = obj.depID + ' - ' + obj.depName;
-        return obj;
-      });
+      if(this.translate.currentLang === undefined || this.translate.currentLang === 'vi') {
+        this.historys = this.historys.map(obj => {
+          obj.depNameShow = obj.depID + ' - ' + obj.depName;
+          return obj;
+        });
+      } else if(this.translate.currentLang === 'zh') {
+        this.historys = this.historys.map(obj => {
+          obj.depNameShow = obj.depID + ' - ' + obj.depName_ZW;
+          return obj;
+        });
+      }
       this.pagination = res.pagination;
     }, (error) => {
       this.alertify.error(error);
@@ -91,7 +98,7 @@ export class HistoryMainComponent implements OnInit {
     }
   }
 
-  ngAfterViewChecked() {
+  ngAfterContentChecked() {
     if(this.translate.currentLang === 'zh') {
       this.historys = this.historys.map(obj => {
         obj.depNameShow = obj.depID + ' - ' + obj.depName_ZW;
