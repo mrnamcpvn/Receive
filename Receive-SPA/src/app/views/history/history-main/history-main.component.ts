@@ -37,17 +37,7 @@ export class HistoryMainComponent implements OnInit {
     this.historyService.getListAll(this.pagination.currentPage, this.pagination.itemsPerPage)
     .subscribe((res: PaginatedResult<ReceiveInfomationModel[]>) => {
       this.historys = res.result;
-      if(this.translate.currentLang === undefined || this.translate.currentLang === 'vi') {
-        this.historys = this.historys.map(obj => {
-          obj.depNameShow = obj.depID + ' - ' + obj.depName;
-          return obj;
-        });
-      } else if(this.translate.currentLang === 'zh') {
-        this.historys = this.historys.map(obj => {
-          obj.depNameShow = obj.depID + ' - ' + obj.depName_ZW;
-          return obj;
-        });
-      }
+      this.changeNameDepartment();
       this.pagination = res.pagination;
     }, (error) => {
       this.alertify.error(error);
@@ -97,8 +87,7 @@ export class HistoryMainComponent implements OnInit {
         });
     }
   }
-
-  ngAfterContentChecked() {
+  changeNameDepartment() {
     if(this.translate.currentLang === 'zh') {
       this.historys = this.historys.map(obj => {
         obj.depNameShow = obj.depID + ' - ' + obj.depName_ZW;
@@ -110,5 +99,8 @@ export class HistoryMainComponent implements OnInit {
         return obj;
       });
     }
+  }
+  ngAfterContentChecked() {
+    this.changeNameDepartment();
   }
 }
