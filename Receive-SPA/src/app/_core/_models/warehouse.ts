@@ -1,4 +1,5 @@
 export interface Warehouse {
     id: number;
-    name: string;
+    name_LL: string;
+    name_ZW: string;
 }

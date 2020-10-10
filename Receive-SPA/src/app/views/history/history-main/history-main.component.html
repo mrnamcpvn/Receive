@@ -86,7 +86,7 @@
                   <td>{{history.register_Date | date: "MM/dd/yyyy, h:mm:ss a"}}</td>
                   <td>{{history.accept_Date | date: "MM/dd/yyyy, h:mm:ss a"}}</td>
                   
-                   <!-- Của người được duyệt cấp 3 -->
+                  <!-- Của người được duyệt cấp 3 -->
                    <td *ngIf="user.roleID === 0 && history.status === '0'">{{ 'history.Status0' | translate }}</td>
                    <td *ngIf="user.roleID === 0 && history.status === '1'">{{ 'history.Status1' | translate }}</td>
                    <td *ngIf="user.roleID === 0 && history.status === '2'">{{ 'history.Status2' | translate }}</td>

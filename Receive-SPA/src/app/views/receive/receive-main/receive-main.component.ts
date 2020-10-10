@@ -82,9 +82,9 @@ export class ReceiveMainComponent implements OnInit {
   getAllWarehouse(){
     this.receiveService.getAllWarehouse().subscribe(res => {
       this.warehouses = res.map(obj => {
-        return {id: obj.id.toString(), text: obj.name}
-      })
-    })
+        return {id: obj.id.toString(), text: obj.name_LL};
+      });
+    });
   }
   getAllCategory() {
     if(this.warehouseID !== '' && this.warehouseID !== undefined) {
@@ -115,6 +115,20 @@ export class ReceiveMainComponent implements OnInit {
     } else {
       this.isAdd = true;
     }
+
+    if(this.translate.currentLang === undefined || this.translate.currentLang === 'vi') {
+      this.receiveService.getAllWarehouse().subscribe(res => {
+        this.warehouses = res.map(obj => {
+          return {id: obj.id.toString(), text: obj.name_LL};
+        });
+      });
+    } else if(this.translate.currentLang === 'zh') {
+      this.receiveService.getAllWarehouse().subscribe(res => {
+        this.warehouses = res.map(obj => {
+          return {id: obj.id.toString(), text: obj.name_ZW};
+        });
+      });
+    }
   }
   print(e) {
     this.receiveService.changeReceiveID(e.id);
@@ -128,11 +142,11 @@ export class ReceiveMainComponent implements OnInit {
       }
     })
   }
-  ngAfterViewChecked() {
-    debugger
-    if(this.translate.currentLang === 'vi') {
-    } else if(this.translate.currentLang === 'zh') {
+  // ngAfterViewChecked() {
+  //   debugger
+  //   if(this.translate.currentLang === 'vi') {
+  //   } else if(this.translate.currentLang === 'zh') {
 
-    }
-  }
+  //   }
+  // }
 }
