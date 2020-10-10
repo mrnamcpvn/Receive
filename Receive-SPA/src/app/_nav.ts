@@ -84,14 +84,14 @@ export class NavItem {
       this.navItems.push(navItem3);
 
       const navItem4 = {
-        name: "Xét duyệt lãnh",
+        name: "Xét duyệt đơn",
         url: "/approval/manager",
         icon: "cui-graph",
       };
       this.navItems.push(navItem4);
 
       const navItem5 = {
-        name: "Xét duyệt đơn",
+        name: "Xét duyệt lãnh",
         url: "/admin/management",
         icon: "cui-task",
       };
