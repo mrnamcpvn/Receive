@@ -118,7 +118,7 @@ export class DefaultLayoutComponent implements OnInit {
         this.navItems.push(navItem4);
       } else {
         const navItem1 = {
-          name: "用户管理",
+          name: "使用者管理",
           url: "/admin/user",
           icon: "icon-people",
         };
