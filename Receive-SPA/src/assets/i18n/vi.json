@@ -79,7 +79,7 @@
         "Table-column6": "Người cập nhập",
         "Table-column7": "Thời gian cập nhập"
     },
-    "userAdd": {
+    "userChange": {
         "TitleAdd": "Thêm mới người dùng",
         "TitleEdit": "Chỉnh sửa người dùng",
         "ID": "ID",
