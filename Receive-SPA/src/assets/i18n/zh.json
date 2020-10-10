@@ -52,6 +52,8 @@
     "history" : {
         "Title": "記錄",
         "Date": " 領料日期",
+        "InputStartDate": "開始",
+        "InputEndDate": "結束",
         "CardNumber": "申請人工號",
         "InputCardNumber": "請輸入工號",
         "ButtonSearch": "查詢",

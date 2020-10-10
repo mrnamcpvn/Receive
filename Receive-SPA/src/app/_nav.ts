@@ -79,21 +79,21 @@ export class NavItem {
       const navItem3 = {
         name: "Lãnh tạp phẩm",
         url: "/receive/manager",
-        icon: "icon-people",
+        icon: "cui-basket-loaded",
       };
       this.navItems.push(navItem3);
 
       const navItem4 = {
         name: "Xét duyệt lãnh",
         url: "/approval/manager",
-        icon: "icon-people",
+        icon: "cui-graph",
       };
       this.navItems.push(navItem4);
 
       const navItem5 = {
         name: "Xét duyệt đơn",
         url: "/admin/management",
-        icon: "cui-settings",
+        icon: "cui-task",
       };
       this.navItems.push(navItem5);
       const navItem6 = {

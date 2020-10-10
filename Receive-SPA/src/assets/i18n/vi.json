@@ -52,6 +52,8 @@
     "history" : {
         "Title": "Lịch sử",
         "Date": "Ngày xin lãnh",
+        "InputStartDate": "Bắt đầu",
+        "InputEndDate": "Kết thúc",
         "CardNumber": "Số thẻ người xin lãnh",
         "InputCardNumber": "Nhập số thẻ",
         "ButtonSearch": "Tìm kiếm",
