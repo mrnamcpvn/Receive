@@ -64,7 +64,7 @@ namespace Receive_API._Services.Services
                         ID = a.ID,
                         Name = a.Name,
                         CatID = a.CatID,
-                        CatName = b.Name,
+                        CatName = b.Name_LL,
                         Update_By = a.Updated_By,
                         Update_Time = a.Update_Time
                     }).OrderByDescending(x => x.Update_Time).ToList();

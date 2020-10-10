@@ -90,7 +90,11 @@ export class ReceiveMainComponent implements OnInit {
     if(this.warehouseID !== '' && this.warehouseID !== undefined) {
       this.receiveService.getAllCategory(this.warehouseID).subscribe(res => {
         this.categories = res.map(obj => {
-          return  {id: obj.id.toString(), text: obj.name}
+          if(this.translate.currentLang === undefined || this.translate.currentLang === 'vi') {
+            return {id: obj.id.toString(), text: obj.name_LL};
+          } else if(this.translate.currentLang === 'zh') {
+            return {id: obj.id.toString(), text: obj.name_ZW};
+          }
         });
       });
     }
@@ -122,6 +126,7 @@ export class ReceiveMainComponent implements OnInit {
           return {id: obj.id.toString(), text: obj.name_LL};
         });
       });
+
     } else if(this.translate.currentLang === 'zh') {
       this.receiveService.getAllWarehouse().subscribe(res => {
         this.warehouses = res.map(obj => {
@@ -142,11 +147,4 @@ export class ReceiveMainComponent implements OnInit {
       }
     })
   }
-  // ngAfterViewChecked() {
-  //   debugger
-  //   if(this.translate.currentLang === 'vi') {
-  //   } else if(this.translate.currentLang === 'zh') {
-
-  //   }
-  // }
 }

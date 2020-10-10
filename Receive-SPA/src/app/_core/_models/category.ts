@@ -1,6 +1,8 @@
 export interface Category {
     id: number;
-    name: string;
+    name_LL: string;
+    name_ZW: string;
+    warehouseID: number;
     depID: string;
     status: string;
     updated_By: string;

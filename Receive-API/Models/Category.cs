@@ -7,7 +7,8 @@ namespace Receive_API.Models
     {
         [Key]
         public int ID { get; set; }
-        public string Name { get; set; }
+        public string Name_LL { get; set; }
+        public string Name_ZW {get;set;}
         public int WarehouseID {get;set;}
         public string DepID { get; set; }
         public string Status { get; set; }

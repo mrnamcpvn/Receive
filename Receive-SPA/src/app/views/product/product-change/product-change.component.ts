@@ -33,7 +33,7 @@ export class ProductChangeComponent implements OnInit {
   getAllCategory() {
     this.productService.getAllCategories().subscribe(res => {
       this.categories = res.map(obj => {
-        return {id: obj.id.toString(), text:obj.name}
+        return {id: obj.id.toString(), text:obj.name_LL}
       })
     })
   }
