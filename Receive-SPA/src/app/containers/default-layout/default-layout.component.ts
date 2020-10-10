@@ -168,14 +168,14 @@ export class DefaultLayoutComponent implements OnInit {
         this.navItems.push(navItem3);
 
         const navItem4 = {
-          name: "Xét duyệt lãnh",
+          name: "Xét duyệt đơn",
           url: "/approval/manager",
           icon: "cui-graph",
         };
         this.navItems.push(navItem4);
 
         const navItem5 = {
-          name: "Xét duyệt đơn",
+          name: "Xét duyệt lãnh",
           url: "/admin/management",
           icon: "cui-task",
         };
@@ -209,14 +209,14 @@ export class DefaultLayoutComponent implements OnInit {
         this.navItems.push(navItem3);
 
         const navItem4 = {
-          name: "審核收據",
+          name: "審核單",
           url: "/approval/manager",
           icon: "cui-graph",
         };
         this.navItems.push(navItem4);
 
         const navItem5 = {
-          name: "審核單",
+          name: "審核收據",
           url: "/admin/management",
           icon: "cui-task",
         };
@@ -234,7 +234,7 @@ export class DefaultLayoutComponent implements OnInit {
     this.sidebarMinimized = e;
   }
   logout() {
-    this.switchLang('vi');
+    this.translate.use('vi');
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     this.authService.decodedToken = null;
