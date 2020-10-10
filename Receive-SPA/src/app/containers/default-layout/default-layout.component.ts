@@ -234,6 +234,7 @@ export class DefaultLayoutComponent implements OnInit {
     this.sidebarMinimized = e;
   }
   logout() {
+    this.switchLang('vi');
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     this.authService.decodedToken = null;
