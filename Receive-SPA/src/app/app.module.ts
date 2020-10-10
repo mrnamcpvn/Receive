@@ -84,7 +84,7 @@ export function tokenGetter() {
         blacklistedRoutes: ["localhost:5000/api/auth"]
       }
     }),
-     TranslateModule.forRoot({
+    TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: httpTranslateLoader,

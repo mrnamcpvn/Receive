@@ -5,6 +5,7 @@ import { ReceiveInfomationModel } from '../../../_core/_models/receiveInfomation
 import { AlertifyService } from '../../../_core/_services/alertify.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { FunctionUtility } from '../../../_core/_utility/function-utility';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-history-main',
@@ -26,6 +27,7 @@ export class HistoryMainComponent implements OnInit {
   };
   constructor(private historyService: HistoryService,
               private alertify: AlertifyService,
+              private translate: TranslateService,
               private functionUtility: FunctionUtility) { }
 
   ngOnInit() {
@@ -35,6 +37,10 @@ export class HistoryMainComponent implements OnInit {
     this.historyService.getListAll(this.pagination.currentPage, this.pagination.itemsPerPage)
     .subscribe((res: PaginatedResult<ReceiveInfomationModel[]>) => {
       this.historys = res.result;
+      this.historys = this.historys.map(obj => {
+        obj.depNameShow = obj.depID + ' - ' + obj.depName;
+        return obj;
+      });
       this.pagination = res.pagination;
     }, (error) => {
       this.alertify.error(error);
@@ -82,6 +88,20 @@ export class HistoryMainComponent implements OnInit {
         }, error => {
           this.alertify.error(error);
         });
+    }
+  }
+
+  ngAfterViewChecked() {
+    if(this.translate.currentLang === 'zh') {
+      this.historys = this.historys.map(obj => {
+        obj.depNameShow = obj.depID + ' - ' + obj.depName_ZW;
+        return obj;
+      });
+    } else if(this.translate.currentLang === undefined || this.translate.currentLang === 'vi') {
+      this.historys = this.historys.map(obj => {
+        obj.depNameShow = obj.depID + ' - ' + obj.depName;
+        return obj;
+      });
     }
   }
 }

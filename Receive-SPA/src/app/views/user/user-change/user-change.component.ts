@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UsersService } from '../../../_core/_services/users.service';
 import { Select2OptionData } from 'ng-select2';
 import { AlertifyService } from '../../../_core/_services/alertify.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-change',
@@ -28,7 +29,9 @@ export class UserChangeComponent implements OnInit {
   }
   constructor(  private router: Router,
                 private alertify: AlertifyService,
-                private userService: UsersService) { }
+                private userService: UsersService,
+                public translate: TranslateService,
+                ) { }
   
   ngOnInit() {
     this.userService.currentFlag.subscribe(flag => this.flag = flag);
@@ -48,7 +51,6 @@ export class UserChangeComponent implements OnInit {
   }
   getAllDepartment() {
     this.userService.getListDepartment().subscribe(res => {
-      console.log(res);
       this.departments = res.map(item => {
         return {id: item.id.toString(), text: item.id.toString() + ' - ' + item.name_LL}
       });
@@ -122,5 +124,20 @@ export class UserChangeComponent implements OnInit {
   }
   back() {
     this.router.navigate(['/admin/user']);
+  }
+  ngAfterViewChecked() {
+    if(this.translate.currentLang === undefined || this.translate.currentLang === 'vi') {
+      this.userService.getListDepartment().subscribe(res => {
+        this.departments = res.map(item => {
+          return {id: item.id.toString(), text: item.id.toString() + ' - ' + item.name_LL}
+        });
+      });
+    } else if(this.translate.currentLang === 'zh') {
+      this.userService.getListDepartment().subscribe(res => {
+        this.departments = res.map(item => {
+          return {id: item.id.toString(), text: item.id.toString() + ' - ' + item.name_ZW}
+        });
+      });
+    }
   }
 }

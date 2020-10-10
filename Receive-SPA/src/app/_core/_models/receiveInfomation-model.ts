@@ -6,6 +6,8 @@ export interface ReceiveInfomationModel {
     acceptName: string;
     depID: number;
     depName: string;
+    depName_ZW: string;
+    depNameShow: string;
     productID: string;
     productName: string;
     qty: number;
