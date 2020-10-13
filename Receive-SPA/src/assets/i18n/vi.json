@@ -54,6 +54,7 @@
         "Table-column11": "Thông qua"
     },
     "EditReceive": {
+        "Title": "Edit Receive",
         "Category": "Loại",
         "Product": "Sản phẩm",
         "Qty": "Số lượng",

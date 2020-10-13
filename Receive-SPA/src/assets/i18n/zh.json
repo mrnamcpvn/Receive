@@ -54,6 +54,7 @@
         "Table-column11": "放行"
     },
     "EditReceive": {
+        "Title": "编辑接收",
         "Category": "請選擇種類",
         "Product": "請選擇品名",
         "Qty": "數量",
