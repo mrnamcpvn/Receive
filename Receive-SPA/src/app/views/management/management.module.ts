@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ManagementRoutingModule } from './management-routing.module';
@@ -8,10 +8,12 @@ import { FormsModule } from '@angular/forms';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { ManagementEditComponent } from './management-edit/management-edit.component';
+import { NgSelect2Module } from 'ng-select2';
 @NgModule({
   declarations: [
     ManagementMainComponent,
+    ManagementEditComponent
   ],
   imports: [
     CommonModule,
@@ -19,8 +21,12 @@ import { TranslateModule } from '@ngx-translate/core';
     HttpClientModule,
     FormsModule,
     TranslateModule,
+    NgSelect2Module,
     ButtonsModule.forRoot(),
     PaginationModule.forRoot()
-  ]
+  ],
+  schemas: [
+    NO_ERRORS_SCHEMA
+              ]
 })
 export class ManagementModule { }

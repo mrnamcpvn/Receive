@@ -8,6 +8,7 @@ export interface ReceiveInfomationModel {
     depName: string;
     depName_ZW: string;
     depNameShow: string;
+    categoryID: number;
     productID: string;
     productName: string;
     qty: number;

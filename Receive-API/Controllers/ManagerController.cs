@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Receive_API._Services.Interfaces;
+using Receive_API.Dto;
 using Receive_API.Helpers;
 
 namespace Receive_API.Controllers
@@ -66,6 +67,12 @@ namespace Receive_API.Controllers
             {
                 return false;
             }
+        }
+
+        [HttpPost("editReceive")]
+        public async Task<IActionResult> EditReceive([FromBody]EditReceiveParam data) {
+            var result = await _serviceManager.EditReceive(data);
+            return Ok(result);
         }
     }
 }

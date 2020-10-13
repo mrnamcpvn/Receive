@@ -17,12 +17,15 @@ namespace Receive_API._Services.Services
         private readonly IReceiveRepository _repoReceive;
         private readonly IProductRepository _repoProduct;
         private readonly IDepartmentRepository _repoDepartment;
+        private readonly ICategoryRepository _repoCategory;
         public ManagerService(  IReceiveRepository repoReceive,
                                 IProductRepository repoProduct,
-                                IDepartmentRepository repoDepartment) {
+                                IDepartmentRepository repoDepartment,
+                                ICategoryRepository repoCategory) {
             _repoReceive = repoReceive;
             _repoProduct = repoProduct;
             _repoDepartment = repoDepartment;
+            _repoCategory = repoCategory;
         }
 
         public async Task<bool> AcceptReceive(string receiveID)
@@ -75,10 +78,12 @@ namespace Receive_API._Services.Services
         public async Task<PagedList<ReceiveInformationModel>> GetWithPaginations(PaginationParams param)
         {
             var products = await _repoProduct.GetAll().ToListAsync();
+            var categorys = await _repoCategory.GetAll().ToListAsync();
             var receives = await _repoReceive.GetAll().Where(x => x.Status == "1").ToListAsync();
             var departments = await _repoDepartment.GetAll().ToListAsync();
             var data = (from r in receives join p in products
                 on r.ProductID.Trim() equals p.ID.Trim()
+                join c in categorys on p.CatID equals c.ID
                 join d in departments on r.DepID.Trim() equals d.ID.Trim()
                 select new ReceiveInformationModel() {
                     ID = r.ID,
@@ -86,6 +91,7 @@ namespace Receive_API._Services.Services
                     Accept_ID = r.Accept_ID,
                     DepID = r.DepID,
                     DepName = d.Name_LL,
+                    CategoryID = c.ID,
                     ProductID = r.ProductID,
                     ProductName = p.Name,
                     Qty = r.Qty,
@@ -133,6 +139,15 @@ namespace Receive_API._Services.Services
             } else {
                 return false;
             }
+        }
+
+        public async Task<bool> EditReceive(EditReceiveParam data)
+        {
+            var receiveModel = await _repoReceive.GetAll()
+                .Where(x => x.ID.Trim() == data.ID.Trim()).FirstOrDefaultAsync();
+            receiveModel.ProductID = data.ProductID;
+            receiveModel.Qty = data.Qty;
+            return await _repoReceive.SaveAll();
         }
     }
 }

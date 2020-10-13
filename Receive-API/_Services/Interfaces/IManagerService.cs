@@ -11,5 +11,6 @@ namespace Receive_API._Services.Interfaces
         Task<bool> AcceptReceive(string receiveID);
         Task<bool> DecliceReceive(string receiveID);
         Task<bool> ImportExcel(string filePath, string user);
+        Task<bool> EditReceive(EditReceiveParam data);
     }
 }

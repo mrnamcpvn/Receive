@@ -30,7 +30,6 @@ export class ProductService {
     return this.http.get<ProductModel[]>(this.baseUrl + 'product/getProducts', { observe: 'response', params })
       .pipe(
         map(response => {
-          console.log(response);
           paginatedResult.result = response.body;
           if (response.headers.get('Pagination') != null) {
             paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
@@ -52,7 +51,6 @@ export class ProductService {
     return this.http.get<ProductModel[]>(this.baseUrl + 'product/search/' + text, { observe: 'response', params })
       .pipe(
         map(response => {
-          console.log(response);
           paginatedResult.result = response.body;
           if (response.headers.get('Pagination') != null) {
             paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));

@@ -43,7 +43,9 @@
               </thead>
               <tbody>
                 <tr *ngFor="let receive of receives;let i = index">
-                  <td>{{ i + 1}}</td>
+                  <td>
+                    <button class="btn btn-primary" (click)="editReceive(receive)" >Edit</button>
+                  </td>
                   <td>{{receive.depID}}</td>
                   <td>{{receive.userID}}</td>
                   <td>{{receive.id}}</td>

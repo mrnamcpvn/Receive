@@ -3,6 +3,7 @@ import { Pagination, PaginatedResult } from '../../../_core/_models/pagination';
 import { ManagerService } from '../../../_core/_services/manager.service';
 import { ReceiveInfomationModel } from '../../../_core/_models/receiveInfomation-model';
 import { AlertifyService } from '../../../_core/_services/alertify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-management-main',
@@ -19,6 +20,7 @@ export class ManagementMainComponent implements OnInit {
     totalPages: 1,
   };
   constructor(private managerService: ManagerService,
+              private router: Router,
               private alertify: AlertifyService) { }
 
   ngOnInit() {
@@ -66,6 +68,10 @@ export class ManagementMainComponent implements OnInit {
         };
       })
     }
+  }
+  editReceive(receive: ReceiveInfomationModel) {
+    this.managerService.changeReceive(receive);
+    this.router.navigate(['/admin/management/receive-edit']);
   }
   acceptReceive(receiveID: string) {
     this.alertify.confirm('Duyệt đơn', 'Bạn có chắc chắn duyệt đơn không?', () => {

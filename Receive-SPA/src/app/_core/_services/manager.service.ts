@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { PaginatedResult } from '../_models/pagination';
 import { ReceiveInfomationModel } from '../_models/receiveInfomation-model';
 import { map } from 'rxjs/operators';
@@ -10,6 +10,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ManagerService {
+  receiveSource = new BehaviorSubject<ReceiveInfomationModel>(null);
+  currentReceive = this.receiveSource.asObservable();
   baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
   getListAll(page?, itemsPerPage?): Observable<PaginatedResult<ReceiveInfomationModel[]>> {
@@ -40,7 +42,13 @@ export class ManagerService {
   declineReceive(receiveID: string): Observable<any> {
     return this.http.get<any>(this.baseUrl + 'manager/decline/' + receiveID, {});
   }
+  changeReceive(data: ReceiveInfomationModel) {
+    this.receiveSource.next(data);
+  }
   importExcel(): Observable<any> {
     return this.http.get<any>(this.baseUrl + 'manager/importExcel/', {});
+  }
+  editReceive(data: any) {
+    return this.http.post<any>(this.baseUrl + 'manager/editReceive', data, {});
   }
 }

@@ -17,6 +17,7 @@ namespace Receive_API.Dto
         public string DepName {get;set;}
         public string DepName_ZW {get;set;}
 
+        public int CategoryID {get;set;}
         public string ProductID { get; set; }
         public string ProductName {get;set;}
         public int Qty {get;set;}
