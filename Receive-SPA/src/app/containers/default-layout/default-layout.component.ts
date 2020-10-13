@@ -136,7 +136,7 @@ export class DefaultLayoutComponent implements OnInit {
         };
         this.navItems.push(navItem3);
         const navItem4 = {
-          name: "产品管理",
+          name: "產品管理",
           url: "/product/manager",
           icon: "icon-wallet",
         };
@@ -188,14 +188,14 @@ export class DefaultLayoutComponent implements OnInit {
         this.navItems.push(navItem6);
       } else {
         const navItem1 = {
-          name: "用户管理",
+          name: "使用者管理",
           url: "/admin/user",
           icon: "icon-people",
         };
         this.navItems.push(navItem1);
 
         const navItem2 = {
-          name: "产品管理",
+          name: "產品管理",
           url: "/product/manager",
           icon: "icon-wallet",
         };
@@ -209,14 +209,14 @@ export class DefaultLayoutComponent implements OnInit {
         this.navItems.push(navItem3);
 
         const navItem4 = {
-          name: "審核單",
+          name: "審核領料單",
           url: "/approval/manager",
           icon: "cui-graph",
         };
         this.navItems.push(navItem4);
 
         const navItem5 = {
-          name: "審核收據",
+          name: "放行領料單",
           url: "/admin/management",
           icon: "cui-task",
         };

@@ -1,4 +1,7 @@
 {
+    "Main": {
+        "Title": "Receive System"
+    },
     "receive": {
         "Title": "Lãnh tạp phẩm",
         "TitleWH": "Chọn kho",
@@ -99,6 +102,8 @@
     },
     "productMain": {
         "Title": "Danh sách sản phẩm",
+        "ProductID": "Mã sản phẩm",
+        "InputProductID": "Nhập mã sản phẩm",
         "ButtonAdd": "Thêm mới",
         "Table-column2": "Mã sản phẩm",
         "Table-column3": "Tên sản phẩm",

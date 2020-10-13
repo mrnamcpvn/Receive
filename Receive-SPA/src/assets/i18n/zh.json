@@ -1,9 +1,12 @@
 {
+    "Main": {
+        "Title": "庶務領料系統"
+    },
     "receive": {
         "Title": "領料單",
-        "TitleWH": "选择仓库",
-        "TitleCate": "选择一个类别",
-        "TitleProduct": "选择产品",
+        "TitleWH": "請選擇倉庫",
+        "TitleCate": "請選擇種類",
+        "TitleProduct": "請選擇品名",
         "Status": "等待",
         "ButtonAdd" : "新增",
         "ButtonPrint": "列印 QRCode",
@@ -72,14 +75,14 @@
         "Status2": "已發料"
     },
     "userMain": {
-        "Title": "User 清單",
+        "Title": "使用者名單",
         "ButtonAdd": "新增",
-        "Table-column2": "User 賬號",
+        "Table-column2": "工號",
         "Table-column3": "名稱",
         "Table-column4": "權限",
-        "Table-column5": "部門",
-        "Table-column6": "更新者",
-        "Table-column7": "更新時間"
+        "Table-column5": "部門代碼",
+        "Table-column6": "異動人員",
+        "Table-column7": "異動日期"
     },
     "userChange": {
         "TitleAdd": "新加用戶",
@@ -99,21 +102,23 @@
     },
     "productMain": {
         "Title": "產品名單",
+        "ProductID": "品名編號",
+        "InputProductID": "請輸入編號",
         "ButtonAdd": "新加用戶",
         "Table-column2": "品名編號",
         "Table-column3": "品名",
-        "Table-column4": "類",
-        "Table-column5": "更新者",
-        "Table-column6": "更新時間"
+        "Table-column4": "種類",
+        "Table-column5": "異動人員",
+        "Table-column6": "異動日期"
     },
     "productChange": {
-        "TitleAdd": "新加產品",
+        "TitleAdd": "新加產品", 
         "TitleEdit": "產品修改",
         "ProductID": "品名編號",
-        "InputProductID": "輸入產品號碼",
+        "InputProductID": "請輸入編號",
         "NameProduct": "品名",
-        "InputNameProduct": "輸入產品名字",
-        "Category": "類",
+        "InputNameProduct": "請輸入品名",
+        "Category": "種類",
         "ButtonCancel": "取消",
         "ButtonSaveNext": "保存&下一個",
         "ButtonSave": "保存"
