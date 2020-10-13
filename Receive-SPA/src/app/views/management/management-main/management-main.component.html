@@ -28,7 +28,7 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th>{{ 'manager.Table-column1' | translate }}</th>
+                  <th></th>
                   <th>{{ 'manager.Table-column2' | translate }}</th>
                   <th>{{ 'manager.Table-column3' | translate }}</th>
                   <th>{{ 'manager.Table-column4' | translate }}</th>
@@ -44,7 +44,7 @@
               <tbody>
                 <tr *ngFor="let receive of receives;let i = index">
                   <td>
-                    <button class="btn btn-primary" (click)="editReceive(receive)" >Edit</button>
+                    <button class="btn btn-primary" (click)="editReceive(receive)" >{{ 'manager.Edit' | translate }}</button>
                   </td>
                   <td>{{receive.depID}}</td>
                   <td>{{receive.userID}}</td>
