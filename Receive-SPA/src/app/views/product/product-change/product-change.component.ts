@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ProductService } from '../../../_core/_services/product.service';
 import { Select2OptionData } from 'ng-select2';
 import { AlertifyService } from '../../../_core/_services/alertify.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-change',
@@ -20,6 +21,7 @@ export class ProductChangeComponent implements OnInit {
   };
   constructor(private router: Router,
               private alertify: AlertifyService,
+              private translate: TranslateService,
               private productService: ProductService) { }
 
   ngOnInit() {
@@ -81,6 +83,21 @@ export class ProductChangeComponent implements OnInit {
       this.product = {};
     } else {
       this.productService.currentProduct.subscribe(res => this.product = JSON.parse(JSON.stringify(res)));
+    }
+  }
+  ngAfterContentChecked() {
+    if(this.translate.currentLang === 'vi' || this.translate.currentLang === undefined) {
+      this.productService.getAllCategories().subscribe((res) => {
+        this.categories = res.map((obj) => {
+          return { id: obj.id.toString(), text: obj.name_LL };
+        });
+      });
+    } else if(this.translate.currentLang === 'zh') {
+      this.productService.getAllCategories().subscribe((res) => {
+        this.categories = res.map((obj) => {
+          return { id: obj.id.toString(), text: obj.name_ZW };
+        });
+      });
     }
   }
 }

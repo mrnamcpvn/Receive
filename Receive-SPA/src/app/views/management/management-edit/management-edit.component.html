@@ -10,18 +10,18 @@
         </div>
         <div class="card-body">
           <div class="form-group row">
-            <label class="col-md-1 col-form-label" for="Category" >Category: </label>
+            <label class="col-md-1 col-form-label" for="Category" >{{ 'EditReceive.Category' | translate }}: </label>
             <div class="col-md-2">
               <ng-select2  [data]="categories" [value]="receive.categoryID"  
               [options]="optionsCategory" name="role" (valueChanged)="changedCategory($event)"
                 [cssImport]=true [disabled]="disable"></ng-select2>
             </div>
-            <label class="col-md-1 col-form-label" for="Category" >Product: </label>
+            <label class="col-md-1 col-form-label" for="Category" >{{ 'EditReceive.Product' | translate }}: </label>
             <div class="col-md-3">
               <ng-select2 [data]="products" [value]="receive.productID" [options]="optionsProduct" name="role"
               (valueChanged)="changeProduct($event)" [cssImport]=true [disabled]="disable"></ng-select2>
             </div>
-            <label class="col-md-1 col-form-label" for="Category" >Qty: </label>
+            <label class="col-md-1 col-form-label" for="Category" >{{ 'EditReceive.Qty' | translate }}: </label>
             <div class="col-md-2">
               <input type="number" placeholder="Qty" [(ngModel)]="receive.qty" min="0"
                   max="100" name="qty" class="form-control">
@@ -29,10 +29,10 @@
           </div>
         </div>
         <div class="card-footer">
-          <button type="button" (click)="cancel()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Cancel</button>
-          <button *ngIf="isSave === true; else elseSave" (click)="save()" class="btn btn-sm btn-success ml-2"><i class="fa fa-check"></i> Save</button>
+          <button type="button" (click)="cancel()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> {{ 'EditReceive.Cancel' | translate }}</button>
+          <button *ngIf="isSave === true; else elseSave" (click)="save()" class="btn btn-sm btn-success ml-2"><i class="fa fa-check"></i> {{ 'EditReceive.Cancel' | translate }}</button>
           <ng-template #elseSave>
-            <button disabled class="btn btn-sm btn-success ml-2"><i class="fa fa-check"></i> Save</button>
+            <button disabled class="btn btn-sm btn-success ml-2"><i class="fa fa-check"></i> {{ 'EditReceive.Save' | translate }}</button>
           </ng-template>
         </div>
       </div>

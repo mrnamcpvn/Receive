@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { TranslateService } from '@ngx-translate/core';
 import { Select2OptionData } from "ng-select2";
 import { ReceiveInfomationModel } from "../../../_core/_models/receiveInfomation-model";
 import { AlertifyService } from "../../../_core/_services/alertify.service";
@@ -32,6 +33,7 @@ export class ManagementEditComponent implements OnInit {
     private productService: ProductService,
     private receiveService: ReceiveService,
     private alertify: AlertifyService,
+    public translate: TranslateService,
     private router: Router
   ) {}
 
@@ -79,7 +81,6 @@ export class ManagementEditComponent implements OnInit {
     })
   }
   cancel() {
-    debugger
     this.receive.qty = this.receiveConst.qty;
     this.receive.categoryID = this.receiveConst.categoryID;
     this.receive.productID = this.receiveConst.productID;
@@ -97,6 +98,20 @@ export class ManagementEditComponent implements OnInit {
       this.isSave = false;
     } else {
       this.isSave = true;
+    }
+
+    if(this.translate.currentLang === 'vi' || this.translate.currentLang === undefined) {
+      this.productService.getAllCategories().subscribe((res) => {
+        this.categories = res.map((obj) => {
+          return { id: obj.id.toString(), text: obj.name_LL };
+        });
+      });
+    } else if(this.translate.currentLang === 'zh') {
+      this.productService.getAllCategories().subscribe((res) => {
+        this.categories = res.map((obj) => {
+          return { id: obj.id.toString(), text: obj.name_ZW };
+        });
+      });
     }
   }
 }

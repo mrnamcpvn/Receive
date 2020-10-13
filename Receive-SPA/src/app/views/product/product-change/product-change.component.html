@@ -35,16 +35,16 @@
                   [cssImport]=true [disabled]="disable"></ng-select2>
               </div>
             </div>
-            <div class="card-footer">
-              <button type="button" (click)="cancel()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> {{ 'productChange.ButtonCancel' | translate}}</button>
-              <button *ngIf="flag === '0'" type="submit" (click)="saveAndNext()"  class="btn btn-sm btn-primary ml-2" 
-              [disabled]="!addProductForm.valid || product.catID === undefined">
-                <i class="fa fa-check"></i> {{ 'productChange.ButtonSaveNext' | translate}}</button>
-              <button type="button" (click)="save()" class="btn btn-sm btn-success ml-2" 
-              [disabled]="!addProductForm.valid || product.catID === undefined"><i class="fa fa-check"></i> {{ 'productChange.ButtonSave' | translate}}</button>
-            </div>
           </div>
         </form>
+        <div class="card-footer">
+          <button type="button" (click)="cancel()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> {{ 'productChange.ButtonCancel' | translate}}</button>
+          <button *ngIf="flag === '0'" type="submit" (click)="saveAndNext()"  class="btn btn-sm btn-primary ml-2" 
+          [disabled]="!addProductForm.valid || product.catID === undefined">
+            <i class="fa fa-check"></i> {{ 'productChange.ButtonSaveNext' | translate}}</button>
+          <button type="button" (click)="save()" class="btn btn-sm btn-success ml-2" 
+          [disabled]="!addProductForm.valid || product.catID === undefined"><i class="fa fa-check"></i> {{ 'productChange.ButtonSave' | translate}}</button>
+        </div>
       </div>
     </div>
   </div>

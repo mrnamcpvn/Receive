@@ -53,6 +53,13 @@
         "Table-column10": "Ngày kí duyệt",
         "Table-column11": "Thông qua"
     },
+    "EditReceive": {
+        "Category": "Loại",
+        "Product": "Sản phẩm",
+        "Qty": "Số lượng",
+        "Cancel": "Cancel",
+        "Save": "Save"
+    },
     "history" : {
         "Title": "Lịch sử",
         "Date": "Ngày xin lãnh",

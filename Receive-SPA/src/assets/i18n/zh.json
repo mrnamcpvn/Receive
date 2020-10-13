@@ -53,6 +53,13 @@
         "Table-column10": "審核日期",
         "Table-column11": "放行"
     },
+    "EditReceive": {
+        "Category": "請選擇種類",
+        "Product": "請選擇品名",
+        "Qty": "數量",
+        "Cancel": "取消",
+        "Save": "保存"
+    },
     "history" : {
         "Title": "記錄",
         "Date": " 領料日期",
