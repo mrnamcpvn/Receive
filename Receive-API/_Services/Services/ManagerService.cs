@@ -51,7 +51,7 @@ namespace Receive_API._Services.Services
         public async Task<ReceiveInformationModel> GetReceive(string receiveID)
         {
             var receiveModel = await _repoReceive.GetAll()
-                    .Where(x => x.ID.Trim() == receiveID.Trim()).FirstOrDefaultAsync();
+                    .Where(x => x.ID.Trim() == receiveID.Trim() && x.Status.Trim() == "1").FirstOrDefaultAsync();
             if(receiveModel == null) {
                 return null;
             } else {

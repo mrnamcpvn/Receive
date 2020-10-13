@@ -25,6 +25,7 @@ export class ManagementMainComponent implements OnInit {
     this.loadData();
   }
   loadData() {
+    this.pagination.currentPage = 1;
     this.managerService.getListAll(this.pagination.currentPage, this.pagination.itemsPerPage)
     .subscribe((res: PaginatedResult<ReceiveInfomationModel[]>) => {
       this.receives = res.result;
@@ -38,25 +39,31 @@ export class ManagementMainComponent implements OnInit {
     this.loadData();
   }
   getReceive(e: any) {
-    debugger
-    if(this.receiveID === '' || this.receiveID.indexOf(' ') >= 0 || this.receiveID.length < 10) {
+    if(this.receiveID === '') {
       this.loadData();
+    } else if(this.receiveID.indexOf(' ') >= 0 || this.receiveID.length < 10) {
+      this.receives.length = 0;
+      this.pagination = {
+        currentPage: 1,
+        itemsPerPage: 10,
+        totalItems: 1,
+        totalPages: 1,
+      }
     } else {
-      debugger
       this.managerService.getReceive(this.receiveID).subscribe(res => {
         if(res !== null) {
-          console.log(res);
           this.receives.length = 0;
           this.receives.push(res);
-          this.pagination = {
-            currentPage: 1,
-            itemsPerPage: 10,
-            totalItems: 1,
-            totalPages: 1,
-          };
         } else {
+          this.receives.length = 0;
           this.alertify.error('Không có dữ liệu!');
         }
+        this.pagination = {
+          currentPage: 1,
+          itemsPerPage: 10,
+          totalItems: 1,
+          totalPages: 1,
+        };
       })
     }
   }
