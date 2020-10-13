@@ -72,6 +72,23 @@ namespace Receive_API._Services.Services
             return PagedList<Product_Dto>.Create(data, param.PageNumber, param.PageSize);
         }
 
+        public async Task<PagedList<Product_Dto>> Search(PaginationParams param, string filterParam)
+        {
+            var products = await _repoProduct.GetAll().Where(x => x.ID.Trim().Contains(filterParam.Trim())).ToListAsync();
+            var categorys = await _repoCategory.GetAll().ToListAsync();
+            var data = (from a in products join b in categorys 
+                    on a.CatID equals b.ID select new Product_Dto(){
+                        ID = a.ID,
+                        Name = a.Name,
+                        CatID = a.CatID,
+                        CatName = b.Name_LL,
+                        CatName_ZW = b.Name_ZW,
+                        Update_By = a.Updated_By,
+                        Update_Time = a.Update_Time
+                    }).OrderByDescending(x => x.Update_Time).ToList();
+            return PagedList<Product_Dto>.Create(data, param.PageNumber, param.PageSize);
+        }
+
         public async Task<bool> Update(Product model)
         {
             var product = await _repoProduct.GetAll().Where(x => x.ID.Trim() == model.ID.Trim()).FirstOrDefaultAsync();

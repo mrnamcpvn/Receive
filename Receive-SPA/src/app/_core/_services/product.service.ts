@@ -39,6 +39,29 @@ export class ProductService {
         }),
       );
   }
+
+  search(page?, itemsPerPage?, text?): Observable<PaginatedResult<ProductModel[]>> {
+    const paginatedResult: PaginatedResult<ProductModel[]> = new PaginatedResult<ProductModel[]>();
+
+    let params = new HttpParams();
+
+    if (page != null && itemsPerPage != null) {
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemsPerPage);
+    }
+    return this.http.get<ProductModel[]>(this.baseUrl + 'product/search/' + text, { observe: 'response', params })
+      .pipe(
+        map(response => {
+          console.log(response);
+          paginatedResult.result = response.body;
+          if (response.headers.get('Pagination') != null) {
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+          }
+          return paginatedResult;
+        }),
+      );
+  }
+
   getAllCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.baseUrl + 'product/categorys/', {});
   }

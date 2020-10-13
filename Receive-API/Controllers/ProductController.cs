@@ -23,6 +23,14 @@ namespace Receive_API.Controllers
             return Ok(data);
         }
 
+        [HttpGet("search/{filterParam}")]
+        public async Task<IActionResult> Search([FromQuery]PaginationParams param,string filterParam) {
+            var data = await _serviceProduct.Search(param, filterParam);
+            Response.AddPagination(data.CurrentPage, data.PageSize, data.TotalCount, data.TotalPages);
+            return Ok(data);
+        }
+
+
         [HttpPost("add")]
         public async Task<IActionResult> Add([FromBody]Product model) {
             var updateBy = User.FindFirst(ClaimTypes.NameIdentifier).Value;
