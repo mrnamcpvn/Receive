@@ -23,7 +23,7 @@ namespace Receive_API._Services.Services
 
         public async Task<string> Add(Product model)
         {
-            var productFind =  await _repoProduct.GetAll().Where(x => x.ID.Trim() == model.ID.Trim()).FirstOrDefaultAsync();
+            var productFind =   _repoProduct.FindSingle(x => x.ID.Trim() == model.ID.Trim());
             if(productFind != null) {
                 return "exist";
             } else {
@@ -40,7 +40,7 @@ namespace Receive_API._Services.Services
 
         public async Task<bool> Delete(string id)
         {
-            var product = await _repoProduct.GetAll().Where(x => x.ID.Trim() == id.Trim()).FirstOrDefaultAsync();
+            var product =  _repoProduct.FindSingle(x => x.ID.Trim() == id.Trim());
             if(product != null) {
                 _repoProduct.Remove(product);
                 return await _repoProduct.SaveAll();
@@ -57,8 +57,8 @@ namespace Receive_API._Services.Services
 
         public async Task<PagedList<Product_Dto>> GetWithPaginations(PaginationParams param)
         {
-            var products = await _repoProduct.GetAll().ToListAsync();
-            var categorys = await _repoCategory.GetAll().ToListAsync();
+            var products =  _repoProduct.FindAll();
+            var categorys =  _repoCategory.FindAll();
             var data = (from a in products join b in categorys 
                     on a.CatID equals b.ID select new Product_Dto(){
                         ID = a.ID,
@@ -68,14 +68,14 @@ namespace Receive_API._Services.Services
                         CatName_ZW = b.Name_ZW,
                         Update_By = a.Updated_By,
                         Update_Time = a.Update_Time
-                    }).OrderByDescending(x => x.Update_Time).ToList();
-            return PagedList<Product_Dto>.Create(data, param.PageNumber, param.PageSize);
+                    }).OrderByDescending(x => x.Update_Time);
+            return await PagedList<Product_Dto>.CreateAsync(data, param.PageNumber, param.PageSize);
         }
 
         public async Task<PagedList<Product_Dto>> Search(PaginationParams param, string filterParam)
         {
-            var products = await _repoProduct.GetAll().Where(x => x.ID.Trim().Contains(filterParam.Trim())).ToListAsync();
-            var categorys = await _repoCategory.GetAll().ToListAsync();
+            var products =  _repoProduct.FindAll(x => x.ID.Trim().Contains(filterParam.Trim()));
+            var categorys =  _repoCategory.FindAll();
             var data = (from a in products join b in categorys 
                     on a.CatID equals b.ID select new Product_Dto(){
                         ID = a.ID,
@@ -85,13 +85,13 @@ namespace Receive_API._Services.Services
                         CatName_ZW = b.Name_ZW,
                         Update_By = a.Updated_By,
                         Update_Time = a.Update_Time
-                    }).OrderByDescending(x => x.Update_Time).ToList();
-            return PagedList<Product_Dto>.Create(data, param.PageNumber, param.PageSize);
+                    }).OrderByDescending(x => x.Update_Time);
+            return await PagedList<Product_Dto>.CreateAsync(data, param.PageNumber, param.PageSize);
         }
 
         public async Task<bool> Update(Product model)
         {
-            var product = await _repoProduct.GetAll().Where(x => x.ID.Trim() == model.ID.Trim()).FirstOrDefaultAsync();
+            var product =  _repoProduct.FindSingle(x => x.ID.Trim() == model.ID.Trim());
             if(product != null) {
                 product.Name = model.Name;
                 product.CatID = model.CatID;

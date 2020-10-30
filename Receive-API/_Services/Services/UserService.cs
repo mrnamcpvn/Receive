@@ -51,8 +51,7 @@ namespace Receive_API._Services.Services
 
         public async Task<bool> Delete(string UserId)
         {
-            var user = await _repoUser.FindAll()
-                .Where(x => x.ID == UserId).FirstOrDefaultAsync();
+            var user =  _repoUser.FindSingle(x => x.ID == UserId);
             if(user != null) {
                 _repoUser.Remove(user);
                 return await _repoUser.SaveAll();

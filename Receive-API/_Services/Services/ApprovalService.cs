@@ -24,8 +24,7 @@ namespace Receive_API._Services.Services
 
         public async Task<bool> AcceptReceive(string receiveID, string userID)
         {
-            var receive = await _repoReceive.GetAll()
-                    .Where(x => x.ID.Trim() == receiveID.Trim()).FirstOrDefaultAsync();
+            var receive =  _repoReceive.FindSingle(x => x.ID.Trim() == receiveID.Trim());
             if(receive != null) {
                 receive.Accept_Date = DateTime.Now;
                 receive.Accept_ID = userID;
@@ -39,8 +38,7 @@ namespace Receive_API._Services.Services
 
         public async Task<bool> DeclineReceive(string receiveID, string userID)
         {
-            var receive = await _repoReceive.GetAll()
-                    .Where(x => x.ID.Trim() == receiveID.Trim()).FirstOrDefaultAsync();
+            var receive =  _repoReceive.FindSingle(x => x.ID.Trim() == receiveID.Trim());
             if(receive != null) {
                 receive.Accept_Date = DateTime.Now;
                 receive.Accept_ID = userID;
@@ -54,10 +52,10 @@ namespace Receive_API._Services.Services
 
         public async Task<PagedList<ReceiveInformationModel>> GetWithPaginations(PaginationParams param, string userID)
         {
-            var user = await _repoUse.GetAll().Where(x => x.ID.Trim() == userID.Trim()).FirstOrDefaultAsync();
-            var products = await _repoProduct.GetAll().ToListAsync();
-            var receives = await _repoReceive.GetAll().Where(x => x.DepID.Trim() == user.DepID && x.Status == "0").ToListAsync();
-            var data = (from a in receives join b in products
+            var user =  _repoUse.FindSingle(x => x.ID.Trim() == userID.Trim());
+            var products =  _repoProduct.FindAll();
+            var receives =  _repoReceive.FindAll(x => x.DepID.Trim() == user.DepID && x.Status == "0");
+            var data =  (from a in receives join b in products
                 on a.ProductID equals b.ID 
                 select new ReceiveInformationModel() {
                     ID = a.ID,
@@ -72,17 +70,17 @@ namespace Receive_API._Services.Services
                     Status = a.Status,
                     Updated_By = a.Updated_By,
                     Updated_Time = a.Updated_Time
-                }).OrderByDescending(x => x.Register_Date).ToList();
-            return PagedList<ReceiveInformationModel>.Create(data, param.PageNumber, param.PageSize);
+                }).OrderByDescending(x => x.Register_Date);
+            return await PagedList<ReceiveInformationModel>.CreateAsync(data, param.PageNumber, param.PageSize);
         }
 
         public async Task<PagedList<ReceiveInformationModel>> SearchWithPaginations(PaginationParams param, string userReceive, string userAccept)
         {
-            var user = await _repoUse.GetAll().Where(x => x.ID.Trim() == userAccept.Trim()).FirstOrDefaultAsync();
-            var products = await _repoProduct.GetAll().ToListAsync();
-            var receives = await _repoReceive.GetAll().Where(x => x.DepID.Trim() == user.DepID && 
+            var user =  _repoUse.FindSingle(x => x.ID.Trim() == userAccept.Trim());
+            var products =  _repoProduct.FindAll();
+            var receives =  _repoReceive.FindAll(x => x.DepID.Trim() == user.DepID && 
                                                             x.Status == "0" &&
-                                                            x.UserID.Trim() == userReceive.Trim()).ToListAsync();
+                                                            x.UserID.Trim() == userReceive.Trim());
             var data = (from a in receives join b in products
                 on a.ProductID equals b.ID select new ReceiveInformationModel() {
                     ID = a.ID,
@@ -97,8 +95,8 @@ namespace Receive_API._Services.Services
                     Status = a.Status,
                     Updated_By = a.Updated_By,
                     Updated_Time = a.Updated_Time
-                }).OrderByDescending(x => x.Register_Date).ToList();
-            return PagedList<ReceiveInformationModel>.Create(data, param.PageNumber, param.PageSize);
+                }).OrderByDescending(x => x.Register_Date);
+            return await PagedList<ReceiveInformationModel>.CreateAsync(data, param.PageNumber, param.PageSize);
         }
     }
 }

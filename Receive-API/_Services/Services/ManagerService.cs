@@ -30,7 +30,7 @@ namespace Receive_API._Services.Services
 
         public async Task<bool> AcceptReceive(string receiveID)
         {
-            var receiveModel = await _repoReceive.GetAll().Where(x => x.ID.Trim() == receiveID.Trim()).FirstOrDefaultAsync();
+            var receiveModel =  _repoReceive.FindSingle(x => x.ID.Trim() == receiveID.Trim());
             if(receiveModel != null) {
                 receiveModel.Status = "2";
                 receiveModel.Updated_Time = DateTime.Now;
@@ -42,7 +42,7 @@ namespace Receive_API._Services.Services
 
         public async Task<bool> DecliceReceive(string receiveID)
         {
-            var receiveModel = await _repoReceive.GetAll().Where(x => x.ID.Trim() == receiveID.Trim()).FirstOrDefaultAsync();
+            var receiveModel =  _repoReceive.FindSingle(x => x.ID.Trim() == receiveID.Trim());
             if(receiveModel != null) {
                 _repoReceive.Remove(receiveModel);
                 return await _repoReceive.SaveAll();
@@ -53,13 +53,12 @@ namespace Receive_API._Services.Services
 
         public async Task<ReceiveInformationModel> GetReceive(string receiveID)
         {
-            var receiveModel = await _repoReceive.GetAll()
-                    .Where(x => x.ID.Trim() == receiveID.Trim() && x.Status.Trim() == "1").FirstOrDefaultAsync();
+            var receiveModel =  _repoReceive.FindSingle(x => x.ID.Trim() == receiveID.Trim() && x.Status.Trim() == "1");
             if(receiveModel == null) {
                 return null;
             } else {
-                var product = await _repoProduct.GetAll().Where(x => x.ID.Trim() == receiveModel.ProductID.Trim()).FirstOrDefaultAsync();
-                var department = await _repoDepartment.GetAll().Where(x => x.ID.Trim() == receiveModel.DepID.Trim()).FirstOrDefaultAsync();
+                var product = await _repoProduct.FindAll(x => x.ID.Trim() == receiveModel.ProductID.Trim()).FirstOrDefaultAsync();
+                var department = await _repoDepartment.FindAll(x => x.ID.Trim() == receiveModel.DepID.Trim()).FirstOrDefaultAsync();
                 var receiveResult = new ReceiveInformationModel();
                 receiveResult.ID = receiveModel.ID;
                 receiveResult.UserID = receiveModel.UserID;
@@ -77,10 +76,10 @@ namespace Receive_API._Services.Services
 
         public async Task<PagedList<ReceiveInformationModel>> GetWithPaginations(PaginationParams param)
         {
-            var products = await _repoProduct.GetAll().ToListAsync();
-            var categorys = await _repoCategory.GetAll().ToListAsync();
-            var receives = await _repoReceive.GetAll().Where(x => x.Status == "1").ToListAsync();
-            var departments = await _repoDepartment.GetAll().ToListAsync();
+            var products =  _repoProduct.FindAll();
+            var categorys =  _repoCategory.FindAll();
+            var receives =  _repoReceive.FindAll(x => x.Status == "1");
+            var departments =  _repoDepartment.FindAll();
             var data = (from r in receives join p in products
                 on r.ProductID.Trim() equals p.ID.Trim()
                 join c in categorys on p.CatID equals c.ID
@@ -99,8 +98,8 @@ namespace Receive_API._Services.Services
                     Accept_Date = r.Accept_Date,
                     Updated_Time = r.Updated_Time,
                     Updated_By = r.Updated_By
-                }).OrderByDescending(x => x.Register_Date).ToList();
-            return PagedList<ReceiveInformationModel>.Create(data, param.PageNumber, param.PageSize);
+                }).OrderByDescending(x => x.Register_Date);
+            return await PagedList<ReceiveInformationModel>.CreateAsync(data, param.PageNumber, param.PageSize);
         }
 
         public async Task<bool> ImportExcel(string filePath, string user)
@@ -143,8 +142,7 @@ namespace Receive_API._Services.Services
 
         public async Task<bool> EditReceive(EditReceiveParam data)
         {
-            var receiveModel = await _repoReceive.GetAll()
-                .Where(x => x.ID.Trim() == data.ID.Trim()).FirstOrDefaultAsync();
+            var receiveModel =  _repoReceive.FindSingle(x => x.ID.Trim() == data.ID.Trim());
             receiveModel.ProductID = data.ProductID;
             receiveModel.Qty = data.Qty;
             return await _repoReceive.SaveAll();
