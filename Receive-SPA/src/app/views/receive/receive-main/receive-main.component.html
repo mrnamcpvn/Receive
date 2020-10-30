@@ -9,22 +9,22 @@
           <div class="card-body">
             <div class="form-group row">
               <div class="col-md-3">
-                <label class="badge badge-warning">{{ 'receive.TitleWH' | translate }}</label>
+                <label class="badge badge-warning titleLabel">{{ 'receive.TitleWH' | translate }}</label>
                 <ng-select2 [data]="warehouses" [value]="warehouseID" [options]="optionsWarehouse" name="role"
                   (valueChanged)="changeWarehouse($event)" [cssImport]=true [disabled]="disable"></ng-select2>
               </div>
               <div class="col-md-2">
-                <label class="badge badge-warning">{{ 'receive.TitleCate' | translate }}</label>
+                <label class="badge badge-warning titleLabel">{{ 'receive.TitleCate' | translate }}</label>
                 <ng-select2 [data]="categories" [value]="cateID" [options]="optionsCategory" name="role"
                   (valueChanged)="changeCategory($event)" [cssImport]=true [disabled]="disable"></ng-select2>
               </div>
               <div class="col-md-3">
-                <label class="badge badge-warning">{{ 'receive.TitleProduct' | translate }}</label>
+                <label class="badge badge-warning titleLabel">{{ 'receive.TitleProduct' | translate }}</label>
                 <ng-select2 [data]="products" [value]="receive.productID" [options]="optionsProduct" name="role"
                   (valueChanged)="changeProduct($event)" [cssImport]=true [disabled]="disable"></ng-select2>
               </div>
               <div class="col-md-2">
-                <label class="badge badge-warning">{{ 'receive.Qty' | translate }}</label>
+                <label class="badge badge-warning titleLabel">{{ 'receive.Qty' | translate }}</label>
                 <input type="number" placeholder="{{'receive.Qty' | translate}}" [(ngModel)]="receive.qty" min="0"
                   max="100" name="qty" class="form-control">
               </div>
