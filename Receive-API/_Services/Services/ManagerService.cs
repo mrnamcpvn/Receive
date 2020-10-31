@@ -34,7 +34,11 @@ namespace Receive_API._Services.Services
             if(receiveModel != null) {
                 receiveModel.Status = "2";
                 receiveModel.Updated_Time = DateTime.Now;
-                return await _repoReceive.SaveAll();
+                try {
+                    return await _repoReceive.SaveAll();
+                } catch(Exception) {
+                    return false;
+                }
             } else {
                 return false;
             }
@@ -45,7 +49,11 @@ namespace Receive_API._Services.Services
             var receiveModel =  _repoReceive.FindSingle(x => x.ID.Trim() == receiveID.Trim());
             if(receiveModel != null) {
                 _repoReceive.Remove(receiveModel);
-                return await _repoReceive.SaveAll();
+                try {
+                    return await _repoReceive.SaveAll();
+                } catch(Exception) {
+                    return false;
+                }
             } else {
                 return false;
             }
@@ -122,8 +130,7 @@ namespace Receive_API._Services.Services
                     }
                 }
                 try {
-                    await _repoDepartment.SaveAll();
-                    return true;
+                    return await _repoDepartment.SaveAll();
                 }
                 catch(System.Exception) {
                     return false;
@@ -145,7 +152,11 @@ namespace Receive_API._Services.Services
             var receiveModel =  _repoReceive.FindSingle(x => x.ID.Trim() == data.ID.Trim());
             receiveModel.ProductID = data.ProductID;
             receiveModel.Qty = data.Qty;
-            return await _repoReceive.SaveAll();
+            try {
+                return await _repoReceive.SaveAll();
+            } catch(Exception) {
+                return false;
+            }
         }
     }
 }

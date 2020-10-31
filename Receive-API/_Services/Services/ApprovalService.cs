@@ -30,7 +30,11 @@ namespace Receive_API._Services.Services
                 receive.Accept_ID = userID;
                 receive.Status = "1";
                 receive.Updated_Time = DateTime.Now;
-                return await _repoReceive.SaveAll();
+                try {
+                    return await _repoReceive.SaveAll();
+                } catch(Exception) {
+                    return false;
+                }
             } else {
                 return false;
             }
@@ -44,7 +48,11 @@ namespace Receive_API._Services.Services
                 receive.Accept_ID = userID;
                 receive.Status = "-1";
                 receive.Updated_Time = DateTime.Now;
-                return await _repoReceive.SaveAll();
+                try {
+                    return await _repoReceive.SaveAll();
+                } catch(Exception) {
+                    return false;
+                }
             } else {
                 return false;
             }

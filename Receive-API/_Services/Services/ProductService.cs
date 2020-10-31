@@ -43,7 +43,11 @@ namespace Receive_API._Services.Services
             var product =  _repoProduct.FindSingle(x => x.ID.Trim() == id.Trim());
             if(product != null) {
                 _repoProduct.Remove(product);
-                return await _repoProduct.SaveAll();
+                try {
+                    return await _repoProduct.SaveAll();
+                } catch(Exception) {
+                    return false;
+                }
             } else {
                 return false;
             }
@@ -97,7 +101,11 @@ namespace Receive_API._Services.Services
                 product.CatID = model.CatID;
                 product.Status = "1";
                 product.Update_Time = DateTime.Now;
-                return await _repoProduct.SaveAll();
+                try {
+                    return await _repoProduct.SaveAll();
+                } catch(Exception) {
+                    return false;
+                }
             } else {
                 return false;
             }

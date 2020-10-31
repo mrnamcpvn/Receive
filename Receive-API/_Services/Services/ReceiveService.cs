@@ -59,7 +59,11 @@ namespace Receive_API._Services.Services
             model.Status = "0";
             var receive = _mapper.Map<Receive>(model);
             _repoReceive.Add(receive);
-            return await _repoReceive.SaveAll();
+            try {
+                return await _repoReceive.SaveAll();
+            } catch(Exception) {
+                return false;
+            }
         }
         public string RandomString() {
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

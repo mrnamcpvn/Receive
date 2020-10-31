@@ -16,8 +16,7 @@ namespace Receive_API._Services.Services
         }
         public async Task<User> Login(UserForLoginDto userDto)
         {
-            var user = await _repoUser.GetAll()
-            .Where(x => x.ID.Trim() == userDto.Username.Trim() &&
+            var user = await _repoUser.FindAll(x => x.ID.Trim() == userDto.Username.Trim() &&
                     x.Password.Trim() == userDto.Password.Trim()).FirstOrDefaultAsync();
             return user;
         }

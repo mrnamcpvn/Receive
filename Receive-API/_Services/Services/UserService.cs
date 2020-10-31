@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Receive_API._Repositorys.Interfaces;
 using Receive_API._Services.Interfaces;
@@ -38,12 +37,16 @@ namespace Receive_API._Services.Services
             model.Update_Time = DateTime.Now;
             var user = _mapper.Map<User>(model);
             _repoUser.Add(user);
-            return await _repoUser.SaveAll();
+            try {
+                return await _repoUser.SaveAll();
+            } catch(Exception) {
+                return false;
+            }
         }
 
         public async Task<bool> CheckExistUser(string userID)
         {
-            var userFind = await _repoUser.GetAll().FirstOrDefaultAsync(x => x.ID == userID);
+            var userFind = await _repoUser.FindAll(x => x.ID == userID).FirstOrDefaultAsync();
             if(userFind != null)
                 return true;
             return false;
@@ -54,7 +57,11 @@ namespace Receive_API._Services.Services
             var user =  _repoUser.FindSingle(x => x.ID == UserId);
             if(user != null) {
                 _repoUser.Remove(user);
-                return await _repoUser.SaveAll();
+                try {
+                    return await _repoUser.SaveAll();
+                } catch(Exception) {
+                    return false;
+                }
             } else {
                 return false;
             }
@@ -74,16 +81,15 @@ namespace Receive_API._Services.Services
 
         public async Task<User> GetUserById(string userId)
         {
-            var user = await _repoUser.GetAll().Where(x => x.ID == userId).FirstOrDefaultAsync();
+            var user = await _repoUser.FindAll(x => x.ID == userId).FirstOrDefaultAsync();
             return user;
         }
 
         public async Task<PagedList<UserViewModel>> GetWithPaginations(PaginationParams param)
         {
-            var lists =  _repoUser.GetAll().ProjectTo<User_Dto>(_configMapper)
-                .OrderByDescending(x => x.DepID);
-            var roles =  _repoRole.GetAll();
-            var departments = _repoDepartment.GetAll();
+            var lists =  _repoUser.FindAll();
+            var roles =  _repoRole.FindAll();
+            var departments = _repoDepartment.FindAll();
             var users = (from a in lists join b in roles
                 on a.RoleID equals b.ID
                 join c in departments on a.DepID equals c.ID
@@ -107,7 +113,11 @@ namespace Receive_API._Services.Services
             var user = _mapper.Map<User>(model);
             user.Update_Time = DateTime.Now;
             _repoUser.Update(user);
-            return await _repoUser.SaveAll();
+            try {
+                return await _repoUser.SaveAll();
+            } catch(Exception) {
+                return false;
+            }
         }
     }
 }
